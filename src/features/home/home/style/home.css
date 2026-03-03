@@ -1,7 +1,337 @@
+.last-news-container .breacking-news {
+  margin-bottom: 20px;
+  background-color: var(--hover-color);
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  color: white;
+  align-items: center;
+}
+.last-news-container .breacking-news h3 {
+  font-weight: 500;
+  font-size: 16px;
+  background-color: var(--main-color);
+  padding: 8px 10px;
+  border-radius: 4px;
+}
+
+.last-news-container .breacking-news .ticker {
+  flex: 1;
+  overflow: hidden;
+}
+.last-news-container .breacking-news .ticker .ticker-content {
+  display: flex;
+  gap: 25px;
+  animation: ticker 15s linear infinite;
+  white-space: nowrap;
+}
+
 .last-news-container .last-news {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 .last-news-container .last-news .main-news {
   flex: 300px;
+  position: relative;
+  height: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.last-news-container .last-news img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.last-news-container .last-news article {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px;
+  color: white;
+  background: linear-gradient(to top, black, transparent);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 10px;
+}
+.last-news-container .last-news article:hover h2 {
+  text-decoration: underline;
+}
+.last-news-container .last-news article button {
+  padding: 10px 15px;
+  border: none;
+  text-transform: capitalize;
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 10px;
+}
+
+.last-news-container .last-news .main-news h2 {
+  font-size: 20px;
+}
+.last-news-container .last-news .main-news p {
+  font-size: 15px;
+}
+
+.last-news-container .last-news .icons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.last-news-container .last-news .icons span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.last-news-container .last-news .sub-news-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  flex: 200px;
+}
+
+.last-news-container .last-news .sub-news {
+  flex: 300px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.last-news-container .last-news .sub-news img {
+  height: 220px;
+}
+
+.last-news-container .last-news .sub-news article {
+  padding: 20px 15px;
+  gap: 15px;
+}
+
+.last-news-container .last-news .sub-news article button {
+  padding: 10px;
+  font-size: 12px;
+}
+
+.last-news-container .last-news .sub-news article h2 {
+  font-size: 17px;
+}
+
+.last-news-container .last-news .sub-news .icons {
+  gap: 10px;
+  font-size: 13px;
+  display: none;
+}
+.last-news-container .last-news .sub-news:hover .icons {
+  display: flex;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.reports-container {
+  cursor: grab;
+}
+.card-style-1 {
+  background-color: var(--section-color);
+  border-radius: 10px;
+  color: var(--font-color);
+  overflow: hidden;
+}
+
+.card-style-1 img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-style-1:hover {
+  background-color: var(--border-color);
+}
+
+.card-style-1 .icons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  opacity: 0.6;
+}
+.card-style-1 .icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.card-style-1 .card-body {
+  padding: 20px;
+}
+
+.card-style-1 .card-body h3 {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+.card-style-1 .card-body p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.card-style-1 .card-footer {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--aside-color);
+  align-items: center;
+}
+.card-style-1 .card-footer p {
+  opacity: 0.6;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.card-style-1 .card-footer span {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  text-transform: capitalize;
+}
+.card-style-1:hover .card-footer span {
+  color: var(--main-color);
+}
+
+.topics-container .topic {
+  display: flex;
+  gap: 15px;
+  color: var(--font-color);
+  background-color: var(--body-color);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.topics-container .topic .img {
+  flex: 200px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.topics-container .topic .img img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.topics-container .topic article {
+  flex: calc(100% - 200px) 10;
+}
+.topics-container .topic article h3 {
+  font-size: 17px;
+  line-height: 1.4;
+}
+.topics-container .topic article p {
+  font-size: 15px;
+}
+.topics-container .topic article .icons {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+}
+.topics-container .topic article .icons .icon {
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.topics-container .topic article .read-more {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-transform: capitalize;
+  font-size: 14px;
+  gap: 5px;
+}
+.topics-container .topic:hover article .read-more {
+  color: var(--main-color);
+  gap: 10px;
+}
+.topics-container .topic:hover img {
+  transform: scale(1.1);
+}
+.topics-container .topic:hover h3 {
+  text-decoration: underline;
+}
+
+.documentaries {
+  background-color: #1f2024;
+}
+.documentaries .main-title {
+  color: white;
+}
+.documentaries .card-style-1 {
+  background-color: #161619;
+  color: white;
+}
+.documentaries .card-style-1 .card-footer {
+  background-color: #111113;
+}
+
+.documentaries .documentary-container {
+  margin-top: 30px;
+}
+
+.documentaries .documentary {
+  display: flex;
+  gap: 15px;
+  color: white;
+  flex-wrap: wrap;
+  background-color: #111113;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.documentaries .documentary .img {
+  overflow: hidden;
+  flex: 100px;
+}
+.documentaries .documentary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.documentaries .documentary article {
+  flex: calc(90% - 100px) 10;
+  padding-block: 10px;
+}
+.documentaries .documentary article h3 {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.documentaries .documentary article p {
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.documentaries .documentary article .icons {
+  display: flex;
+  font-size: 13px;
+  opacity: 0.6;
+  gap: 10px;
+}
+
+.documentaries .documentary:hover h3 {
+  text-decoration: underline;
+}
+.documentaries .documentary:hover img {
+  transform: scale(1.1);
 }

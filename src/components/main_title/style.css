@@ -1,0 +1,19 @@
+a.main-title {
+  text-transform: uppercase;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 3px var(--main-color);
+  justify-content: space-between;
+  padding-bottom: 10px;
+  color: var(--font-color);
+  font-family: "Changa", sans-serif;
+  line-height: 1;
+  margin-bottom: 30px;
+}
+a.main-title svg {
+  font-size: 18px;
+}
+a.main-title:hover {
+  color: var(--main-color);
+}

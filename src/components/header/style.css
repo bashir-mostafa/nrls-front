@@ -87,7 +87,7 @@
   top: calc(100% + 10px);
   left: 0;
   min-width: 180px;
-  background: white;
+  background: var(--body-color);
   color: black;
   border-radius: 12px;
   padding: 10px;
@@ -110,6 +110,7 @@
   padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
+  color: var(--font-color);
 }
 
 .bottom-header nav a article p:hover {
