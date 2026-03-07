@@ -5,8 +5,14 @@ import {
   faWhatsapp,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 export const socialLinks = {
+  email: {
+    icon: faEnvelope,
+    text: "diyardireki111@gmail.com",
+    to: "mailto:diyardireki111@gmail.com",
+  },
   facebook: {
     icon: faFacebookF,
     text: "مركز روج آفا للدراسات الاستراتيجية NRLS",

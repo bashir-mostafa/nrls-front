@@ -19,7 +19,7 @@
 .inp .input-wrapper,
 .inp textarea {
   border-radius: 4px;
-  padding: 10px;
+  padding: 14px 10px;
   background-color: var(--section-color);
   display: flex;
   align-items: center;
@@ -265,7 +265,7 @@ label.required::after {
   .inp .input-wrapper,
   .inp textarea,
   .select-input .placeholder {
-    padding: 8px;
+    padding: 8px 12px;
   }
   .select-input .options h3 {
     font-size: 12px;
@@ -314,7 +314,7 @@ label.required::after {
   .inp .input-wrapper,
   .inp textarea,
   .select-input .placeholder {
-    padding: 6px;
+    padding: 8px 10px;
   }
   .select-input .placeholder {
     font-size: 11px;

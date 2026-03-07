@@ -11,6 +11,7 @@ import {
 import { useMemo } from "react";
 import Tooltip from "../tooltip/Tooltip";
 import useDarkMode from "./../../hooks/useDarkMode";
+import { homeRoutes } from "../../constant/pageRoutes";
 
 const Header = () => {
   const currentDate = useMemo(
@@ -53,8 +54,8 @@ const Header = () => {
       </div>
       <div className="bottom-header container">
         <nav>
-          <NavLink>home</NavLink>
-          <NavLink to={"/dsa"}>about</NavLink>
+          <NavLink to={"/"}>home</NavLink>
+          <NavLink to={homeRoutes.about}>about</NavLink>
           <NavLink to={"/dsa"}>
             <div>
               media <FontAwesomeIcon icon={faChevronDown} />
@@ -65,7 +66,8 @@ const Header = () => {
               <p>test</p>
             </article>
           </NavLink>
-          <NavLink to={"/dsa"}>about</NavLink>
+          <NavLink to={homeRoutes.contact}>contact us</NavLink>
+          <NavLink to={homeRoutes.login}>login</NavLink>
         </nav>
 
         <div className="search">

@@ -1,0 +1,67 @@
+.contact-page {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  border-radius: 15px;
+  overflow: hidden;
+}
+.contact-page > div {
+  flex: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-page .inputs {
+  background-color: var(--body-color);
+  color: var(--font-color);
+}
+.contact-page .socials {
+  background: linear-gradient(to right, var(--main-color), var(--hover-color));
+  color: white;
+}
+
+.contact-page h2 {
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.contact-page h2 svg {
+  color: var(--main-color);
+  font-size: 70%;
+}
+.contact-page .socials .social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.contact-page .socials a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex: 300px;
+}
+.contact-page .socials a .icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(255 255 255 / 15%);
+  border-radius: 50%;
+}
+.contact-page .socials a p {
+  opacity: 0.7;
+  line-height: 1;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+.contact-page .socials a h3 {
+  font-size: 15px;
+  font-weight: 500;
+}
+.contact-page .socials a:hover .icon {
+  background-color: var(--main-color);
+}
