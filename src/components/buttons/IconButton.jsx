@@ -1,10 +1,11 @@
 import { useMemo } from "react";
+import "./button.css";
 /**
  * @typedef {Object} IconButtonProps
  * @property {string} [className]
  * @property {string} [title]
  * @property {"top" | "bottom" | "left" | "right"} [placement]
- * @property {"body-color" | "secondry-color" | "main" | "delete" | "save" | "cancel" | "update"} [color]
+ * @property {"body-color" | "secondry-color" | "main" | "delete" | "save" | "cancel" | "update" } [color]
  * @property {"contained" | "outlined" | "transparent"} [styleType]
  */
 

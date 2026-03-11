@@ -184,6 +184,7 @@ button.sending:disabled {
   background-color: var(--border-color);
 }
 
+
 .icon-button-hover::before {
   content: "";
   position: absolute;

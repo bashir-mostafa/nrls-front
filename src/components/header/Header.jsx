@@ -68,6 +68,7 @@ const Header = () => {
           </NavLink>
           <NavLink to={homeRoutes.contact}>contact us</NavLink>
           <NavLink to={homeRoutes.login}>login</NavLink>
+          <NavLink to={homeRoutes.dashboard}>dashboard</NavLink>
         </nav>
 
         <div className="search">
