@@ -1,8 +1,10 @@
 import { useMemo } from "react";
 import "./button.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 /**
  * @typedef {Object} IconButtonProps
  * @property {string} [className]
+ * @property {React.ReactNode} [icon]
  * @property {string} [title]
  * @property {"top" | "bottom" | "left" | "right"} [placement]
  * @property {"body-color" | "secondry-color" | "main" | "delete" | "save" | "cancel" | "update" } [color]
@@ -20,6 +22,7 @@ const IconButton = ({
   placement = "bottom",
   color = "body-color",
   styleType = "contained",
+  icon,
   ...props
 }) => {
   const classNameMemo = useMemo(
@@ -28,6 +31,7 @@ const IconButton = ({
   );
   return (
     <button type={props.type || "button"} {...props} className={classNameMemo}>
+      {icon && <FontAwesomeIcon icon={icon} />}
       {children}
       {title && <p className={`${placement} icon-button-hover`}> {title} </p>}
     </button>

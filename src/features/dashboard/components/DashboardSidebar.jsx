@@ -1,6 +1,7 @@
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { dashboardPages } from "../../../constant/pageRoutes";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 
 const name = "diyar direki";
 
@@ -9,10 +10,13 @@ const DashboardSidebar = () => {
     <aside className="dashboard-sidebar">
       <nav className="links">
         {dashboardPages.map((e) => (
-          <NavLink key={e.to} to={e.to} end>
+          <NavLink key={e.to} to={e.to} end title={e.title}>
             <FontAwesomeIcon icon={e.icon} /> <span> {e.title} </span>
           </NavLink>
         ))}
+        <Link to={"/"} title="back home">
+          <FontAwesomeIcon icon={faHome} /> <span> back home </span>
+        </Link>
       </nav>
       <div className="user">
         <div className="profile"> {name[0]} </div>

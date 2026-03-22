@@ -76,7 +76,7 @@ const UpdateAuthor = () => {
 
   return (
     <>
-      <Breadcrumbs />
+      <Breadcrumbs replace={[{ from: id, text: data?.full_name }]} />
 
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <UploadPhoto
@@ -86,7 +86,7 @@ const UpdateAuthor = () => {
           notRequired
           value={formik.values.profile_image}
           onChange={(e) => formik.setFieldValue("profile_image", e)}
-          className="author-profile"
+          className="author-profile-form"
           defaultImage={
             data?.profile_image && imgServerSrc(data?.profile_image)
           }

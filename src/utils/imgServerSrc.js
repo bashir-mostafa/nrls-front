@@ -1,4 +1,2 @@
-import { baseURL } from "./axios";
-
-const imgServerSrc = (src) => `${baseURL}images/${src}`;
+const imgServerSrc = (src) => `${src}`;
 export default imgServerSrc;

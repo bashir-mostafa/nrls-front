@@ -1,5 +1,7 @@
 import {
   faClose,
+  faEnvelope,
+  faEye,
   faFeather,
   faHashtag,
   faMagnifyingGlass,
@@ -22,4 +24,6 @@ export const icons = {
   tags: faHashtag,
   category: faTags,
   author: faFeather,
+  view: faEye,
+  email: faEnvelope,
 };

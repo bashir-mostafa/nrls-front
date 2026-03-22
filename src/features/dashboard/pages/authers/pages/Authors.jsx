@@ -25,7 +25,7 @@ const column = [
     name: "profile_image",
     headerName: "profile_image",
     getCell: ({ row }) => (
-      <div className="center">
+      <Link className="center" to={dashboardRouts.author.view(row.id)}>
         {row.profile_image ? (
           <img
             src={imgServerSrc(row.profile_image)}
@@ -35,13 +35,18 @@ const column = [
         ) : (
           <p className="author-profile-tabel"> {row.full_name?.[0]} </p>
         )}
-      </div>
+      </Link>
     ),
   },
   {
     name: "full_name",
     headerName: "full_name",
     sort: true,
+    getCell: ({ row }) => (
+      <Link className="link-hover" to={dashboardRouts.author.view(row.id)}>
+        {row.full_name}
+      </Link>
+    ),
   },
   {
     name: "email",
@@ -67,10 +72,15 @@ const column = [
     name: "actions",
     headerName: "actions",
     getCell: ({ row }) => (
-      <div className="center">
+      <div className="center gap-10">
         <Link to={dashboardRouts.author.update(row.id)}>
           <Button btnStyleType="transparent">
             <FontAwesomeIcon icon={icons.update} />
+          </Button>
+        </Link>
+        <Link to={dashboardRouts.author.view(row.id)}>
+          <Button btnStyleType="transparent" btnType="save">
+            <FontAwesomeIcon icon={icons.view} />
           </Button>
         </Link>
       </div>

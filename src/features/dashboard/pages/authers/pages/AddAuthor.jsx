@@ -64,7 +64,7 @@ const AddAuthor = () => {
           notRequired
           value={formik.values.profile_image}
           onChange={(e) => formik.setFieldValue("profile_image", e)}
-          className="author-profile"
+          className="author-profile-form"
         />
 
         <div className="inputs-area">

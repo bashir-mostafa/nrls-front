@@ -16,7 +16,8 @@ const dashboardRouts = {
   author: {
     page: `${homeRoutes.dashboard}/authors`,
     add: `${homeRoutes.dashboard}/authors/add`,
-    update: (id = ":id") => `${homeRoutes.dashboard}/authors/${id}`,
+    view: (id = ":id") => `${homeRoutes.dashboard}/authors/${id}`,
+    update: (id = ":id") => `${homeRoutes.dashboard}/authors/${id}/update`,
   },
   tag: {
     page: `${homeRoutes.dashboard}/tags`,

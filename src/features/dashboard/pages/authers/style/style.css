@@ -10,10 +10,145 @@
   text-transform: uppercase;
   box-shadow: var(--box-shadow);
 }
-.author-profile {
+.author-profile-form {
   max-width: 50%;
   background-color: var(--body-color);
   padding: 20px;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+}
+
+.author-profile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.author-profile > section {
+  flex: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--body-color);
+}
+
+.author-profile .body {
+  padding: 20px;
+}
+
+.author-profile .image-section .img {
+  display: flex;
+  min-height: 200px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--aside-color);
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+.author-profile .image-section .profile {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.author-profile .image-section .img .icons {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.author-profile .image-section .profile-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: solid 4px var(--body-color);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.author-profile .image-section .actions {
+  background-color: var(--body-color);
+  position: absolute;
+  top: 100%;
+  box-shadow: var(--box-shadow);
+  animation: fadeIn 0.4s;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.author-profile .image-section .actions .action {
+  padding: 5px 10px;
+  cursor: pointer;
+  line-height: 1.5;
+  white-space: nowrap;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+.author-profile .image-section .change-profile:hover {
+  background-color: var(--transparent-color);
+  color: var(--main-color);
+}
+.author-profile .image-section .delete:hover {
+  background-color: rgba(255, 0, 0, 0.123);
+  color: red;
+}
+
+.author-profile .image-section a {
+  background-color: var(--section-color);
+  padding: 5px 10px;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 5px;
+  border-radius: 10px;
+  border: dashed 2px var(--transparent-color);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+.author-profile .image-section a svg {
+  color: var(--main-color);
+}
+.author-profile .image-section a:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+.author-profile .image-section a:hover svg {
+  color: white;
+}
+.author-profile .read-more-container {
+  background-color: var(--transparent-color);
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.author-profile .info-section {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.author-profile .info-section div {
+  display: flex;
+  gap: 10px;
+  border-bottom: dotted 2px var(--border-color);
+  padding-inline: 10px;
+  padding-bottom: 8px;
+}
+.author-profile .info-section article {
+  line-height: 1;
+}
+.author-profile .info-section article span,
+.author-profile .info-section article p {
+  line-height: 1;
+}
+.author-profile .info-section article p {
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+.author-profile .info-section svg {
+  color: var(--main-color);
+  background-color: var(--transparent-color);
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 15px;
 }
