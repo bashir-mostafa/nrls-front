@@ -35,14 +35,7 @@ const AuthorFilter = ({ filters, setFilters }) => {
         onChange={handleChange}
         label="email"
       />
-      <Input
-        name="slug"
-        placeholder="search by slug"
-        value={local?.slug ?? ""}
-        notRequired
-        onChange={handleChange}
-        label="slug"
-      />
+     
       <Input
         name="bio"
         placeholder="search by bio"

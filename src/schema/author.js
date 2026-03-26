@@ -4,15 +4,6 @@ export const authorSchema = Yup.object({
 
   email: Yup.string().required().email(),
 
-  slug: Yup.string()
-    .required("Slug is required")
-    .min(2)
-    .max(30)
-    .matches(
-      /^[\p{L}0-9_]+$/u,
-      "No spaces allowed, only letters, numbers, and (_)",
-    ),
-
   bio: Yup.string().notRequired(),
 
   profile_image: Yup.object().nullable(),

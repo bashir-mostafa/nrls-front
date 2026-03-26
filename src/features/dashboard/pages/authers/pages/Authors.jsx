@@ -59,10 +59,6 @@ const column = [
     hidden: true,
   },
   {
-    name: "slug",
-    headerName: "slug",
-  },
-  {
     name: "created_at",
     headerName: "created_at",
     sort: true,

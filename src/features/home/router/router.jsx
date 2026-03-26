@@ -3,6 +3,7 @@ import { homePageRouter } from "../home/router/router";
 import { aboutRouter } from "./../about/router/router";
 import { loginRouter } from "./../login/router/router";
 import { authorRouter } from "./../author/router/router";
+import { postsRouter } from "../posts/router/router";
 
 export const mainRouter = [
   homePageRouter,
@@ -10,4 +11,5 @@ export const mainRouter = [
   contactRouter,
   loginRouter,
   ...authorRouter,
+  ...postsRouter,
 ];

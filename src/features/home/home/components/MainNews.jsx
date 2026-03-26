@@ -2,10 +2,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Img from "../../../../assets/1.jpg";
 import { faClock, faEye } from "@fortawesome/free-solid-svg-icons";
 import dateFormatter from "../../../../utils/dateFormatter";
+import { Link } from "react-router";
 
 const MainNews = () => {
+  
   return (
-    <div className="main-news">
+    <Link className="main-news" to={`/posts?category=red`}>
       <img src={Img} alt="" />
       <article>
         <button> type </button>
@@ -39,7 +41,7 @@ const MainNews = () => {
           </span>
         </div>
       </article>
-    </div>
+    </Link>
   );
 };
 

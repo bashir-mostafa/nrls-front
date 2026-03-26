@@ -18,7 +18,6 @@ const AddAuthor = () => {
     initialValues: {
       full_name: "",
       email: "",
-      slug: "",
       bio: "",
       profile_image: "",
     },
@@ -84,14 +83,7 @@ const AddAuthor = () => {
             label={t("email")}
             placeholder={t("email_placeholder")}
           />
-          <Input
-            name="slug"
-            value={formik.values.slug}
-            onChange={formik.handleChange}
-            errorText={t(formik.errors.slug)}
-            label={t("slug")}
-            placeholder={t("slug_placeholder")}
-          />
+
           <Input
             name="bio"
             value={formik.values.bio}

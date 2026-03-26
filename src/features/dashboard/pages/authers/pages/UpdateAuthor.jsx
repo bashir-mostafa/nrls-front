@@ -28,7 +28,6 @@ const UpdateAuthor = () => {
     initialValues: {
       full_name: data?.full_name || "",
       email: data?.email || "",
-      slug: data?.slug || "",
       bio: data?.bio || "",
       profile_image: "",
     },
@@ -109,14 +108,7 @@ const UpdateAuthor = () => {
             label={t("email")}
             placeholder={t("email_placeholder")}
           />
-          <Input
-            name="slug"
-            value={formik.values.slug}
-            onChange={formik.handleChange}
-            errorText={t(formik.errors.slug)}
-            label={t("slug")}
-            placeholder={t("slug_placeholder")}
-          />
+
           <Input
             name="bio"
             value={formik.values.bio}

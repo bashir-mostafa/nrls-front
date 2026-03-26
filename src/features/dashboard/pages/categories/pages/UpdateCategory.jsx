@@ -26,7 +26,7 @@ const UpdateCategory = () => {
       name_ar: data?.name_ar || "",
       name_ku: data?.name_ku || "",
       name_en: data?.name_en || "",
-      slug: data?.slug || "",
+
     },
     validationSchema: categoriesSchema,
     onSubmit: (d) => handleConfirm.mutate(d),
@@ -79,14 +79,6 @@ const UpdateCategory = () => {
             errorText={t(formik.errors.name_ku)}
             label={t("name_ku")}
             placeholder={t("name_ku_placeholder")}
-          />
-          <Input
-            name="slug"
-            value={formik.values.slug}
-            onChange={formik.handleChange}
-            errorText={t(formik.errors.slug)}
-            label={t("slug")}
-            placeholder={t("slug_placeholder")}
           />
         </div>
         <Button type="submit"> save </Button>

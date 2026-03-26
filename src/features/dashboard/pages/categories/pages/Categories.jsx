@@ -35,11 +35,6 @@ const column = [
     sort: true,
   },
   {
-    name: "slug",
-    headerName: "slug",
-    sort: true,
-  },
-  {
     name: "created_at",
     headerName: "created_at",
     sort: true,

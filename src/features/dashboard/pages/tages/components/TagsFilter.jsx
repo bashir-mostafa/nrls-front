@@ -43,14 +43,6 @@ const TagsFilter = ({ filters, setFilters }) => {
         onChange={handleChange}
         label="name_ku"
       />
-      <Input
-        name="slug"
-        placeholder="search by slug"
-        value={local?.slug ?? ""}
-        notRequired
-        onChange={handleChange}
-        label="slug"
-      />
     </Filters>
   );
 };

@@ -8,6 +8,9 @@ const homeRoutes = {
   author: {
     view: (id = ":id") => `/author/${id}`,
   },
+  posts: {
+    page: `/posts`,
+  },
 };
 
 const dashboardRouts = {

@@ -21,8 +21,6 @@ const ProfileInfoSection = ({ data }) => {
         title={"updated_at"}
         value={dateFormatter(data?.updated_at, "fullDate")}
       />
-
-      <InfoSection icon={authorIcons.slug} title={"slug"} value={data?.slug} />
     </section>
   );
 };
