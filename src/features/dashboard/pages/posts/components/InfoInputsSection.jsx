@@ -8,10 +8,12 @@ const InfoInputsSection = ({ formik, language }) => {
     <div className="post-inputs">
       <SelectInputApi
         endPoint={endPoints.posts}
-        onChange={(e) => formik.setFieldValue("original_post_id", e)}
-        placeholder={formik.values.original_post_id?.title || "select category"}
-        errorText={formik.errors.original_post_id}
-        label="original_post_id"
+        onChange={(e) => formik.setFieldValue("original_post", e)}
+        placeholder={
+          formik.values.original_post?.title || "select original_post"
+        }
+        errorText={formik.errors.original_post}
+        label="original_post"
         optionLabel={(e) => e?.title}
         notRequired
       />
@@ -24,20 +26,20 @@ const InfoInputsSection = ({ formik, language }) => {
       />
       <SelectInputApi
         endPoint={endPoints.categories}
-        onChange={(e) => formik.setFieldValue("category_id", e)}
+        onChange={(e) => formik.setFieldValue("category", e)}
         placeholder={
-          formik.values.category_id?.[`name_${language}`] || "select category"
+          formik.values.category?.[`name_${language}`] || "select category"
         }
-        errorText={formik.errors.category_id}
-        label="category_id"
+        errorText={formik.errors.category}
+        label="category"
         optionLabel={(e) => `${e.name_en} - ${e.name_ar} - ${e.name_ku}`}
       />
       <SelectInputApi
         endPoint={endPoints.authors}
-        onChange={(e) => formik.setFieldValue("author_id", e)}
-        placeholder={formik.values.author_id?.full_name || "select category"}
-        errorText={formik.errors.author_id}
-        label="author_id"
+        onChange={(e) => formik.setFieldValue("author", e)}
+        placeholder={formik.values.author?.full_name || "select author"}
+        errorText={formik.errors.author}
+        label="author"
         optionLabel={(e) => e?.full_name}
         notRequired
       />

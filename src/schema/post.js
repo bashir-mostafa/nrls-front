@@ -3,7 +3,7 @@ import { allTyps } from "../constant/enums";
 import { languages } from "../constant/languages";
 
 export const postSchema = yup.object({
-  featured_image: yup.mixed().when("original_post_id", {
+  featured_image: yup.mixed().when("original_post", {
     is: (val) => !val,
     then: (schema) => schema.required(),
     otherwise: (schema) => schema.notRequired(),
@@ -13,11 +13,12 @@ export const postSchema = yup.object({
   excerpt: yup.string().notRequired(),
   content: yup.string().notRequired(),
 
-  original_post_id: yup.object().nullable(),
+  original_post: yup.object().nullable(),
 
   content_type: yup.string().required().oneOf(allTyps),
-  category_id: yup.object().required(),
-  author_id: yup.object().nullable(),
+  category: yup.object().required(),
+  tags: yup.array().of(yup.object()).notRequired(),
+  author: yup.object().nullable(),
 
   language: yup
     .string()

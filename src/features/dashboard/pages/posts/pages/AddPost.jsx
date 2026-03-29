@@ -14,10 +14,13 @@ import MoreInfoInputs from "./../components/MoreInfoInputs";
 import "../style/style.css";
 import PostTabs from "./../components/PostTabs";
 import UploadPhoto from "../../../../../components/inputs/UploadPhoto";
+import { formatInputsData } from "./../../../../../utils/formatInputsData";
+import PostCard from "../../../../../components/post/PostCard";
 
 const api = new APIClient(endPoints.posts);
 
 const AddPost = () => {
+  const [tab, setTab] = useState("format");
   const { t, i18n } = useTranslation();
 
   const language = useMemo(() => i18n.language, [i18n]);
@@ -28,20 +31,22 @@ const AddPost = () => {
       title: "",
       excerpt: "",
       content: "",
-      original_post_id: "",
+      original_post: "",
       content_type: "",
-      category_id: "",
-      author_id: "",
+      category: "",
+      author: "",
       language,
       published_at: "",
       is_published: true,
+      tags: [],
     },
     validationSchema: postSchema,
     onSubmit: (d) => {
+      const data = formatInputsData(d);
       const form = new FormData();
 
-      Object.entries(d).map(([key, value]) => {
-        if (key !== "featured_image" && value) {
+      Object.entries(data).map(([key, value]) => {
+        if (key !== "featured_image") {
           form.append(key, value);
         }
       });
@@ -63,8 +68,6 @@ const AddPost = () => {
       nav(-1);
     },
   });
-
-  const [tab, setTab] = useState("format");
 
   return (
     <>
@@ -91,6 +94,17 @@ const AddPost = () => {
             className="post-cover-img"
             revoke={false}
           />
+        )}
+
+        {tab === "view" && (
+          <div className="posts-container">
+            <PostCard
+              data={formik.values}
+              isDraft
+              img={formik.values?.featured_image?.url}
+              showStatus={true}
+            />
+          </div>
         )}
 
         <Button type="submit"> save </Button>

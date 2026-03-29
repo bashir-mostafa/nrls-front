@@ -10,12 +10,7 @@ const PostTabs = ({ tab, errors, setTab }) => {
       },
       {
         title: "بيانات الخبر",
-        fields: [
-          "original_post_id",
-          "content_type",
-          "category_id",
-          "author_id",
-        ],
+        fields: ["original_post", "content_type", "category", "author"],
         tabName: "info",
       },
       {
@@ -33,7 +28,7 @@ const PostTabs = ({ tab, errors, setTab }) => {
   );
   const selectActive = useCallback(() => {
     const err = Object.keys(errors);
-    if (err.length) setTab("active");
+    if (!err.length) setTab("view");
   }, [errors, setTab]);
 
   return (

@@ -81,7 +81,7 @@ body {
   --font-color: #000;
   --box-shadow: 0 0 16px #eeeeee;
   --transparent-color: #3e8faf28;
-  --secondry-color: #b4af4b;
+  --secondry-color: #e0d60d;
   background-color: var(--section-color);
   overflow-x: hidden;
   font-family: "Changa", sans-serif;
@@ -98,6 +98,23 @@ body.dark {
   --font-color: #dceef4;
   --box-shadow: 0 8px 24px #00000066;
   --transparent-color: #3ea6c622;
+}
+
+:root {
+  --color-text: #10b981;
+  --color-infographic: #f59e0b;
+  --color-video: #ef4444;
+  --color-documentary: #8b5cf6;
+  --color-report: #3b82f6;
+  --color-survey: #06b6d4;
+  --color-book: #e80efc;
+  --color-publication: #ec489a;
+  --color-event: #f97316;
+  --color-magazine: #d946ef;
+  --color-dialogue_session: #a855f7;
+  --color-forum: #3b82f6;
+  --color-meeting: #64748b;
+  --color-center_news: #f43f5e;
 }
 
 input,

@@ -1,0 +1,142 @@
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.post-view-card {
+  background-color: var(--body-color);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0.5px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.post-view-card:hover {
+  transform: translateY(-4px);
+}
+
+.post-view-card .img {
+  position: relative;
+  overflow: hidden;
+}
+
+.post-view-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.post-view-card:hover img {
+  transform: scale(1.04);
+}
+
+.post-view-card .post-status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  z-index: 1;
+  letter-spacing: 1px;
+}
+
+.post-view-card .post-status.published {
+  background: rgba(2, 255, 171, 0.15);
+  color: #00ffae;
+  border: 1px solid rgba(0, 255, 170, 0.3);
+}
+
+.post-view-card .post-status.draft {
+  background: rgba(255, 0, 0, 0.12);
+  color: #ff0000;
+  border: 1px solid rgba(255, 0, 0, 0.25);
+}
+
+.post-view-card .card-body {
+  padding: 18px 20px 14px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.post-view-card .card-body .category {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.post-view-card .card-body .category button {
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  color: var(--font-color);
+  background: var(--aside-color);
+}
+
+.post-view-card .card-body h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.post-view-card .card-body p {
+  font-size: 13.5px;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.post-view-card .icons {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.post-view-card .icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.post-view-card .card-footer {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 0.5px solid var(--border-color);
+  background-color: var(--aside-color);
+}
+
+.post-view-card .card-footer p {
+  font-size: 12px;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.post-view-card .card-footer span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--main-color);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0;
+  transform: translateX(-4px);
+}
+
+.post-view-card:hover .card-footer span {
+  opacity: 1;
+  transform: translateX(0);
+}

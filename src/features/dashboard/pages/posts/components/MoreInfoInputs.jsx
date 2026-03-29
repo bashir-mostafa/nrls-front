@@ -1,8 +1,38 @@
+import { useCallback } from "react";
 import Input from "../../../../../components/inputs/Input";
+import SelectInputApi from "../../../../../components/inputs/SelectInputApi";
 import SelectOptionInput from "../../../../../components/inputs/SelectOptionInput";
+import endPoints from "../../../../../constant/endPoints";
 import { languages } from "../../../../../constant/languages";
 
 const MoreInfoInputs = ({ formik, t }) => {
+  const handleSelectTag = useCallback(
+    (e) => {
+      const prev = formik.values.tags || [];
+      const isExist = prev.find((t) => t.id === e.id);
+      if (isExist) {
+        formik.setFieldValue(
+          "tags",
+          prev.filter((t) => t.id !== e.id),
+        );
+      } else {
+        formik.setFieldValue("tags", [...prev, e]);
+      }
+    },
+    [formik],
+  );
+
+  const handleIgnore = useCallback(
+    (e) => {
+      const prev = formik.values.tags || [];
+      formik.setFieldValue(
+        "tags",
+        prev.filter((t) => t.id !== e.id),
+      );
+    },
+    [formik],
+  );
+
   return (
     <div className="post-inputs">
       <SelectOptionInput
@@ -13,6 +43,18 @@ const MoreInfoInputs = ({ formik, t }) => {
         }
         options={languages.map((e) => ({ text: e.title, value: e.value }))}
         errorText={formik.errors.language}
+      />
+      <SelectInputApi
+        endPoint={endPoints.tags}
+        onChange={(e) => handleSelectTag(e)}
+        placeholder={"select tags"}
+        errorText={formik.errors.tags}
+        label="tags"
+        optionLabel={(e) => `${e.name_en} - ${e.name_ar} - ${e.name_ku}`}
+        isArray
+        value={formik.values.tags}
+        notRequired
+        onIgnore={handleIgnore}
       />
       <Input
         name="published_at"
