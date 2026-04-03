@@ -15,7 +15,7 @@ const PostComments = ({ id }) => {
   const [filters, setFilters] = useState({
     created_at: {
       text: "latest comments",
-      value: "created_at",
+      value: "-created_at",
     },
   });
 

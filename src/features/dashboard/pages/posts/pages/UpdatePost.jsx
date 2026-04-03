@@ -89,11 +89,12 @@ const UpdatePost = () => {
     formik.setValues((prev) => {
       const updated = { ...prev };
 
-      Object.entries(original).forEach(([key, value]) => {
-        if (!prev[key]) {
-          updated[key] = value;
-        }
-      });
+      updated.category = prev.category || original.category;
+      updated.content_type = prev.content_type || original.content_type;
+      updated.author = prev.author || original.author;
+      updated.language = prev.language || original.language;
+      updated.published_at = prev.published_at || original.published_at;
+      updated.tags = prev.tags?.length > 0 ? prev.tags : original.tags;
 
       return updated;
     });

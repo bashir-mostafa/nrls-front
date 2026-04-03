@@ -65,7 +65,6 @@ const AddTag = () => {
             label={t("name_ku")}
             placeholder={t("name_ku_placeholder")}
           />
-
         </div>
         <Button type="submit"> save </Button>
       </form>

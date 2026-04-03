@@ -153,6 +153,7 @@
   justify-content: center;
   border-radius: 50%;
   text-transform: uppercase;
+  overflow: hidden;
 }
 .post-view-container .post-info div {
   line-height: 1.2;
@@ -173,6 +174,7 @@
   background-color: var(--body-color);
   border-radius: 10px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .post-view-container .cover-image img {
   width: 100%;
@@ -211,7 +213,7 @@
   color: white;
 }
 
-.post-view-container .comments .title-container {
+.comments .title-container {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -220,46 +222,46 @@
   text-transform: uppercase;
   margin-bottom: 10px;
 }
-.post-view-container .comments .title-container h3 {
+.comments .title-container h3 {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-.post-view-container .comments .title-container h3 svg {
+.comments .title-container h3 svg {
   color: var(--main-color);
   opacity: 0.7;
 }
 
-.post-view-container .comments .title-container p {
+.comments .title-container p {
   opacity: 0.7;
   display: flex;
   align-items: center;
   gap: 5px;
   font-size: 15px;
 }
-.post-view-container .comments .title-container p::before {
+.comments .title-container p::before {
   content: attr(data-count);
   color: var(--main-color);
 }
-.post-view-container .comments form {
+.comments form {
   padding: 20px;
   background-color: var(--body-color);
   border-radius: 10px;
 }
-.post-view-container .comments form .flex-container {
+.comments form .flex-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-.post-view-container .comments form .flex-container .inp {
+.comments form .flex-container .inp {
   flex: 200px;
 }
-.post-view-container .comments form .btn-container {
+.comments form .btn-container {
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
 }
-.post-view-container .comment-container {
+.comment-container {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
@@ -268,18 +270,18 @@
   border-radius: 6px;
   padding-block: 10px;
 }
-.post-view-container .comment-container .comment {
+.comment-container .comment {
   padding-inline: 15px;
 }
-.post-view-container .comment .actions {
+.comment .actions {
   display: flex;
   justify-content: flex-end;
   position: relative;
 }
-.post-view-container .comment .actions .menu {
+.comment .actions .menu {
   cursor: pointer;
 }
-.post-view-container .comment .actions div {
+.comment .actions div {
   position: absolute;
   background-color: var(--body-color);
   top: 100%;
@@ -287,7 +289,7 @@
   overflow: hidden;
 }
 
-.post-view-container .comment .actions div p {
+.comment .actions div p {
   font-size: 14px;
   padding: 4px;
   cursor: pointer;
@@ -297,69 +299,69 @@
   align-items: center;
   gap: 5px;
 }
-.post-view-container .comment .actions p:hover {
+.comment .actions p:hover {
   background-color: rgba(255, 0, 0, 0.123);
 }
-.post-view-container .comment .actions p svg {
+.comment .actions p svg {
   font-size: 12px;
   color: red;
 }
-.post-view-container .comment .actions .accept svg {
+.comment .actions .accept svg {
   color: green;
 }
-.post-view-container .comment .actions .accept:hover {
+.comment .actions .accept:hover {
   background-color: rgba(0, 128, 0, 0.123);
 }
 
-.post-view-container .comment-container .date-container {
+.comment-container .date-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap-reverse;
   gap: 10px;
   line-height: 1.1;
 }
-.post-view-container .comment-container .date-container span {
+.comment-container .date-container span {
   padding: 3px 8px;
   font-size: 12px;
   border-radius: 6px;
   background-color: rgba(255, 0, 0, 0.123);
   color: red;
 }
-.post-view-container .comment-container .comment:not(:last-of-type) {
+.comment-container .comment:not(:last-of-type) {
   border-bottom: solid 2px var(--border-color);
   padding-bottom: 10px;
 }
 
-.post-view-container .comment-container .date-container p {
+.comment-container .date-container p {
   opacity: 0.6;
   font-size: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.post-view-container .comment-container .date-container p::before {
+.comment-container .date-container p::before {
   content: "";
   width: 6px;
   height: 1px;
   background-color: var(--font-color);
 }
-.post-view-container .comment-container a {
+.comment-container a {
   font-size: 15px;
   opacity: 0.7;
 }
 
-.post-view-container .comment-container .comment .read-more-container {
+.comment-container .comment .read-more-container {
   padding-inline: 10px;
   font-size: 14px;
   line-height: 1.4;
 }
-.post-view-container .comment-container .comment-loader {
+.comment-container .comment-loader {
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.post-view-container .comment-container .comment-loader span {
+.comment-container .comment-loader span {
   width: 50px;
   height: 50px;
   border: solid 6px;
@@ -369,15 +371,15 @@
   animation: loader 1s linear infinite;
 }
 
-.post-view-container .post-main-info .border-bottom {
+.post-main-info .border-bottom {
   border-bottom: solid 2px var(--border-color);
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
-.post-view-container aside.post-sidebar {
+aside.post-sidebar {
   flex: 300px;
 }
-.post-view-container .post-sidebar .section-title {
+.post-sidebar .section-title {
   margin-bottom: 10px;
   text-transform: capitalize;
   opacity: 0.7;
@@ -386,14 +388,14 @@
   align-items: center;
   gap: 5px;
 }
-.post-view-container .post-sidebar .section-title::before {
+.post-sidebar .section-title::before {
   content: "";
   width: 20px;
   height: 1px;
   background-color: var(--main-color);
 }
 
-.post-view-container .post-sidebar .main-info {
+.post-sidebar .main-info {
   background-color: var(--body-color);
   border-radius: 6px;
   overflow: hidden;
@@ -401,7 +403,7 @@
   box-shadow: var(--box-shadow);
 }
 
-.post-view-container .post-sidebar .main-info > div {
+.post-sidebar .main-info > div {
   display: flex;
   justify-content: space-between;
   gap: 10px;
@@ -411,31 +413,31 @@
   padding-inline: 10px;
   padding-block: 6px;
 }
-.post-view-container .post-sidebar .main-info > div:not(:last-of-type) {
+.post-sidebar .main-info > div:not(:last-of-type) {
   border-bottom: solid 1px var(--border-color);
 }
-.post-view-container .post-sidebar .main-info > div p {
+.post-sidebar .main-info > div p {
   opacity: 0.7;
 }
-.post-view-container .post-sidebar .main-info > div .enum {
+.post-sidebar .main-info > div .enum {
   padding: 4px 10px;
   border-radius: 10px;
   font-size: 12px;
   color: var(--main-color);
   background: color-mix(in srgb, var(--main-color) 10%, transparent);
 }
-.post-view-container .post-sidebar .actions {
+.post-sidebar .actions {
   margin-bottom: 10px;
   display: flex;
   gap: 10px;
 }
 
-.post-view-container .post-sidebar .section-title .author-name {
+.post-sidebar .section-title .author-name {
   color: var(--main-color);
   font-weight: bold;
 }
 
-.post-view-container .post-sidebar .more-posts {
+.post-sidebar .more-posts {
   display: flex;
   flex-wrap: wrap;
   background-color: var(--body-color);
@@ -446,22 +448,22 @@
   align-items: center;
 }
 
-.post-view-container .post-sidebar .more-posts:hover {
+.post-sidebar .more-posts:hover {
   transform: translateY(-3px);
 }
 
-.post-view-container .post-sidebar .more-posts img {
+.post-sidebar .more-posts img {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 4px;
 }
-.post-view-container .post-sidebar .more-posts div {
+.post-sidebar .more-posts div {
   flex: 100px;
   line-height: 1.4;
   font-size: 13px;
 }
-.post-view-container .post-sidebar .more-posts div p {
+.post-sidebar .more-posts div p {
   opacity: 0.6;
 }
 
@@ -503,7 +505,7 @@
   flex: 200px;
 }
 
-.post-view-container .comment-container .more-comments {
+.comment-container .more-comments {
   background-color: var(--aside-color);
   width: fit-content;
   margin: auto;
@@ -515,8 +517,18 @@
   box-shadow: var(--box-shadow);
 }
 
-.post-view-container .comment-container .more-comments:hover {
+.comment-container .more-comments:hover {
   background-color: var(--main-color);
   color: white;
   border-color: transparent;
+}
+
+.original-post-action {
+  opacity: 0.5;
+  font-size: 15px;
+}
+.original-post-action a {
+  margin-inline: 5px;
+  font-weight: 600;
+  color: var(--main-color);
 }
