@@ -39,7 +39,6 @@ const AllPosts = () => {
 
   const [deletedId, setDeletedId] = useState(null);
 
-  console.log(results.posts);
 
   return (
     <>

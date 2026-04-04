@@ -13,7 +13,9 @@ const CommentFilters = ({ selectValue, filters }) => {
   return (
     <div>
       <SelectOptionInput
-        customOptions={[{ title: "all" }]}
+        customOptions={[
+          { title: "all", onChange: () => selectValue("is_approved", null) },
+        ]}
         label="comment status"
         notRequired
         options={[

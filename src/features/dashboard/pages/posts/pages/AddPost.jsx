@@ -103,6 +103,7 @@ const AddPost = () => {
         )}
 
         {tab === "moreInfo" && <MoreInfoInputs formik={formik} t={t} />}
+
         {tab === "image" && (
           <UploadPhoto
             name="featured_image"

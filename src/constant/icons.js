@@ -3,8 +3,11 @@ import {
   faEnvelope,
   faEye,
   faFeather,
+  faFilePdf,
   faHashtag,
+  faImage,
   faMagnifyingGlass,
+  faMusic,
   faNewspaper,
   faPenToSquare,
   faPlus,
@@ -13,6 +16,7 @@ import {
   faTrash,
   faUserPlus,
   faUsers,
+  faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const icons = {
@@ -30,4 +34,8 @@ export const icons = {
   view: faEye,
   email: faEnvelope,
   posts: faNewspaper,
+  image: faImage,
+  pdf: faFilePdf,
+  video: faVideo,
+  audio: faMusic,
 };

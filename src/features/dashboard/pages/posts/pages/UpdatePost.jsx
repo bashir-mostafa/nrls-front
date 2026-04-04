@@ -8,7 +8,7 @@ import Breadcrumbs from "../../../../../components/breadcrumbs/Breadcrumbs";
 import Button from "../../../../../components/buttons/Button";
 import { postSchema } from "./../../../../../schema/post";
 import EditorSection from "./../components/EditorSection";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import InfoInputsSection from "./../components/InfoInputsSection";
 import MoreInfoInputs from "./../components/MoreInfoInputs";
 import "../style/style.css";
@@ -20,6 +20,11 @@ import Skeleton from "../../../../../components/skeleton/Skeleton";
 import HandleError from "./../../../../../components/error/HandleError";
 import imgServerSrc from "../../../../../utils/imgServerSrc";
 import dateFormatter from "../../../../../utils/dateFormatter";
+import AddFilesForm from "../components/AddFilesForm";
+import { mediaFileType } from "../../../../../constant/enums";
+import { icons } from "../../../../../constant/icons";
+import { mediaSchema } from "../../../../../schema/mediaFile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const api = new APIClient(endPoints.posts);
 
@@ -106,6 +111,29 @@ const UpdatePost = () => {
     return featured_image || dataImg;
   }, [data, formik.values]);
 
+  const mediaFormik = useFormik({
+    initialValues: {
+      files: [],
+    },
+    validationSchema: mediaSchema,
+  });
+
+  const addMediaFn = useCallback(
+    (file_type) => {
+      const prev = mediaFormik.values.files || [];
+      const newData = {
+        file_type,
+        external_url: "",
+        alt_text: "",
+        caption: "",
+        src: "",
+        post: id,
+      };
+      mediaFormik.setFieldValue("files", [...prev, newData]);
+    },
+    [mediaFormik, id],
+  );
+
   if (isLoading) return <Skeleton height="300px" />;
 
   if (error) return <HandleError error={error} refetch={refetch} />;
@@ -114,7 +142,14 @@ const UpdatePost = () => {
     <>
       <Breadcrumbs replace={[{ from: id, text: data?.title }]} />
 
-      <PostTabs errors={formik.errors} setTab={setTab} tab={tab} />
+      <PostTabs errors={formik.errors} setTab={setTab} tab={tab}>
+        <p
+          className={`${tab === "files" ? "active" : ""} ${Object.keys(mediaFormik.errors)?.length ? "error" : ""}`}
+          onClick={() => setTab("files")}
+        >
+          الملفات
+        </p>
+      </PostTabs>
 
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         {tab === "format" && <EditorSection formik={formik} t={t} />}
@@ -147,6 +182,20 @@ const UpdatePost = () => {
               showStatus={true}
             />
           </div>
+        )}
+
+        {tab === "files" && (
+          <>
+            <div className="add-file-container">
+              {mediaFileType?.map((e) => (
+                <p className="add-btn" key={e} onClick={() => addMediaFn(e)}>
+                  <FontAwesomeIcon icon={icons[e]} /> add {e}
+                </p>
+              ))}
+            </div>
+
+            <AddFilesForm formik={mediaFormik} t={t} />
+          </>
         )}
 
         <Button type="submit"> save </Button>

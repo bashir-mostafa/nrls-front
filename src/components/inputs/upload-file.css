@@ -1,0 +1,210 @@
+.upload-file {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.upload-title {
+  font-size: 18px;
+}
+
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* frame */
+.upload-frame {
+  position: relative;
+  border: 3px dashed var(--main-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.upload-frame.error {
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.06);
+  color: red;
+}
+
+.upload-frame.dragging {
+  background-color: #334b7c1c;
+}
+
+.upload-frame:hover {
+  background-color: #334b7c1c;
+}
+
+.remove-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  z-index: 3;
+}
+
+/* label area */
+.upload-label {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* =========================
+   PREVIEW TYPES
+========================= */
+
+/* image */
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  z-index: 2;
+}
+
+/* video */
+.preview-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* pdf */
+.preview-pdf {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* generic file */
+.preview-file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: var(--main-color);
+}
+
+.preview-file svg {
+  font-size: 40px;
+}
+
+.preview-file span {
+  font-size: 14px;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* placeholder */
+.upload-placeholder {
+  text-align: center;
+}
+
+.upload-placeholder h2 {
+  font-size: 16px;
+}
+
+.upload-placeholder p {
+  font-size: 12px;
+  color: gray;
+}
+
+/* actions */
+.upload-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-actions svg {
+  color: var(--main-color);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* error */
+.field-error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* popup */
+.upload-popup .popup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.upload-popup img,
+.upload-popup video,
+.upload-popup iframe {
+  max-width: 600px;
+  max-height: 450px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+  .upload-title {
+    font-size: 14px;
+  }
+  .upload-label {
+    height: 280px;
+  }
+}
+
+@media (max-width: 800px) {
+  .upload-title {
+    font-size: 13px;
+  }
+  .upload-label {
+    height: 250px;
+  }
+  .upload-actions svg {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .upload-title {
+    font-size: 12px;
+  }
+  .upload-label {
+    height: 220px;
+  }
+  .upload-actions svg {
+    font-size: 18px;
+  }
+  .upload-frame {
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 400px) {
+  .upload-title {
+    font-size: 11px;
+  }
+  .upload-label {
+    height: 200px;
+  }
+  .upload-actions svg {
+    font-size: 16px;
+  }
+}

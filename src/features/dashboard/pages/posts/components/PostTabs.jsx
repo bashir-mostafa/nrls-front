@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 
-const PostTabs = ({ tab, errors, setTab }) => {
+const PostTabs = ({ tab, errors, setTab, children }) => {
   const tabs = useMemo(
     () => [
       {
@@ -51,6 +51,7 @@ const PostTabs = ({ tab, errors, setTab }) => {
           </p>
         );
       })}
+      {children}
       <p
         className={tab === "view" ? "active" : ""}
         disabled

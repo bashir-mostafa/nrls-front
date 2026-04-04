@@ -3,6 +3,45 @@
   padding: 20px;
   border-radius: 10px;
 }
+.add-file-container {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.add-file-container .add-btn {
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: solid 1px var(--border-color);
+  background-color: var(--body-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+.add-file-container .add-btn:hover {
+  background-color: var(--main-color);
+  color: white;
+  border-color: transparent;
+}
+.post-inputs .file-actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.post-inputs .file-actions p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: uppercase;
+}
+.post-inputs .file-actions p svg {
+  color: var(--main-color);
+}
 
 .post-tabs {
   display: flex;
