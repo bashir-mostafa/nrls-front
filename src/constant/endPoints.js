@@ -9,6 +9,7 @@ const endPoints = {
   comment: "comments/",
   mediaFiles: "media-files/",
   surveyOptions: "survey-options/",
+  vote: "survey-options/vote/",
   surveyOptionsById: "survey-options/by-survey/",
   postFiles: "media-files/by-post/",
   surveyPost: "surveys/by-post/",

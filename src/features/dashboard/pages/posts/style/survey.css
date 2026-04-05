@@ -21,6 +21,9 @@
   align-items: center;
   gap: 10px;
   line-height: 1.5;
+  position: relative;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
 }
 .survey-container .options .option p {
   width: 10px;
@@ -29,10 +32,28 @@
   border-radius: 50%;
 }
 
+.survey-container .options .option span {
+  padding: 6px 10px;
+  background-color: color-mix(in srgb, var(--main-color) 20%, transparent);
+  border-radius: 20px;
+  font-size: 13px;
+  border: solid 1px var(--main-color);
+}
+
 .survey-container .options .option.active {
   background-color: var(--main-color);
   color: white;
 }
 .survey-container .options .option.active p {
   background-color: white;
+}
+.survey-container .options .option.active span {
+  background-color: white;
+  color: var(--main-color);
+}
+.survey-container .btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
