@@ -28,6 +28,7 @@ const UpdateFilesForm = ({ formik, t }) => {
     },
     [formik],
   );
+
   const mutate = useMutation({
     mutationFn: async () => {
       await axiosInstance.delete(

@@ -23,6 +23,8 @@ import { icons } from "../../../../../constant/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import AddFilesForm from "../components/AddFilesForm";
 import axiosInstance from "../../../../../utils/axios";
+import { surveySchema } from "./../../../../../schema/survey";
+import AddSurvey from "./../components/AddSurvey";
 
 const api = new APIClient(endPoints.posts);
 
@@ -56,7 +58,11 @@ const AddPost = () => {
     },
     validationSchema: postSchema,
     onSubmit: (d) => {
-      if (Object.keys(mediaFormik.errors).length) return;
+      if (
+        Object.keys(mediaFormik.errors)?.length ||
+        Object.keys(surveyFormik.errors)?.length
+      )
+        return;
       const data = formatInputsData(d);
       const form = new FormData();
 
@@ -83,6 +89,7 @@ const AddPost = () => {
       query.invalidateQueries([endPoints.posts]);
       const { id } = d;
       handleAddFiles.mutate(id);
+      if (surveyFormik.values.options) handleAddSurvey.mutate(id);
     },
   });
 
@@ -137,6 +144,34 @@ const AddPost = () => {
     onSuccess: () => nav(-1),
   });
 
+  const surveyFormik = useFormik({
+    initialValues: {
+      question: "",
+      is_active: true,
+      closes_at: "",
+      options: [{ option_text: "" }],
+    },
+    validationSchema: surveySchema,
+  });
+
+  const handleAddSurvey = useMutation({
+    mutationFn: async (post) => {
+      const { data } = await axiosInstance.post(endPoints.surveys, {
+        ...surveyFormik.values,
+        post,
+      });
+      const { id } = data.data;
+      return id;
+    },
+    onSuccess: (survey) => {
+      surveyFormik.values.options.map(
+        async (e) =>
+          await axiosInstance.post(endPoints.surveyOptions, { ...e, survey }),
+      );
+      query.invalidateQueries([endPoints.surveyPost]);
+    },
+  });
+
   return (
     <>
       <Breadcrumbs />
@@ -147,6 +182,12 @@ const AddPost = () => {
           onClick={() => setTab("files")}
         >
           الملفات
+        </p>
+        <p
+          className={`${tab === "survey" ? "active" : ""} ${Object.keys(surveyFormik.errors)?.length ? "error" : ""}`}
+          onClick={() => setTab("survey")}
+        >
+          الاستبيان
         </p>
       </PostTabs>
 
@@ -189,6 +230,8 @@ const AddPost = () => {
             <AddFilesForm formik={mediaFormik} t={t} />
           </>
         )}
+
+        {tab === "survey" && <AddSurvey formik={surveyFormik} t={t} />}
 
         {tab === "view" && (
           <div className="posts-container">

@@ -42,6 +42,21 @@
 .post-inputs .file-actions p svg {
   color: var(--main-color);
 }
+.post-inputs .add-survey-container {
+  display: flex;
+  gap: 5px;
+  flex: 400px;
+  align-items: flex-start;
+}
+.post-inputs .add-survey-container .survey-count {
+  display: flex;
+  background: var(--transparent-color);
+  color: var(--main-color);
+  padding: 5px;
+  border: solid 1px var(--main-color);
+  border-radius: 5px;
+  font-size: 14px;
+}
 
 .post-tabs {
   display: flex;
