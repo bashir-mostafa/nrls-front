@@ -127,6 +127,7 @@
 .bottom-header .search {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .bottom-header .search label {
@@ -150,12 +151,66 @@
   padding: 10px 15px;
   font-size: 13px;
   outline: none;
-  width: 180px;
+  width: 200px;
 }
 
-.bottom-header .search svg {
+.bottom-header .search button {
   padding: 10px 14px;
   background-color: var(--main-color);
   color: white;
   cursor: pointer;
+  border: none;
+}
+
+.bottom-header .search .results {
+  position: absolute;
+  top: calc(100% + 5px);
+  z-index: 2;
+  background-color: var(--body-color);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+}
+
+.bottom-header .search .results a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: solid 1px var(--border-color);
+  padding: 5px 10px;
+}
+.bottom-header .search .results a:hover {
+  background-color: var(--aside-color);
+}
+.bottom-header .search .results a img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+
+.bottom-header .search .results a h5 {
+  font-size: 12px;
+}
+
+.bottom-header .search .results .search-loading {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bottom-header .search .results .search-loading span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: solid 3px;
+  border-color: var(--main-color) var(--main-color) var(--main-color)
+    transparent;
+  animation: search-loading 1s infinite linear;
+}
+
+@keyframes search-loading {
+  100% {
+    rotate: 365deg;
+  }
 }

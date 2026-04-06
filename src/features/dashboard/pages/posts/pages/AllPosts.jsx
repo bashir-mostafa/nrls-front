@@ -36,7 +36,7 @@ const AllPosts = () => {
 
   const [sort, setSort] = useState({ created_at: "-created_at" });
 
-  const { data, isLoading, loadMoreRef } = useInfiniteFetch({
+  const { data, isFetching, loadMoreRef } = useInfiniteFetch({
     endPoint: endPoints.posts,
     page_size: 5,
     ...formatInputsData(finalFilters),
@@ -100,7 +100,7 @@ const AllPosts = () => {
             setDeletedId={(id) => setDeletedId(id)}
           />
         ))}
-        {isLoading && (
+        {isFetching && (
           <RepeatChildren count={4}>
             <Skeleton height="100%" style={{ minHeight: "100px" }} />
           </RepeatChildren>

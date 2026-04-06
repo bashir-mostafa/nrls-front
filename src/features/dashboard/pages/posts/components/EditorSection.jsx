@@ -10,6 +10,7 @@ const EditorSection = ({ formik, t }) => {
       <SelectInputApi
         endPoint={endPoints.posts}
         onChange={(e) => formik.setFieldValue("original_post", e)}
+        onIgnore={() => formik.setFieldValue("original_post", null)}
         placeholder={
           formik.values.original_post?.title || "select original_post"
         }
@@ -17,6 +18,7 @@ const EditorSection = ({ formik, t }) => {
         label="original_post"
         optionLabel={(e) => e?.title}
         notRequired
+        value={formik.values?.original_post}
       />
       <Input
         name="title"

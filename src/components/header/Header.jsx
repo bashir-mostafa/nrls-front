@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarAlt,
   faChevronDown,
-  faMagnifyingGlass,
   faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 import { useMemo } from "react";
 import Tooltip from "../tooltip/Tooltip";
 import useDarkMode from "./../../hooks/useDarkMode";
 import { homeRoutes } from "../../constant/pageRoutes";
+import Search from "./Search";
 
 const Header = () => {
   const currentDate = useMemo(
@@ -71,12 +71,7 @@ const Header = () => {
           <NavLink to={homeRoutes.dashboard}>dashboard</NavLink>
         </nav>
 
-        <div className="search">
-          <label htmlFor="home-search">
-            <input type="text" placeholder="search...." id="home-search" />
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </label>
-        </div>
+        <Search />
       </div>
     </>
   );

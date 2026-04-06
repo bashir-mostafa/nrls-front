@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { allTyps } from "../../../../../constant/enums";
+import "../style/style.css";
 
 const PostTyps = ({ filters, setFilters }) => {
   const selectType = useCallback(
