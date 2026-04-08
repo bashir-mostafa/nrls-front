@@ -9,8 +9,8 @@ import { postViewImg } from "./../../../../utils/postViewImg";
 const MainNews = ({ data, language }) => {
   const nav = useNavigate();
   const handleNavigate = useCallback(
-    () => nav(homeRoutes.posts.view(data?.id)),
-    [data?.id, nav],
+    () => nav(homeRoutes.posts.view(data?.content_type, data?.id)),
+    [data, nav],
   );
   const stopPropagation = useCallback((e) => e.stopPropagation(), []);
   if (!data) return;
@@ -25,14 +25,14 @@ const MainNews = ({ data, language }) => {
             style={{
               "--main-color": `var(--color-${data?.content_type})`,
             }}
-            to={homeRoutes.posts.page}
+            to={homeRoutes.posts.page(data?.content_type)}
             onClick={stopPropagation}
             state={{ content_type: data.content_type }}
           >
             {data.content_type}
           </Link>
           <Link
-            to={homeRoutes.posts.page}
+            to={homeRoutes.posts.page(data?.category?.[`name_${language}`])}
             onClick={stopPropagation}
             state={{ category: data.category }}
           >

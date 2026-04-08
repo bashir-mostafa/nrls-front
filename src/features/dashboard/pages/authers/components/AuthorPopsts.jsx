@@ -8,7 +8,7 @@ import PostCard from "../../../../../components/post/PostCard";
 import Skeleton from "../../../../../components/skeleton/Skeleton";
 import { useParams } from "react-router";
 
-const AuthorPopsts = () => {
+const AuthorPopsts = ({ postPage }) => {
   const { id } = useParams();
 
   const { data, isLoading, loadMoreRef } = useInfiniteFetch({
@@ -41,7 +41,7 @@ const AuthorPopsts = () => {
             key={e.id}
             data={e}
             authorPage={dashboardRouts.author.view}
-            postPage={dashboardRouts.post.view}
+            postPage={(e) => postPage(e)}
             showStatus
             showActions
             setDeletedId={(id) => setDeletedId(id)}

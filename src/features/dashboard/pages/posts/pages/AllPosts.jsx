@@ -94,7 +94,7 @@ const AllPosts = () => {
             key={e.id}
             data={e}
             authorPage={dashboardRouts.author.view}
-            postPage={dashboardRouts.post.view}
+            postPage={(e) => dashboardRouts.post.view(e.id)}
             showStatus
             showActions
             setDeletedId={(id) => setDeletedId(id)}

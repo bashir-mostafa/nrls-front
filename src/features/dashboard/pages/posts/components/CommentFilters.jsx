@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import SelectOptionInput from "../../../../../components/inputs/SelectOptionInput";
 
-const CommentFilters = ({ selectValue, filters }) => {
+const CommentFilters = ({ selectValue, filters, actions }) => {
   const approvedPlaceholder = useMemo(() => {
     if (typeof filters?.is_approved === "boolean") {
       return filters?.is_approved ? "approved" : "not approved";
@@ -12,25 +12,27 @@ const CommentFilters = ({ selectValue, filters }) => {
 
   return (
     <div>
-      <SelectOptionInput
-        customOptions={[
-          { title: "all", onChange: () => selectValue("is_approved", null) },
-        ]}
-        label="comment status"
-        notRequired
-        options={[
-          {
-            text: "approved",
-            value: true,
-          },
-          {
-            text: "not apporved",
-            value: false,
-          },
-        ]}
-        placeholder={approvedPlaceholder}
-        onSelectOption={(e) => selectValue("is_approved", e.value)}
-      />
+      {actions && (
+        <SelectOptionInput
+          customOptions={[
+            { title: "all", onChange: () => selectValue("is_approved", null) },
+          ]}
+          label="comment status"
+          notRequired
+          options={[
+            {
+              text: "approved",
+              value: true,
+            },
+            {
+              text: "not apporved",
+              value: false,
+            },
+          ]}
+          placeholder={approvedPlaceholder}
+          onSelectOption={(e) => selectValue("is_approved", e.value)}
+        />
+      )}
       <SelectOptionInput
         label="comment status"
         notRequired

@@ -53,7 +53,9 @@ const ViewPost = () => {
           authorView={dashboardRouts.author.view}
           data={data}
           language={language}
+          actions
           allPostsView={dashboardRouts.post.page}
+          viewSurvey={dashboardRouts.post.viewSurvey}
         />
 
         <aside className="post-sidebar">
@@ -61,7 +63,7 @@ const ViewPost = () => {
             authorView={dashboardRouts.author.view}
             data={data}
             language={language}
-            view={dashboardRouts.post.view}
+            view={dashboardRouts.post.view(data?.original_post?.id)}
             showPublishStatus
           />
 
@@ -72,10 +74,17 @@ const ViewPost = () => {
               </Button>
             </Link>
 
-            <SharePost id={id} />
+            <SharePost id={id} name={data?.content_type} />
           </div>
 
-          {data?.author && <MoreFromAuthor author={data?.author} id={id} />}
+          {data?.author && (
+            <MoreFromAuthor
+              author={data?.author}
+              id={id}
+              authorView={dashboardRouts.author.view}
+              view={dashboardRouts.post.view}
+            />
+          )}
         </aside>
       </section>
     </>

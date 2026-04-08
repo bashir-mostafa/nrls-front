@@ -30,7 +30,7 @@ const Topics = ({ language }) => {
   const nav = useNavigate();
 
   const handleClick = useCallback(
-    (id) => nav(homeRoutes.posts.view(id)),
+    (id, name) => nav(homeRoutes.posts.view(name, id)),
     [nav],
   );
 
@@ -46,13 +46,20 @@ const Topics = ({ language }) => {
 
   return (
     <section className="container main-section">
-      <MainTitle state={{ content_type: "dialogue_session" }}>
+      <MainTitle
+        state={{ content_type: "dialogue_session" }}
+        name="dialogue_session"
+      >
         موضوعات وقضايا
       </MainTitle>
 
       <main className="topics-container grid-2">
         {data?.data?.map((e) => (
-          <div className="topic" key={e.id} onClick={() => handleClick(e.id)}>
+          <div
+            className="topic"
+            key={e.id}
+            onClick={() => handleClick(e.content_type, e.id)}
+          >
             <div className="img">
               <img src={postViewImg(e)} alt="" />
             </div>
@@ -62,7 +69,7 @@ const Topics = ({ language }) => {
 
               <div className="icons">
                 <Link
-                  to={homeRoutes.posts.page}
+                  to={homeRoutes.posts.page(e?.category?.[`name_${language}`])}
                   onClick={stopPropagation}
                   state={{ category: e.category }}
                   className="icon link-hover"

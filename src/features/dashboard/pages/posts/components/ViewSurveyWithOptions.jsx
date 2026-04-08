@@ -14,6 +14,7 @@ import { Link } from "react-router";
 import { dashboardRouts } from "../../../../../constant/pageRoutes";
 import IconButton from "../../../../../components/buttons/IconButton";
 import { icons } from "../../../../../constant/icons";
+import "../style/survey.css";
 
 const ViewSurveyWithOptions = ({ data, canUpdate }) => {
   const [selected, setSelected] = useState(null);
@@ -93,8 +94,8 @@ const ViewSurveyWithOptions = ({ data, canUpdate }) => {
                 {e.option_text}
               </div>
               <span> {e.vote_count} vote </span>
+              <span> {percent} </span>
               <p className="percent" style={{ width: percent }}></p>
-              <p className="percent-value"> {percent} </p>
             </div>
           );
         })}

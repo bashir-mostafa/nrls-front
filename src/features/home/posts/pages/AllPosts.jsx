@@ -1,12 +1,12 @@
 import { useCallback, useMemo, useState } from "react";
-import { useLocation, useSearchParams } from "react-router";
+import { useLocation, useParams, useSearchParams } from "react-router";
 import { useDebounce } from "use-debounce";
 import { useInfiniteFetch } from "../../../../hooks/useInfiniteFetch";
 import endPoints from "../../../../constant/endPoints";
 import { formatInputsData } from "../../../../utils/formatInputsData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icons } from "../../../../constant/icons";
-import { dashboardRouts } from "../../../../constant/pageRoutes";
+import { homeRoutes } from "../../../../constant/pageRoutes";
 import PostCard from "../../../../components/post/PostCard";
 import RepeatChildren from "../../../../components/RepeatChildren";
 import Skeleton from "../../../../components/skeleton/Skeleton";
@@ -14,9 +14,13 @@ import AllPostsHeader from "./../components/AllPostsHeader";
 import PostFilters from "../components/PostFilters";
 import { useTranslation } from "react-i18next";
 import "../style/style.css";
+import Breadcrumbs from "./../../../../components/breadcrumbs/Breadcrumbs";
 
 const AllPosts = () => {
   const { i18n } = useTranslation();
+
+  const { name } = useParams();
+
   const language = useMemo(() => i18n.language, [i18n.language]);
 
   const { state } = useLocation();
@@ -45,6 +49,7 @@ const AllPosts = () => {
     ...formatInputsData(finalFilters),
     ordering: sort,
     language,
+    is_published: true,
   });
 
   const results = useMemo(
@@ -72,60 +77,64 @@ const AllPosts = () => {
   );
 
   return (
-    <>
-      <h1
-        className="post-section-name"
-        style={{ "--color": `var(--color-${filters?.content_type})` }}
-      >
-        {filters?.content_type}
-      </h1>
+    <div
+      style={
+        filters?.content_type && {
+          "--main-color": `var(--color-${filters?.content_type})`,
+        }
+      }
+    >
+      <Breadcrumbs />
+      <section className="main-section container">
+        <h1 className="post-section-name">{name}</h1>
 
-      <div className="post-filters">
-        <div className="post-search">
-          <label htmlFor="search-inp" className="search-inp">
-            <input
-              type="text"
-              id="search-inp"
-              placeholder="search...."
-              value={searchParam}
-              onChange={handleSearch}
+        <div className="post-filters">
+          <div className="post-search">
+            <label htmlFor="search-inp" className="search-inp">
+              <input
+                type="text"
+                id="search-inp"
+                placeholder="search...."
+                value={searchParam}
+                onChange={handleSearch}
+              />
+              <FontAwesomeIcon icon={icons.search} />
+            </label>
+            <AllPostsHeader
+              sort={sort}
+              setSort={setSort}
+              toggleFilters={toggleFilters}
             />
-            <FontAwesomeIcon icon={icons.search} />
-          </label>
-          <AllPostsHeader
-            sort={sort}
-            setSort={setSort}
-            toggleFilters={toggleFilters}
-          />
+          </div>
+          <h1 data-count={results?.count || 0}>results</h1>
         </div>
-        <h1 data-count={results?.count || 0}>results</h1>
-      </div>
 
-      <div className="posts-container">
-        {results?.posts?.map((e) => (
-          <PostCard
-            key={e.id}
-            data={e}
-            authorPage={dashboardRouts.author.view}
-            postPage={dashboardRouts.post.view}
+        <div className="posts-container">
+          {results?.posts?.map((e) => (
+            <PostCard
+              key={e.id}
+              data={e}
+              authorPage={homeRoutes.author.view}
+              postPage={(e) => homeRoutes.posts.view(e?.content_type, e.id)}
+            />
+          ))}
+          {isFetching && (
+            <RepeatChildren count={4}>
+              <Skeleton height="100%" style={{ minHeight: "100px" }} />
+            </RepeatChildren>
+          )}
+        </div>
+        <div ref={loadMoreRef} />
+
+        {openFilters && (
+          <PostFilters
+            onClose={toggleFilters}
+            filters={filters}
+            setFilters={setFilters}
           />
-        ))}
-        {isFetching && (
-          <RepeatChildren count={4}>
-            <Skeleton height="100%" style={{ minHeight: "100px" }} />
-          </RepeatChildren>
         )}
-      </div>
-      <div ref={loadMoreRef} />
-
-      {openFilters && (
-        <PostFilters
-          onClose={toggleFilters}
-          filters={filters}
-          setFilters={setFilters}
-        />
-      )}
-    </>
+      </section>
+    </div>
   );
 };
 

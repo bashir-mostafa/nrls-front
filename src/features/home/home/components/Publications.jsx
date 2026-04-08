@@ -28,7 +28,9 @@ const Publications = ({ language }) => {
 
   return (
     <section className="container main-section body-color">
-      <MainTitle state={{ content_type: "publication" }}>publication</MainTitle>
+      <MainTitle state={{ content_type: "publication" }} name={"publication"}>
+        publication
+      </MainTitle>
       <main className="news-style-2 publications">
         <SecondStyleMainNews data={data?.data?.[0]} />
         <SecondStyleSubNews data={data?.data?.slice(1)} />

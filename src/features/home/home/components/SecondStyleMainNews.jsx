@@ -18,8 +18,8 @@ const SecondStyleMainNews = ({ data, language }) => {
   const nav = useNavigate();
 
   const handleClick = useCallback(
-    () => nav(homeRoutes.posts.view(data?.id)),
-    [nav, data?.id],
+    () => nav(homeRoutes.posts.view(data?.content_type, data?.id)),
+    [nav, data],
   );
 
   if (!data) return;
@@ -36,7 +36,7 @@ const SecondStyleMainNews = ({ data, language }) => {
       <div className="button">
         <div className="icons">
           <Link
-            to={homeRoutes.posts.page}
+            to={homeRoutes.posts.page(data.category?.[`name_${language}`])}
             onClick={stopPropagation}
             state={{ category: data.category }}
             className="icon link-hover"

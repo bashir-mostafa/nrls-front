@@ -9,7 +9,7 @@ import { postViewImg } from "../../../../utils/postViewImg";
 const SubNews = ({ data, language }) => {
   const nav = useNavigate();
   const handleNavigate = useCallback(
-    (id) => nav(homeRoutes.posts.view(id)),
+    (id, name) => nav(homeRoutes.posts.view(name, id)),
     [nav],
   );
   const stopPropagation = useCallback((e) => e.stopPropagation(), []);
@@ -22,7 +22,7 @@ const SubNews = ({ data, language }) => {
         <div
           className="sub-news"
           key={e.id}
-          onClick={() => handleNavigate(e.id)}
+          onClick={() => handleNavigate(e.id, e.content_type)}
         >
           <img src={postViewImg(e)} alt="" />
           <article>
@@ -32,14 +32,14 @@ const SubNews = ({ data, language }) => {
                 style={{
                   "--main-color": `var(--color-${e?.content_type})`,
                 }}
-                to={homeRoutes.posts.page}
+                to={homeRoutes.posts.page(e.content_type)}
                 onClick={stopPropagation}
                 state={{ content_type: e.content_type }}
               >
                 {e.content_type}
               </Link>
               <Link
-                to={homeRoutes.posts.page}
+                to={homeRoutes.posts.page(e?.category?.[`name_${language}`])}
                 onClick={stopPropagation}
                 state={{ category: e.category }}
               >

@@ -7,6 +7,8 @@ import HandleError from "../../../../components/error/HandleError";
 import ProfileInfoSection from "../../../dashboard/pages/authers/components/ProfileInfoSection";
 import ProfileMainInfo from "../../../dashboard/pages/authers/components/ProfileMainInfo";
 import AuthorImgSection from "../components/AuthorImgSection";
+import AuthorPopsts from "./../../../dashboard/pages/authers/components/AuthorPopsts";
+import { homeRoutes } from "../../../../constant/pageRoutes";
 const api = new APIClient(endPoints.authors);
 
 const AuthorPage = () => {
@@ -34,11 +36,9 @@ const AuthorPage = () => {
         <ProfileInfoSection data={data} />
       </main>
 
-      <div className="author-post-results-container">
-        <h1 data-count={5} className="author-post-results">
-          posts
-        </h1>
-      </div>
+      <AuthorPopsts
+        postPage={(e) => homeRoutes.posts.view(e.content_type, e.id)}
+      />
     </div>
   );
 };

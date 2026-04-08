@@ -4,9 +4,9 @@ import { icons } from "../../../../../constant/icons";
 import { homeRoutes } from "../../../../../constant/pageRoutes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SharePost = ({ id }) => {
+const SharePost = ({ name, id }) => {
   const handleShare = useCallback(async () => {
-    const url = `${window.location.origin}${homeRoutes.posts.view(id)}`;
+    const url = `${window.location.origin}${homeRoutes.posts.view(name, id)}`;
 
     if (navigator.share) {
       await navigator.share({
@@ -14,7 +14,7 @@ const SharePost = ({ id }) => {
         url,
       });
     }
-  }, [id]);
+  }, [id, name]);
 
   return (
     <Button

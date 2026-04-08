@@ -91,7 +91,9 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         />
       </div>
       <div className="btns">
-        <Button onClick={handleSave}>save</Button>
+        <Button onClick={handleSave} btnType="update">
+          save
+        </Button>
         <Button btnStyleType="transparent" btnType="cancel" onClick={onClose}>
           cancel
         </Button>

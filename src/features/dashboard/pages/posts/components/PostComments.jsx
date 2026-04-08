@@ -11,7 +11,7 @@ import CommentFilters from "./CommentFilters";
 
 const api = new APIClient(endPoints.comment);
 
-const PostComments = ({ id }) => {
+const PostComments = ({ id, actions }) => {
   const [filters, setFilters] = useState({
     created_at: {
       text: "latest comments",
@@ -74,7 +74,9 @@ const PostComments = ({ id }) => {
 
       <div className="comment-container">
         {results?.data?.length ? (
-          results?.data?.map((e) => <Comment data={e} key={e.id} showActions />)
+          results?.data?.map((e) => (
+            <Comment data={e} key={e.id} showActions={actions} />
+          ))
         ) : (
           <div style={{ textAlign: "center" }}> no comment yet </div>
         )}
@@ -96,7 +98,11 @@ const PostComments = ({ id }) => {
         onClose={handleShowFilters}
         className="comment-filters"
       >
-        <CommentFilters filters={filters} selectValue={selectValue} />
+        <CommentFilters
+          filters={filters}
+          selectValue={selectValue}
+          actions={actions}
+        />
       </Popup>
     </section>
   );

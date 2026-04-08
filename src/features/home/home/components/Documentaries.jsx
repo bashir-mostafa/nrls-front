@@ -33,7 +33,7 @@ const Documentaries = ({ language }) => {
 
   return (
     <section className="container main-section documentaries">
-      <MainTitle state={{ content_type: "documentary" }}>
+      <MainTitle state={{ content_type: "documentary" }} name={"documentary"}>
         وثائقيات ولقاءات
       </MainTitle>
 
@@ -43,7 +43,7 @@ const Documentaries = ({ language }) => {
             authorPage={homeRoutes.author.view}
             data={e}
             key={e.id}
-            postPage={homeRoutes.posts.view}
+            postPage={(e) => homeRoutes.posts.view(e?.content_type, e.id)}
             className={"card-style-1"}
           />
         ))}
@@ -54,7 +54,7 @@ const Documentaries = ({ language }) => {
           <Link
             className="documentary"
             key={e.id}
-            to={homeRoutes.posts.view(e.id)}
+            to={homeRoutes.posts.view(e.content_type, e.id)}
           >
             <div className="img">
               <img src={postViewImg(e)} alt="" />

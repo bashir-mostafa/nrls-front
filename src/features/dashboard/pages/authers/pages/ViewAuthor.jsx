@@ -8,6 +8,7 @@ import Breadcrumbs from "./../../../../../components/breadcrumbs/Breadcrumbs";
 import ImageSection from "../components/ImageSection";
 import ProfileInfoSection from "./../components/ProfileInfoSection";
 import AuthorPopsts from "../components/AuthorPopsts";
+import { dashboardRouts } from "../../../../../constant/pageRoutes";
 
 const api = new APIClient(endPoints.authors);
 const ViewAuthor = () => {
@@ -29,7 +30,7 @@ const ViewAuthor = () => {
         <ProfileInfoSection data={data} />
       </main>
 
-      <AuthorPopsts />
+      <AuthorPopsts postPage={(e) => dashboardRouts.post.view(e.id)} />
     </>
   );
 };

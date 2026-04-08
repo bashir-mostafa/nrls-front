@@ -24,7 +24,7 @@ const PostCard = ({
   const nav = useNavigate();
 
   const handleCardClick = useCallback(() => {
-    if (!isDraft) nav(postPage(data?.id));
+    if (!isDraft) nav(postPage(data));
   }, [isDraft, nav, postPage, data]);
 
   const memoClassName = useMemo(

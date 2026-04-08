@@ -1,21 +1,22 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import PostViewMainInfo from "./PostViewMainInfo";
-import imgServerSrc from "../../../../../utils/imgServerSrc";
 import ImgViewPopup from "../../../../../components/popup/ImgViewPopup";
 import PostComments from "./PostComments";
 import "../style/style.css";
 import ViewFiles from "./ViewFiles";
 import ViewSurvey from "./ViewSurvey";
 import { Link } from "react-router";
+import { postViewImg } from "../../../../../utils/postViewImg";
 
-const PostViewMainSections = ({ data, authorView, language, allPostsView }) => {
+const PostViewMainSections = ({
+  data,
+  authorView,
+  language,
+  allPostsView,
+  actions,
+  viewSurvey,
+}) => {
   const [showImg, setShowImg] = useState(false);
-
-  const imgSrc = useMemo(() => {
-    return imgServerSrc(
-      data?.featured_image || data?.original_post?.featured_image,
-    );
-  }, [data]);
 
   return (
     <>
@@ -34,8 +35,11 @@ const PostViewMainSections = ({ data, authorView, language, allPostsView }) => {
           language={language}
         />
 
-        <div className="cover-image" onClick={() => setShowImg(imgSrc)}>
-          <img src={imgSrc} alt="" />
+        <div
+          className="cover-image"
+          onClick={() => setShowImg(postViewImg(data))}
+        >
+          <img src={postViewImg(data)} alt="" />
         </div>
 
         <div
@@ -47,7 +51,15 @@ const PostViewMainSections = ({ data, authorView, language, allPostsView }) => {
           <div className="tags border-bottom">
             <p>tags</p>
             {data?.tags?.map((e) => (
-              <Link key={e.id} to={allPostsView} state={{ tags: e }}>
+              <Link
+                key={e.id}
+                to={
+                  typeof allPostsView === "function"
+                    ? allPostsView(e)
+                    : allPostsView
+                }
+                state={{ tags: e }}
+              >
                 {e[`name_${language}`]}
               </Link>
             ))}
@@ -55,9 +67,9 @@ const PostViewMainSections = ({ data, authorView, language, allPostsView }) => {
         )}
 
         <ViewFiles id={data?.id} />
-        <ViewSurvey id={data?.id} />
+        <ViewSurvey id={data?.id} actions={actions} viewSurvey={viewSurvey} />
 
-        <PostComments id={data?.id} />
+        <PostComments id={data?.id} actions={actions} />
       </main>
 
       <ImgViewPopup src={showImg} onClose={() => setShowImg(false)} />

@@ -5,7 +5,6 @@ import endPoints from "../../../../../constant/endPoints";
 import { useMemo } from "react";
 import Skeleton from "../../../../../components/skeleton/Skeleton";
 import ViewSurveyWithOptions from "../components/ViewSurveyWithOptions";
-import "../style/survey.css";
 
 const SurveiesPage = () => {
   const { id } = useParams();

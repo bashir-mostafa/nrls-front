@@ -8,7 +8,7 @@ const BreakingNews = ({ data }) => {
       <div className="ticker">
         <article className="ticker-content">
           {data?.map((e) => (
-            <Link key={e.id} to={homeRoutes.posts.view(e.id)}>
+            <Link key={e.id} to={homeRoutes.posts.view(e.content_type, e.id)}>
               {e.title?.length < 100 ? e.title : `${e.title.slice(0, 100)} ...`}
             </Link>
           ))}

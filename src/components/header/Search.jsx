@@ -25,7 +25,7 @@ const Search = () => {
   const handleSearch = useCallback(
     (e) => {
       e.preventDefault();
-      nav(`${homeRoutes.posts.page}?search=${inputValue}`);
+      nav(`${homeRoutes.posts.page(inputValue)}?search=${inputValue}`);
       setInputValue("");
     },
     [nav, inputValue],
@@ -50,7 +50,11 @@ const Search = () => {
       </form>
       <section className="results">
         {results?.map((e) => (
-          <Link to={homeRoutes.posts.view(e.id)} key={e.id}>
+          <Link
+            to={homeRoutes.posts.view(e.content_type, e.id)}
+            key={e.id}
+            onClick={() => setInputValue("")}
+          >
             <img src={postViewImg(e)} alt="" />
             <h5 className="one-line-ellipsis"> {e.title} </h5>
           </Link>

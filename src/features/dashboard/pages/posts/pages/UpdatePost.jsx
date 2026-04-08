@@ -27,6 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axiosInstance from "../../../../../utils/axios";
 import UpdateFilesForm from "./../components/UpdateFilesForm";
 import { dashboardRouts } from "../../../../../constant/pageRoutes";
+import { postViewImg } from "../../../../../utils/postViewImg";
 
 const api = new APIClient(endPoints.posts);
 
@@ -122,7 +123,7 @@ const UpdatePost = () => {
   }, [formik.values.original_post]);
 
   const defaultImg = useMemo(() => {
-    const dataImg = data?.featured_image || data?.original_post?.featured_image;
+    const dataImg = postViewImg(data);
     const { featured_image } = formik.values;
     return featured_image || dataImg;
   }, [data, formik.values]);

@@ -2,12 +2,11 @@ import { useFetchData } from "./../../../../../hooks/useFetchData";
 import endPoints from "../../../../../constant/endPoints";
 import Skeleton from "../../../../../components/skeleton/Skeleton";
 import { useMemo } from "react";
-import { dashboardRouts } from "../../../../../constant/pageRoutes";
 import { Link } from "react-router";
-import imgServerSrc from "../../../../../utils/imgServerSrc";
 import Button from "../../../../../components/buttons/Button";
+import { postViewImg } from "./../../../../../utils/postViewImg";
 
-const MoreFromAuthor = ({ author, id }) => {
+const MoreFromAuthor = ({ author, id, authorView, view }) => {
   const { data, isLoading } = useFetchData({
     endPoints: endPoints.posts,
     author: author?.id,
@@ -28,26 +27,14 @@ const MoreFromAuthor = ({ author, id }) => {
     <>
       <p className="section-title">
         more from
-        <Link
-          className="author-name link-hover"
-          to={dashboardRouts.author.view(author?.id)}
-        >
+        <Link className="author-name link-hover" to={authorView(author?.id)}>
           {author?.full_name}
         </Link>
       </p>
 
       {results?.data?.map((e) => (
-        <Link
-          className="more-posts"
-          key={e.id}
-          to={dashboardRouts.post.view(e.id)}
-        >
-          <img
-            src={imgServerSrc(
-              e?.featured_image || e?.original_post?.featured_image,
-            )}
-            alt=""
-          />
+        <Link className="more-posts" key={e.id} to={view(e.id)}>
+          <img src={postViewImg(e)} alt="" />
           <div>
             <h5 className="two-line-ellipsis">{e?.title}</h5>
             <p className="one-line-ellipsis"> {e?.excerpt} </p>
@@ -56,7 +43,7 @@ const MoreFromAuthor = ({ author, id }) => {
       ))}
 
       {results?.count > 3 && (
-        <Link to={dashboardRouts.author.view(author?.id)}>
+        <Link to={authorView(author?.id)}>
           <Button btnStyleType="transparent" className="w-100">
             view all results ({results?.count})
           </Button>

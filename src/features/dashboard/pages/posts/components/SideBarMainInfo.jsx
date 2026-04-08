@@ -17,7 +17,7 @@ const SideBarMainInfo = ({
         {data?.original_post && (
           <div>
             <p>original_post</p>
-            <Link className="link-hover" to={view(data?.original_post?.id)}>
+            <Link className="link-hover" to={view}>
               {data?.original_post?.title}
             </Link>
           </div>

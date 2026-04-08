@@ -39,6 +39,7 @@ const CardBody = ({ isDraft, data, authorPage, language }) => {
           <Link
             className="icon link-hover"
             to={!isDraft && authorPage(data?.author?.id)}
+            onClick={(e) => e.stopPropagation()}
           >
             <FontAwesomeIcon icon={faUser} />
             {data?.author?.full_name}

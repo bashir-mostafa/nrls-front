@@ -10,7 +10,7 @@ const SecondStyleSubNews = ({ data }) => {
   return (
     <div className="sub-news">
       {data?.map((e) => (
-        <Link key={e.id} to={homeRoutes.posts.view(e.id)}>
+        <Link key={e.id} to={homeRoutes.posts.view(e.content_type, e.id)}>
           <article>
             <h3 className="two-line-ellipsis">{e.title}</h3>
             <div className="icons">

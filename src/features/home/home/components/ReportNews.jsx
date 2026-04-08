@@ -37,7 +37,9 @@ const ReportNews = ({ language }) => {
 
   return (
     <section className="container main-section body-color">
-      <MainTitle state={{ content_type: "report" }}>تقارير</MainTitle>
+      <MainTitle state={{ content_type: "report" }} name="report">
+        تقارير
+      </MainTitle>
 
       <main className="reports-container keen-slider" ref={sliderRef}>
         {data?.data?.map((e) => (
@@ -45,7 +47,7 @@ const ReportNews = ({ language }) => {
             authorPage={homeRoutes.author.view}
             data={e}
             key={e.id}
-            postPage={homeRoutes.posts.view}
+            postPage={(e) => homeRoutes.posts.view(e?.content_type, e.id)}
             className={"card-style-1 keen-slider__slide"}
           />
         ))}

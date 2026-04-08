@@ -19,7 +19,7 @@
 .survey-container .options .option {
   position: relative;
   padding: 10px;
-  background-color: var(--transparent-color);
+  background-color: color-mix(in srgb, var(--main-color) 5%, transparent);
   border-radius: 5px;
   border: solid 1px var(--main-color);
   cursor: pointer;

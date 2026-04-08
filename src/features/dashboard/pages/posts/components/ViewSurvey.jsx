@@ -5,11 +5,10 @@ import Button from "../../../../../components/buttons/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router";
-import { dashboardRouts } from "../../../../../constant/pageRoutes";
 import { useFetchData } from "../../../../../hooks/useFetchData";
 import ViewSurveyWithOptions from "./ViewSurveyWithOptions";
 
-const ViewSurvey = ({ id }) => {
+const ViewSurvey = ({ id, actions, viewSurvey }) => {
   const { data } = useFetchData({
     endPoints: `${endPoints.surveyPost}${id}/`,
     page_size: 1,
@@ -21,18 +20,17 @@ const ViewSurvey = ({ id }) => {
 
   return (
     <main className="survey-container border-bottom">
-      {<ViewSurveyWithOptions data={firstSurvey} canUpdate />}
-      <div className="update-icon">
-        <Link
-          to={dashboardRouts.post.viewSurvey(id)}
-          state={firstSurvey?.post_title}
-        >
-          <Button btnStyleType="transparent">
-            <FontAwesomeIcon icon={faListUl} /> view surveies (
-            {data?.totalCount})
-          </Button>
-        </Link>
-      </div>
+      {<ViewSurveyWithOptions data={firstSurvey} canUpdate={actions} />}
+      {data?.totalCount > 1 && (
+        <div className="update-icon">
+          <Link to={viewSurvey(id)} state={firstSurvey?.post_title}>
+            <Button btnStyleType="transparent">
+              <FontAwesomeIcon icon={faListUl} /> view surveies (
+              {data?.totalCount})
+            </Button>
+          </Link>
+        </div>
+      )}
     </main>
   );
 };

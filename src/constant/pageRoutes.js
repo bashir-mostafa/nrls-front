@@ -9,8 +9,9 @@ const homeRoutes = {
     view: (id = ":id") => `/author/${id}`,
   },
   posts: {
-    page: `/posts123`,
-    view: (id = ":id") => `/posts/${id}`,
+    page: (name = ":name") => `/${name}`,
+    view: (name = ":name", id = ":id") => `/${name}/${id}`,
+    viewSurvey: (name = ":name", id = ":id") => `/${name}/${id}/survey`,
   },
 };
 

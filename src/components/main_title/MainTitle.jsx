@@ -4,9 +4,9 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router";
 import { homeRoutes } from "../../constant/pageRoutes";
 
-const MainTitle = ({ children, ...props }) => {
+const MainTitle = ({ children, name, ...props }) => {
   return (
-    <Link className="main-title" to={homeRoutes.posts.page} {...props}>
+    <Link className="main-title" to={homeRoutes.posts.page(name)} {...props}>
       {children} <FontAwesomeIcon icon={faChevronRight} />
     </Link>
   );

@@ -28,7 +28,9 @@ const Infographic = ({ language }) => {
 
   return (
     <section className="container main-section">
-      <MainTitle state={{ content_type: "infographic" }}>اينفوغرافيك</MainTitle>
+      <MainTitle state={{ content_type: "infographic" }} name={"infographic"}>
+        اينفوغرافيك
+      </MainTitle>
 
       <main className="news-style-2">
         <SecondStyleSubNews

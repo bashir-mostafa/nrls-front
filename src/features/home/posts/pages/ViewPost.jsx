@@ -1,0 +1,85 @@
+import { Link, useParams } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
+import "quill/dist/quill.snow.css";
+import APIClient from "../../../../utils/ApiClient";
+import endPoints from "../../../../constant/endPoints";
+import Skeleton from "../../../../components/skeleton/Skeleton";
+import HandleError from "./../../../../components/error/HandleError";
+import MoreFromAuthor from "./../../../dashboard/pages/posts/components/MoreFromAuthor";
+import Breadcrumbs from "../../../../components/breadcrumbs/Breadcrumbs";
+import { homeRoutes } from "../../../../constant/pageRoutes";
+import PostViewMainSections from "../../../dashboard/pages/posts/components/PostViewMainSections";
+import SideBarMainInfo from "../../../dashboard/pages/posts/components/SideBarMainInfo";
+import SharePost from "../../../dashboard/pages/posts/components/SharePost";
+
+const api = new APIClient(endPoints.posts);
+
+const ViewPost = () => {
+  const { id } = useParams();
+
+  const { data, error, isLoading, refetch } = useQuery({
+    queryKey: [endPoints.posts, id],
+    queryFn: () => api.getOne(id),
+  });
+
+  const { i18n } = useTranslation();
+  const language = useMemo(() => i18n.language, [i18n.language]);
+
+  if (isLoading) return <Skeleton height="400px" />;
+
+  if (error) return <HandleError error={error} refetch={refetch} />;
+
+  return (
+    <>
+      <Breadcrumbs replace={[{ from: id, text: data?.title }]} />
+      <div className="main-section container">
+        {data?.original_post && (
+          <p className="original-post-action one-line-ellipsis">
+            original_post
+            <Link className="link-hover">{data?.original_post?.title}</Link>
+          </p>
+        )}
+        <section className="post-view-container">
+          <PostViewMainSections
+            authorView={homeRoutes.author.view}
+            data={data}
+            language={language}
+            allPostsView={(e) => homeRoutes.posts.page(e[`name_${language}`])}
+            viewSurvey={(id) =>
+              homeRoutes.posts.viewSurvey(data?.content_type, id)
+            }
+          />
+
+          <aside className="post-sidebar">
+            <SideBarMainInfo
+              authorView={homeRoutes.author.view}
+              data={data}
+              language={language}
+              view={homeRoutes.posts.view(
+                data?.content_type,
+                data?.original_post?.id,
+              )}
+            />
+
+            <div className="actions">
+              <SharePost id={id} name={data?.content_type} />
+            </div>
+
+            {data?.author && (
+              <MoreFromAuthor
+                author={data?.author}
+                id={id}
+                authorView={homeRoutes.author.view}
+                view={(id) => homeRoutes.posts.view(data?.content_type, id)}
+              />
+            )}
+          </aside>
+        </section>
+      </div>
+    </>
+  );
+};
+
+export default ViewPost;
