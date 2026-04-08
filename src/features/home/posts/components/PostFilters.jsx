@@ -1,13 +1,10 @@
 import { useCallback, useMemo, useState } from "react";
-import PopUp from "../../../../../components/popup/PopUp";
-import Input from "../../../../../components/inputs/Input";
-import Button from "../../../../../components/buttons/Button";
-import SelectOptionInput from "../../../../../components/inputs/SelectOptionInput";
-import { allTyps } from "../../../../../constant/enums";
-import SelectInputApi from "../../../../../components/inputs/SelectInputApi";
-import endPoints from "../../../../../constant/endPoints";
 import { useTranslation } from "react-i18next";
-import { languages } from "../../../../../constant/languages";
+import PopUp from "../../../../components/popup/PopUp";
+import endPoints from "../../../../constant/endPoints";
+import Input from "../../../../components/inputs/Input";
+import SelectInputApi from "../../../../components/inputs/SelectInputApi";
+import Button from "../../../../components/buttons/Button";
 
 const PostFilters = ({ onClose, filters, setFilters }) => {
   const [localFilters, setLocalFilters] = useState(filters || {});
@@ -33,19 +30,6 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
   return (
     <PopUp isOpen className="filters-popup" onClose={onClose}>
       <div className="filters-container">
-        <SelectOptionInput
-          label="content_type"
-          onSelectOption={(e) => handleOptionInp("content_type", e.value)}
-          options={allTyps.map((e) => ({ text: e, value: e }))}
-          notRequired
-          customOptions={[
-            {
-              title: "all",
-              onChange: () => handleOptionInp("content_type", ""),
-            },
-          ]}
-          placeholder={localFilters?.content_type || "all"}
-        />
         <SelectInputApi
           endPoint={endPoints.categories}
           onChange={(e) => handleOptionInp("category", e)}
@@ -88,48 +72,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
           ]}
           notRequired
         />
-        <SelectOptionInput
-          label="language"
-          onSelectOption={(e) => handleOptionInp("language", e.value)}
-          options={languages.map((e) => ({ text: e.title, value: e.value }))}
-          notRequired
-          customOptions={[
-            {
-              title: "all",
-              onChange: () => handleOptionInp("language", ""),
-            },
-          ]}
-          placeholder={localFilters?.language || "all"}
-        />
 
-        <SelectOptionInput
-          label="is_published"
-          onSelectOption={(e) => handleOptionInp("is_published", e.value)}
-          options={[
-            {
-              text: "yes",
-              value: true,
-            },
-            {
-              text: "no",
-              value: false,
-            },
-          ]}
-          notRequired
-          customOptions={[
-            {
-              title: "all",
-              onChange: () => handleOptionInp("is_published", ""),
-            },
-          ]}
-          placeholder={
-            localFilters?.is_published === true
-              ? "yes"
-              : localFilters?.is_published === false
-                ? "no"
-                : "all"
-          }
-        />
         <Input
           name="created_at_gte"
           notRequired
@@ -143,22 +86,6 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
           notRequired
           label="created_at to"
           value={localFilters?.created_at_lte ?? ""}
-          onChange={handleChange}
-          type="date"
-        />
-        <Input
-          name="published_at_gte"
-          notRequired
-          label="published_at from"
-          value={localFilters?.published_at_gte ?? ""}
-          onChange={handleChange}
-          type="date"
-        />
-        <Input
-          name="published_at_lte"
-          notRequired
-          label="published_at to"
-          value={localFilters?.published_at_lte ?? ""}
           onChange={handleChange}
           type="date"
         />

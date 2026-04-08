@@ -7,6 +7,7 @@ const UpdatePost = lazy(() => import("../pages/UpdatePost"));
 const ViewPost = lazy(() => import("../pages/ViewPost"));
 const AddSurveyPage = lazy(() => import("../pages/AddSurveyPage"));
 const UpdateSurveyPage = lazy(() => import("../pages/UpdateSurveyPage"));
+const SurveiesPage = lazy(() => import("../pages/SurveiesPage"));
 
 export const postsRouter = [
   {
@@ -38,6 +39,14 @@ export const postsRouter = [
     element: (
       <PageFallback>
         <ViewPost />
+      </PageFallback>
+    ),
+  },
+  {
+    path: dashboardRouts.post.viewSurvey(),
+    element: (
+      <PageFallback>
+        <SurveiesPage />
       </PageFallback>
     ),
   },

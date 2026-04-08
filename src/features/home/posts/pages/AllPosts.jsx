@@ -8,13 +8,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icons } from "../../../../constant/icons";
 import { dashboardRouts } from "../../../../constant/pageRoutes";
 import PostCard from "../../../../components/post/PostCard";
-import PostFilters from "../../../dashboard/pages/posts/components/PostFilters";
 import RepeatChildren from "../../../../components/RepeatChildren";
 import Skeleton from "../../../../components/skeleton/Skeleton";
 import AllPostsHeader from "./../components/AllPostsHeader";
-import PostTyps from "../../../dashboard/pages/posts/components/PostTyps";
+import PostFilters from "../components/PostFilters";
+import { useTranslation } from "react-i18next";
+import "../style/style.css";
 
 const AllPosts = () => {
+  const { i18n } = useTranslation();
+  const language = useMemo(() => i18n.language, [i18n.language]);
+
   const { state } = useLocation();
   const { tags, content_type, category } = state || {};
 
@@ -40,6 +44,7 @@ const AllPosts = () => {
     page_size: 5,
     ...formatInputsData(finalFilters),
     ordering: sort,
+    language,
   });
 
   const results = useMemo(
@@ -68,7 +73,13 @@ const AllPosts = () => {
 
   return (
     <>
-      <PostTyps filters={filters} setFilters={setFilters} />
+      <h1
+        className="post-section-name"
+        style={{ "--color": `var(--color-${filters?.content_type})` }}
+      >
+        {filters?.content_type}
+      </h1>
+
       <div className="post-filters">
         <div className="post-search">
           <label htmlFor="search-inp" className="search-inp">
