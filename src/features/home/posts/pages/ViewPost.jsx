@@ -13,6 +13,8 @@ import { homeRoutes } from "../../../../constant/pageRoutes";
 import PostViewMainSections from "../../../dashboard/pages/posts/components/PostViewMainSections";
 import SideBarMainInfo from "../../../dashboard/pages/posts/components/SideBarMainInfo";
 import SharePost from "../../../dashboard/pages/posts/components/SharePost";
+import "../style/style.css";
+import MoreResults from "../components/MoreResults";
 
 const api = new APIClient(endPoints.posts);
 
@@ -77,6 +79,7 @@ const ViewPost = () => {
             )}
           </aside>
         </section>
+        <MoreResults language={language} post={data} />
       </div>
     </>
   );

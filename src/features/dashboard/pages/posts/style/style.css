@@ -330,6 +330,8 @@
   border: solid 2px var(--border-color);
   border-radius: 6px;
   padding-block: 10px;
+  max-height: 500px;
+  overflow: auto;
 }
 .comment-container .comment {
   padding-inline: 15px;

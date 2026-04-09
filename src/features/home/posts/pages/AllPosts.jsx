@@ -46,10 +46,10 @@ const AllPosts = () => {
   const { data, isFetching, loadMoreRef } = useInfiniteFetch({
     endPoint: endPoints.posts,
     page_size: 5,
-    ...formatInputsData(finalFilters),
     ordering: sort,
     language,
     is_published: true,
+    ...formatInputsData(finalFilters),
   });
 
   const results = useMemo(

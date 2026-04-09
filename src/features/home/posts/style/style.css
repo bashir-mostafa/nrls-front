@@ -119,3 +119,22 @@
   font-size: 80%;
   color: var(--main-color);
 }
+.more-results-title {
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-block: 20px;
+}
+.more-results-title::before {
+  flex: 1;
+  content: "";
+  height: 2px;
+  background-color: var(--border-color);
+}
+.more-results-title::after {
+  flex: 1;
+  content: "";
+  height: 2px;
+  background-color: var(--border-color);
+}
