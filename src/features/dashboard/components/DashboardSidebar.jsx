@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { dashboardPages } from "../../../constant/pageRoutes";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../../context/AuthContext";
-
-const name = "diyar direki";
+import { useMemo } from "react";
 
 const DashboardSidebar = () => {
   const { user } = useAuth();
+
+  const name = useMemo(() => user?.username, [user]);
 
   return (
     <aside className="dashboard-sidebar">
@@ -22,7 +23,7 @@ const DashboardSidebar = () => {
         </Link>
       </nav>
       <div className="user">
-        <div className="profile"> {name[0]} </div>
+        <div className="profile"> {name?.[0]} </div>
         <article>
           <h3>{name}</h3>
         </article>

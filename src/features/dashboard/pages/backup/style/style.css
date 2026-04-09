@@ -1,0 +1,18 @@
+.backup-popup {
+  width: 100%;
+  max-width: 500px;
+}
+.backup-popup .backup-checkbox {
+  display: flex;
+  cursor: pointer;
+  gap: 10px;
+  align-items: center;
+}
+
+.backup-popup .btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}

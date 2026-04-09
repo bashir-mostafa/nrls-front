@@ -56,15 +56,6 @@ const MoreInfoInputs = ({ formik, t }) => {
         notRequired
         onIgnore={handleIgnore}
       />
-      <Input
-        name="published_at"
-        value={formik.values.published_at}
-        onChange={formik.handleChange}
-        errorText={t(formik.errors.published_at)}
-        label={t("published_at")}
-        type="date"
-        notRequired
-      />
       <SelectOptionInput
         label="is_published"
         onSelectOption={(e) => formik.setFieldValue("is_published", e.value)}
@@ -80,6 +71,15 @@ const MoreInfoInputs = ({ formik, t }) => {
           },
         ]}
         errorText={formik.errors.is_published}
+        notRequired
+      />
+      <Input
+        name="published_at"
+        value={formik.values.published_at}
+        onChange={formik.handleChange}
+        errorText={t(formik.errors.published_at)}
+        label={t("published_at")}
+        type="date"
         notRequired
       />
     </div>

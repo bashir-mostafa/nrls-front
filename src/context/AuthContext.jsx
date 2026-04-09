@@ -10,32 +10,28 @@ import Loading from "./../components/loading/Loading";
 import { Outlet } from "react-router";
 import axiosInstance from "../utils/axios";
 import { extarctErrorMessage } from "../utils/extarctErrorMessage";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { enqueueSnackbar } from "notistack";
 
 const AuthContext = createContext();
 const authHelper = new AuthHelper();
 
 export const AuthProvider = () => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [userLoading, setUserLoading] = useState(false);
   const isAuthenticated = authHelper.isAuthenticated();
 
   const query = useQueryClient();
 
   const login = useCallback(
     (data) => {
-      setUser(data.user);
       authHelper.setToken(data.access_token);
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
       query.clear();
     },
-    [setUser, query],
+    [query],
   );
 
   const logout = useCallback(() => {
-    setUser(null);
     authHelper.clearToken();
     setTimeout(() => query.clear(), 500);
   }, [query]);
@@ -88,7 +84,7 @@ export const AuthProvider = () => {
         }
 
         if (error.response?.status === 401) {
-          logout();
+          // logout();
         }
 
         return Promise.reject(error);
@@ -101,10 +97,19 @@ export const AuthProvider = () => {
     };
   }, [logout]);
 
-  if (userLoading) return <Loading />;
+  const { data: user, isLoading } = useQuery({
+    queryKey: ["me/"],
+    queryFn: async () => {
+      const { data } = await axiosInstance.get("me/");
+      return data || null;
+    },
+    enabled: isAuthenticated,
+  });
+
+  if (isLoading) return <Loading />;
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, userLoading, setUser }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       <Outlet />
       {loading && <Loading />}
     </AuthContext.Provider>

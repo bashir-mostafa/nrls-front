@@ -13,6 +13,7 @@ const endPoints = {
   surveyOptionsById: "survey-options/by-survey/",
   postFiles: "media-files/by-post/",
   surveyPost: "surveys/by-post/",
+  backup: "backup/",
 };
 
 export default endPoints;

@@ -32,6 +32,9 @@ const dashboardRouts = {
     add: `${homeRoutes.dashboard}/tags/add`,
     update: (id = ":id") => `${homeRoutes.dashboard}/tags/${id}`,
   },
+  backup: {
+    page: `${homeRoutes.dashboard}/backup`,
+  },
   category: {
     page: `${homeRoutes.dashboard}/categories`,
     add: `${homeRoutes.dashboard}/categories/add`,
@@ -85,6 +88,11 @@ const dashboardPages = [
     title: "authors",
     to: dashboardRouts.author.page,
     icon: icons.author,
+  },
+  {
+    title: "backup",
+    to: dashboardRouts.backup.page,
+    icon: icons.backup,
   },
 ];
 

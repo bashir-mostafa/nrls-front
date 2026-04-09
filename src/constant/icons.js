@@ -1,5 +1,6 @@
 import {
   faClose,
+  faDatabase,
   faEnvelope,
   faEye,
   faFeather,
@@ -38,4 +39,5 @@ export const icons = {
   pdf: faFilePdf,
   video: faVideo,
   audio: faMusic,
+  backup: faDatabase,
 };

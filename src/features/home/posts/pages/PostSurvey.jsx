@@ -1,10 +1,13 @@
 import { useLocation, useParams } from "react-router";
 import { useInfiniteFetch } from "../../../../hooks/useInfiniteFetch";
 import endPoints from "../../../../constant/endPoints";
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Breadcrumbs from "../../../../components/breadcrumbs/Breadcrumbs";
 import ViewSurveyWithOptions from "../../../dashboard/pages/posts/components/ViewSurveyWithOptions";
 import Skeleton from "../../../../components/skeleton/Skeleton";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axiosInstance from "../../../../utils/axios";
+import Button from "../../../../components/buttons/Button";
 
 const PostSurvey = () => {
   const { id } = useParams();
@@ -17,6 +20,24 @@ const PostSurvey = () => {
 
   const results = useMemo(() => data?.pages?.flatMap((e) => e.data), [data]);
 
+  const [selected, setSelected] = useState([]);
+
+  const cancel = useCallback(() => setSelected([]), [setSelected]);
+
+  const query = useQueryClient();
+
+  const handleVote = useMutation({
+    mutationFn: () => {
+      selected.map(
+        async (e) => await axiosInstance.post(`${endPoints.vote}${e.id}/`),
+      );
+    },
+    onSuccess: () => {
+      cancel();
+      query.invalidateQueries([endPoints.surveyOptionsById, id]);
+    },
+  });
+
   return (
     <>
       <Breadcrumbs replace={[{ from: id, text: state }]} />
@@ -24,9 +45,25 @@ const PostSurvey = () => {
         <main className="survey-container ">
           {results?.map((e) => (
             <section key={e.id} className="survey-section">
-              <ViewSurveyWithOptions data={e} />
+              <ViewSurveyWithOptions
+                data={e}
+                selected={selected}
+                setSelected={setSelected}
+              />
             </section>
           ))}
+          {selected?.length > 0 && (
+            <div className="btns">
+              <Button
+                btnStyleType="transparent"
+                btnType="cancel"
+                onClick={cancel}
+              >
+                cancel
+              </Button>
+              <Button onClick={handleVote.mutate}>vote</Button>
+            </div>
+          )}
         </main>
         {isFetching && <Skeleton height="100px" />}
         <div ref={loadMoreRef} />

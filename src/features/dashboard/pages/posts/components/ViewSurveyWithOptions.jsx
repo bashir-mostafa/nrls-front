@@ -5,20 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dateFormatter from "../../../../../utils/dateFormatter";
 import { useFetchData } from "../../../../../hooks/useFetchData";
 import endPoints from "../../../../../constant/endPoints";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { enqueueSnackbar } from "notistack";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axiosInstance from "../../../../../utils/axios";
-import Button from "../../../../../components/buttons/Button";
 import { Link } from "react-router";
 import { dashboardRouts } from "../../../../../constant/pageRoutes";
 import IconButton from "../../../../../components/buttons/IconButton";
 import { icons } from "../../../../../constant/icons";
 import "../style/survey.css";
 
-const ViewSurveyWithOptions = ({ data, canUpdate }) => {
-  const [selected, setSelected] = useState(null);
-
+const ViewSurveyWithOptions = ({ data, canUpdate, selected, setSelected }) => {
   const { data: optionsRes } = useFetchData({
     endPoints: `${endPoints.surveyOptionsById}${data?.id}/`,
     ordering: { vote_count: "-vote_count" },
@@ -33,7 +28,7 @@ const ViewSurveyWithOptions = ({ data, canUpdate }) => {
   );
 
   const handleSelectVote = useCallback(
-    (id) => {
+    (e) => {
       if (!isFutureTime(data?.closes_at)) {
         return enqueueSnackbar(
           "The voting period has ended. You can no longer participate.",
@@ -41,23 +36,22 @@ const ViewSurveyWithOptions = ({ data, canUpdate }) => {
         );
       }
 
-      setSelected((p) => (p === id ? null : id));
+      setSelected((prev) => {
+        const existing = prev.find((s) => s.survey === e.survey);
+
+        if (existing) {
+          if (existing.id === e.id) {
+            return prev.filter((el) => el.id !== existing.id);
+          }
+
+          return prev.map((el) => (el.survey === e.survey ? e : el));
+        }
+
+        return [...prev, e];
+      });
     },
-    [data],
+    [data, setSelected],
   );
-
-  const cancel = useCallback(() => setSelected(null), []);
-  const query = useQueryClient();
-
-  const handleVote = useMutation({
-    mutationFn: async () => {
-      await axiosInstance.post(`${endPoints.vote}${selected}/`);
-    },
-    onSuccess: () => {
-      cancel();
-      query.invalidateQueries([endPoints.surveyOptionsById, data?.post]);
-    },
-  });
 
   if (!data) return;
 
@@ -85,9 +79,9 @@ const ViewSurveyWithOptions = ({ data, canUpdate }) => {
           const percent = `${parseInt(getPercent(e.vote_count, voteCount))}%`;
           return (
             <div
-              className={`option ${e.id === selected ? "active" : ""}`}
+              className={`option ${selected.some((s) => s.id === e.id) ? "active" : ""}`}
               key={e.id}
-              onClick={() => handleSelectVote(e.id)}
+              onClick={() => handleSelectVote(e)}
             >
               <div className="flex align-center gap-10 flex-1 wrap">
                 {isFutureTime(data?.closes_at) && <p></p>}
@@ -112,19 +106,6 @@ const ViewSurveyWithOptions = ({ data, canUpdate }) => {
             {dateFormatter(data?.closes_at)}
           </p>
         </div>
-
-        {selected && (
-          <div className="btns">
-            <Button
-              btnStyleType="transparent"
-              btnType="cancel"
-              onClick={cancel}
-            >
-              cancel
-            </Button>
-            <Button onClick={handleVote.mutate}> vote </Button>
-          </div>
-        )}
       </section>
     </>
   );

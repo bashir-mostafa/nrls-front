@@ -22,5 +22,12 @@ export const postSchema = yup.object({
     .oneOf(languages.map((e) => e.value)),
 
   is_published: yup.boolean().default(true),
-  published_at: yup.date().notRequired(),
+  published_at: yup
+    .date()
+    .min(new Date())
+    .when("is_published", {
+      is: (v) => !v,
+      then: (s) => s.required(),
+      otherwise: (s) => s.notRequired(),
+    }),
 });
