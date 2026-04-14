@@ -4,6 +4,7 @@ import {
   useState,
   useEffect,
   useCallback,
+  useRef,
 } from "react";
 import Loading from "./../components/loading/Loading";
 import { Outlet, useNavigate } from "react-router";
@@ -18,24 +19,27 @@ const AuthContext = createContext();
 export const AuthProvider = () => {
   const [loading, setLoading] = useState(false);
   const nav = useNavigate();
-
   const query = useQueryClient();
 
+  const isRefreshing = useRef(false);
+  const failedQueue = useRef([]);
+
   const logout = useCallback(async () => {
-    await axiosInstance.post(endPoints.logout);
-    query.removeQueries();
-    nav("/");
+    try {
+      await axiosInstance.post(endPoints.logout);
+    } catch {
+    } finally {
+      query.clear();
+      nav("/");
+    }
   }, [query, nav]);
 
-  let isRefreshing = false;
-  let failedQueue = [];
-
   const processQueue = (error, token = null) => {
-    failedQueue.forEach(({ resolve, reject }) => {
+    failedQueue.current.forEach(({ resolve, reject }) => {
       if (error) reject(error);
       else resolve(token);
     });
-    failedQueue = [];
+    failedQueue.current = [];
   };
 
   useEffect(() => {
@@ -53,28 +57,34 @@ export const AuthProvider = () => {
     const responseInterceptor = axiosInstance.interceptors.response.use(
       (response) => {
         setLoading(false);
+
         if (response.config.method !== "get") {
           const message =
             response?.data?.message || "Operation done successfully";
           enqueueSnackbar(message, { variant: "success" });
         }
+
         return response;
       },
       async (error) => {
         setLoading(false);
 
         const originalRequest = error.config;
-        const { url } = originalRequest;
         const status = error.response?.status;
+        const { url } = originalRequest || {};
 
         if (
-          status === 401 &&
-          url !== endPoints.logout &&
-          !originalRequest._retry
+          url === endPoints.me ||
+          url === endPoints.refresh ||
+          url === endPoints.logout
         ) {
-          if (isRefreshing) {
+          return Promise.reject(error);
+        }
+
+        if (status === 401 && !originalRequest._retry) {
+          if (isRefreshing.current) {
             return new Promise((resolve, reject) => {
-              failedQueue.push({ resolve, reject });
+              failedQueue.current.push({ resolve, reject });
             })
               .then((token) => {
                 originalRequest.headers["Authorization"] = `Bearer ${token}`;
@@ -84,7 +94,7 @@ export const AuthProvider = () => {
           }
 
           originalRequest._retry = true;
-          isRefreshing = true;
+          isRefreshing.current = true;
 
           try {
             const { data } = await axiosInstance.post(endPoints.refresh);
@@ -95,13 +105,14 @@ export const AuthProvider = () => {
             originalRequest.headers["Authorization"] = `Bearer ${newToken}`;
 
             processQueue(null, newToken);
+
             return axiosInstance(originalRequest);
           } catch (refreshError) {
             processQueue(refreshError, null);
             logout();
             return Promise.reject(refreshError);
           } finally {
-            isRefreshing = false;
+            isRefreshing.current = false;
           }
         }
 
@@ -116,8 +127,6 @@ export const AuthProvider = () => {
               e.forEach((m) => enqueueSnackbar(m, { variant: "error" }));
           });
         }
-
-        if (status === 401 && url !== endPoints.logout) logout();
 
         return Promise.reject(error);
       },
