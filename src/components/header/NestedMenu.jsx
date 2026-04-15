@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const NestedMenu = ({ name, values }) => {
+const NestedMenu = ({ name, values, nestedClick }) => {
   const nav = useNavigate();
 
   const handleNavigate = useCallback(() => {
@@ -13,7 +13,13 @@ const NestedMenu = ({ name, values }) => {
     });
   }, [nav, name, values]);
 
-  const handleClick = useCallback((e) => e.stopPropagation(), []);
+  const handleClick = useCallback(
+    (e) => {
+      e.stopPropagation();
+      nestedClick();
+    },
+    [nestedClick],
+  );
 
   return (
     <div className="link" onClick={handleNavigate}>

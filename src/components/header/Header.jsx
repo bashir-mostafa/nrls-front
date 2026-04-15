@@ -9,11 +9,17 @@ import TopHeader from "./TopHeader";
 import IconButton from "./../buttons/IconButton";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { useCallback } from "react";
 
 const Header = () => {
   const { user } = useAuth();
 
-  const { isOpen, ref, toggleOpen } = useClickOutside();
+  const { isOpen, ref, toggleOpen, setIsOpen } = useClickOutside();
+
+  const handleClick = useCallback(() => {
+    if (!isOpen) return;
+    setIsOpen(false);
+  }, [isOpen, setIsOpen]);
 
   return (
     <>
@@ -27,23 +33,39 @@ const Header = () => {
             home
           </NavLink>
 
-          <NestedMenu name={"topics"} values={topicTyps} />
-          <NestedMenu name={"media"} values={mediaTyps} />
-          <NestedMenu name={"publication"} values={publicationTyps} />
+          <NestedMenu
+            name={"topics"}
+            values={topicTyps}
+            nestedClick={handleClick}
+          />
+          <NestedMenu
+            name={"media"}
+            values={mediaTyps}
+            nestedClick={handleClick}
+          />
+          <NestedMenu
+            name={"publication"}
+            values={publicationTyps}
+            nestedClick={handleClick}
+          />
 
-          <NavLink to={"/event"} className="link">
+          <NavLink to={"/event"} className="link" onClick={handleClick}>
             event
           </NavLink>
 
-          <NavLink to={"/survey"} className="link">
+          <NavLink to={"/survey"} className="link" onClick={handleClick}>
             survey
           </NavLink>
 
-          <NavLink to={homeRoutes.about} className="link">
+          <NavLink to={homeRoutes.about} className="link" onClick={handleClick}>
             about
           </NavLink>
 
-          <NavLink to={homeRoutes.contact} className="link">
+          <NavLink
+            to={homeRoutes.contact}
+            className="link"
+            onClick={handleClick}
+          >
             contact us
           </NavLink>
 
@@ -52,7 +74,11 @@ const Header = () => {
               dashboard
             </NavLink>
           ) : (
-            <NavLink to={homeRoutes.login} className="link">
+            <NavLink
+              to={homeRoutes.login}
+              className="link"
+              onClick={handleClick}
+            >
               login
             </NavLink>
           )}

@@ -101,7 +101,7 @@ const AllPosts = () => {
         }
       }
     >
-      <Breadcrumbs replace={[{ from: name, text: t(name) }]} />
+      <Breadcrumbs />
       <section className="main-section container">
         <h1 className="post-section-name">{t(name)}</h1>
 
