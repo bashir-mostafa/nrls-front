@@ -3,8 +3,13 @@ import "./footer.css";
 import Tooltip from "../tooltip/Tooltip";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { socialLinks } from "../../constant/socialLinks";
+import { homeRoutes } from "../../constant/pageRoutes";
+import { useAuth } from "../../context/AuthContext";
+import { mediaTyps, publicationTyps, topicTyps } from "../../constant/enums";
 
 const Footer = () => {
+  const { user } = useAuth();
+
   return (
     <footer className="home-footer container">
       <main>
@@ -26,20 +31,33 @@ const Footer = () => {
       <main>
         <h2 className="title">روابط سريعة</h2>
         <div className="links">
-          <Link>home</Link>
-          <Link>who are we</Link>
-          <Link>contact us</Link>
-          <Link>login</Link>
+          <Link to={"/"}>home</Link>
+          <Link to={homeRoutes.about}>who are we</Link>
+          <Link to={homeRoutes.contact}>contact us</Link>
+          {user ? (
+            <Link to={homeRoutes.dashboard}>dashboard</Link>
+          ) : (
+            <Link to={homeRoutes.login}>login</Link>
+          )}
         </div>
       </main>
       <main>
         <h2>اقسام الموقع</h2>
         <div className="links">
-          <Link>home</Link>
-          <Link>who are we</Link>
-          <Link>contact us</Link>
-          <Link>login</Link>
-          <Link>home</Link>
+          <Link to={"/event"}>event</Link>
+          <Link to={"/survey"}>survey</Link>
+          <Link to={"/topics"} state={{ content_type_multi: topicTyps }}>
+            topics
+          </Link>
+          <Link to={"/media"} state={{ content_type_multi: mediaTyps }}>
+            media
+          </Link>
+          <Link
+            to={"/publication"}
+            state={{ content_type_multi: publicationTyps }}
+          >
+            publication
+          </Link>
         </div>
       </main>
 
