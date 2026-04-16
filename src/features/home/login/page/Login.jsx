@@ -29,7 +29,10 @@ const Login = () => {
   });
   const { t } = useTranslation();
   return (
-    <section className="container main-section">
+    <section
+      className="container main-section center"
+      style={{ height: "70vh" }}
+    >
       <form onSubmit={formik.handleSubmit} className="login-form">
         <h1>{t("user.login")}</h1>
 

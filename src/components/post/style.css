@@ -133,6 +133,9 @@
   opacity: 0;
   transform: translateX(-4px);
 }
+.arabic .post-view-card .card-footer span svg {
+  rotate: 180deg;
+}
 
 .post-view-card:hover .card-footer span {
   opacity: 1;

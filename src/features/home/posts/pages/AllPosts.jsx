@@ -46,15 +46,17 @@ const AllPosts = () => {
 
   const finalFilters = useMemo(
     () => ({
-      ...filters,
       search: debouncedValue,
       tags,
       content_type: content_type,
       category,
       content_type_multi,
+      ...filters,
     }),
     [filters, debouncedValue, tags, content_type, category, content_type_multi],
   );
+
+  
 
   const [sort, setSort] = useState({ created_at: "-created_at" });
 
@@ -148,6 +150,7 @@ const AllPosts = () => {
             onClose={toggleFilters}
             filters={filters}
             setFilters={setFilters}
+            content_type_multi={content_type_multi}
           />
         )}
       </section>

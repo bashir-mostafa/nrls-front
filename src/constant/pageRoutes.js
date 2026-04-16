@@ -82,14 +82,14 @@ const dashboardPages = [
     icon: icons.posts,
   },
   {
-    title: "pages.events",
-    to: dashboardRouts.events.page,
-    icon: icons.events,
-  },
-  {
     title: "pages.add_post",
     to: dashboardRouts.post.add,
     icon: icons.add,
+  },
+  {
+    title: "pages.events",
+    to: dashboardRouts.events.page,
+    icon: icons.events,
   },
   {
     title: "pages.tags",

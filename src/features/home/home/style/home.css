@@ -26,6 +26,9 @@
   gap: 6px;
   align-items: center;
 }
+body.arabic .last-news-container .breacking-news h3 {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+}
 .last-news-container .breacking-news h3::before {
   content: "";
   width: 10px;
@@ -64,6 +67,9 @@
   white-space: nowrap;
   font-size: 14px;
   font-weight: 400;
+}
+body.arabic .last-news-container .breacking-news .ticker .ticker-content {
+  animation-direction: reverse;
 }
 
 .last-news-container .breacking-news .ticker .ticker-content:hover {
@@ -285,6 +291,9 @@
   font-size: 14px;
   gap: 5px;
 }
+.arabic .topics-container .topic article .read-more svg {
+  rotate: 180deg;
+}
 .topics-container .topic .category {
   padding: 4px 10px;
   background: var(--transparent-color);
@@ -461,6 +470,9 @@
   gap: 10px;
   color: var(--main-color);
   opacity: 0;
+}
+.arabic .news-style-2 .main-news .button .read-more svg {
+  rotate: 180deg;
 }
 
 .news-style-2 .icons {

@@ -17,6 +17,9 @@ a.main-title svg {
 a.main-title:hover {
   color: var(--main-color);
 }
+.arabic a.main-title svg {
+  rotate: 180deg;
+}
 
 @media (max-width: 1000px) {
   a.main-title {
