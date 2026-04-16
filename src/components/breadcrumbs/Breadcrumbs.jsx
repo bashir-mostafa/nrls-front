@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router";
 import "./breadcrumbs.css";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { sliceText } from "../../utils/sliceText.js";
 
 /**
  * @typedef {Object} ReplaceItem
@@ -9,6 +10,7 @@ import { useTranslation } from "react-i18next";
  * @property {string} [to]
  * @property {string} [text]
  * @property {boolean} [fullPath=false]
+ * @property {boolean} [fullTextReplace=false]
  * @property {boolean} [ignore=false]
  * @property {Object} [props]
  */
@@ -54,18 +56,22 @@ const Breadcrumbs = ({ replace = [] }) => {
             replacedPath = defaultTo.replace(replaceItem.from, replaceItem.to);
         }
 
-        const text = replaceItem?.text || t(`pages.${path}`);
+        const text = replaceItem?.text || path;
         const to = replacedPath || defaultTo;
 
         return (
           <span key={defaultTo}>
             {isLast ? (
               <span className="current">
-                {text.length > 40 ? `${text.slice(0, 40)}...` : text}
+                {replaceItem?.fullTextReplace
+                  ? sliceText(text)
+                  : sliceText(t(`pages.${text}`))}
               </span>
             ) : (
               <Link to={to}>
-                {text.length > 40 ? `${text.slice(0, 40)}...` : text}
+                {replaceItem?.fullTextReplace
+                  ? sliceText(text)
+                  : sliceText(t(`pages.${text}`))}
               </Link>
             )}
           </span>

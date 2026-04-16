@@ -18,9 +18,8 @@ const DashboardSidebar = ({ onPhoneClick }) => {
             key={e.to}
             to={e.to}
             end
-            title={e.title}
-            onClick={onPhoneClick}
-          >
+            title={t(e.title)}
+            onClick={onPhoneClick}>
             <FontAwesomeIcon icon={e.icon} /> <span> {t(e.title)} </span>
           </NavLink>
         ))}

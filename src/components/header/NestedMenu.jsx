@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const NestedMenu = ({ name, values, nestedClick }) => {
+const NestedMenu = ({ name, values, t, nestedClick }) => {
   const nav = useNavigate();
 
   const handleNavigate = useCallback(() => {
@@ -24,7 +24,7 @@ const NestedMenu = ({ name, values, nestedClick }) => {
   return (
     <div className="link" onClick={handleNavigate}>
       <div>
-        {name} <FontAwesomeIcon icon={faChevronDown} />
+        {t(`header.${name}`)} <FontAwesomeIcon icon={faChevronDown} />
       </div>
       <article>
         {values.map((type) => (
@@ -32,9 +32,8 @@ const NestedMenu = ({ name, values, nestedClick }) => {
             key={type}
             to={`/${type}`}
             onClick={handleClick}
-            state={{ content_type_multi: [], content_type: type }}
-          >
-            {type}
+            state={{ content_type_multi: [], content_type: type }}>
+            {t(`content_types.${type}`)}
           </NavLink>
         ))}
       </article>

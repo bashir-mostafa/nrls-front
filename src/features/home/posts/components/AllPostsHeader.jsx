@@ -7,6 +7,7 @@ import { useCallback, useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useClickOutside } from "../../../../hooks/useClickOutside";
 import IconButton from "../../../../components/buttons/IconButton";
+import { useTranslation } from "react-i18next";
 const postSortOptions = [
   {
     title: "latest",
@@ -19,12 +20,12 @@ const postSortOptions = [
     name: "created_at",
   },
   {
-    title: "most liked",
+    title: "most_liked",
     set: "-view_count",
     name: "view_count",
   },
   {
-    title: "least liked",
+    title: "least_liked",
     set: "view_count",
     name: "view_count",
   },
@@ -42,19 +43,19 @@ const AllPostsHeader = ({ sort, setSort, toggleFilters }) => {
   );
 
   const value = useMemo(() => Object.values(sort)?.[0], [sort]);
-
+  const { t } = useTranslation();
   return (
     <div className="icons" ref={ref}>
       <IconButton
         icon={faFilter}
         color="secondry-color"
-        title="filters"
+        title={t("common.filters")}
         onClick={toggleFilters}
       />
       <IconButton
         icon={faArrowDownShortWide}
         color="secondry-color"
-        title="sort"
+        title={t("common.sort")}
         onClick={toggleOpen}
       />
 
@@ -66,7 +67,7 @@ const AllPostsHeader = ({ sort, setSort, toggleFilters }) => {
               className={`${value === e.set ? "active" : ""}`}
               onClick={() => handleSetSort({ [e.name]: e.set })}
             >
-              {e.title}
+              {t(`common.${e.title}`)}
               {value === e.set && <FontAwesomeIcon icon={faCheck} />}
             </h3>
           ))}

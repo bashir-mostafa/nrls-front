@@ -14,12 +14,13 @@ const Login = () => {
   const nav = useNavigate();
 
   const query = useQueryClient();
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: { username: "", password: "" },
     validationSchema: yup.object({
-      username: yup.string().required("pages.home"),
-      password: yup.string().required(),
+      username: yup.string().required(t("validation.required")),
+      password: yup.string().required(t("validation.required")),
     }),
     onSubmit: async (v) => {
       await axiosInstance.post(endPoints.login, v);
@@ -27,12 +28,10 @@ const Login = () => {
       nav(dashboardRouts.user.page);
     },
   });
-  const { t } = useTranslation();
   return (
     <section
       className="container main-section center"
-      style={{ height: "70vh" }}
-    >
+      style={{ height: "70vh" }}>
       <form onSubmit={formik.handleSubmit} className="login-form">
         <h1>{t("user.login")}</h1>
 

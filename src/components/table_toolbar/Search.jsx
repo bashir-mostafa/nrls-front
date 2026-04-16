@@ -19,7 +19,7 @@ const Search = ({ delay = 500, setSearch }) => {
     <label className="table-toolbar-search">
       <input
         type="text"
-        placeholder={t("search")}
+        placeholder={t("common.search")}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />

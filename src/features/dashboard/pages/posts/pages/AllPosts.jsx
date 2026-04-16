@@ -16,12 +16,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icons } from "../../../../../constant/icons";
 import { useLocation } from "react-router";
 import { useDebounce } from "use-debounce";
+import { useTranslation } from "react-i18next";
 
 const AllPosts = () => {
   const { state } = useLocation();
   const [search, setSearch] = useState("");
   const [debouncedValue] = useDebounce(search, 500);
-
+  const {t} = useTranslation();
   const { tags } = state || {};
 
   const [filters, setFilters] = useState({ tags });
@@ -73,7 +74,7 @@ const AllPosts = () => {
             <input
               type="text"
               id="search-inp"
-              placeholder="search...."
+              placeholder={t("common.search")}
               value={search}
               onChange={handleSearch}
             />
@@ -85,7 +86,7 @@ const AllPosts = () => {
             sort={sort}
           />
         </div>
-        <h1 data-count={results?.count || 0}>results</h1>
+        <h1 data-count={results?.count || 0}>{t("common.results")}</h1>
       </div>
 
       <div className="posts-container">

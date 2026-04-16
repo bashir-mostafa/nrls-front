@@ -2,52 +2,55 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Input from "../../../../components/inputs/Input";
 import Button from "../../../../components/buttons/Button";
+import { useTranslation } from "react-i18next";
 
 const Forms = ({ formik }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="inputs">
       <div>
         <h2>
-          <FontAwesomeIcon icon={faPaperPlane} /> send a message
+          <FontAwesomeIcon icon={faPaperPlane} /> {t("contact.send_message")}
         </h2>
-        <p>املأ النموذج وسنعود إليك في أقرب وقت ممكن.</p>
+        <p>{t("contact.form_description")}</p>
       </div>
       <Input
         name="name"
-        label="name"
-        placeholder="write your full name"
+        label={t("contact.name")}
+        placeholder={t("contact.placeholders.full_name")}
         onChange={formik.handleChange}
-        errorText={formik.errors.name}
+        errorText={t(formik.errors.name)}
         value={formik.values.name}
       />
       <Input
         name="email"
-        label="email"
-        placeholder="write your email"
+        label={t("user.email")}
+        placeholder={t("contact.placeholders.email")}
         onChange={formik.handleChange}
-        errorText={formik.errors.email}
+        errorText={t(formik.errors.email)}
         value={formik.values.email}
       />
       <Input
         name="subject"
-        label="subject"
-        placeholder="write subject"
+        label={t("contact.subject")}
+        placeholder={t("contact.placeholders.subject")}
         onChange={formik.handleChange}
-        errorText={formik.errors.subject}
+        errorText={t(formik.errors.subject)}
         value={formik.values.subject}
       />
       <Input
         name="message"
-        label="message"
-        placeholder="write your message"
+        label={t("contact.message")}
+        placeholder={t("contact.placeholders.message")}
         onChange={formik.handleChange}
-        errorText={formik.errors.message}
+        errorText={t(formik.errors.message)}
         value={formik.values.message}
         elementType="textarea"
         rows={6}
       />
       <Button type="submit">
-        <FontAwesomeIcon icon={faPaperPlane} /> submit your message
+        <FontAwesomeIcon icon={faPaperPlane} /> {t("contact.submit")}
       </Button>
     </div>
   );

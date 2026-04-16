@@ -8,6 +8,7 @@ import Skeleton from "../../../../components/skeleton/Skeleton";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../../../utils/axios";
 import Button from "../../../../components/buttons/Button";
+import { useTranslation } from "react-i18next";
 
 const PostSurvey = () => {
   const { id } = useParams();
@@ -37,7 +38,7 @@ const PostSurvey = () => {
       query.invalidateQueries([endPoints.surveyOptionsById, id]);
     },
   });
-
+  const {t} = useTranslation();
   return (
     <>
       <Breadcrumbs replace={[{ from: id, text: state }]} />
@@ -61,7 +62,7 @@ const PostSurvey = () => {
               >
                 cancel
               </Button>
-              <Button onClick={handleVote.mutate}>vote</Button>
+              <Button onClick={handleVote.mutate}>{t("common.vote")}</Button>
             </div>
           )}
         </main>

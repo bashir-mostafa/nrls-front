@@ -26,7 +26,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
     setFilters(localFilters);
     onClose();
   }, [setFilters, localFilters, onClose]);
-
+  const {t} = useTranslation();
   return (
     <PopUp isOpen className="filters-popup" onClose={onClose}>
       <div className="filters-container">
@@ -34,7 +34,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
           endPoint={endPoints.categories}
           onChange={(e) => handleOptionInp("category", e)}
           placeholder={localFilters?.category?.[`name_${language}`] || "all"}
-          label="category"
+          label={t("pages.categories")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[
             {
@@ -48,7 +48,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
           endPoint={endPoints.tags}
           onChange={(e) => handleOptionInp("tags", e)}
           placeholder={localFilters?.tags?.[`name_${language}`] || "all"}
-          label="tags"
+          label={t("pages.tags")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[
             {
@@ -62,7 +62,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
           endPoint={endPoints.authors}
           onChange={(e) => handleOptionInp("author", e)}
           placeholder={localFilters?.author?.full_name || "all"}
-          label="author"
+          label={t("pages.authors")}
           optionLabel={(e) => e?.full_name}
           customOptions={[
             {
@@ -76,7 +76,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <Input
           name="created_at_gte"
           notRequired
-          label="created_at from"
+          label={t("common.from")}
           value={localFilters?.created_at_gte ?? ""}
           onChange={handleChange}
           type="date"
@@ -84,7 +84,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <Input
           name="created_at_lte"
           notRequired
-          label="created_at to"
+          label={t("common.to")}
           value={localFilters?.created_at_lte ?? ""}
           onChange={handleChange}
           type="date"
@@ -92,10 +92,10 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
       </div>
       <div className="btns">
         <Button onClick={handleSave} btnType="update">
-          save
+          {t("common.save")}
         </Button>
         <Button btnStyleType="transparent" btnType="cancel" onClick={onClose}>
-          cancel
+          {t("common.cancel")}
         </Button>
       </div>
     </PopUp>

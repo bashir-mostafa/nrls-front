@@ -163,7 +163,7 @@ const SelectInputApi = ({
             <input
               value={search}
               onChange={handleSearch}
-              placeholder={t("filters.search")}
+              placeholder={t("table.filters.search")}
               id="search"
             />
             <FontAwesomeIcon icon={icons.search} />

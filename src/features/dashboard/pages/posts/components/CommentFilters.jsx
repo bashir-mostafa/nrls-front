@@ -1,31 +1,36 @@
 import { useMemo } from "react";
 import SelectOptionInput from "../../../../../components/inputs/SelectOptionInput";
+import { useTranslation } from "react-i18next";
 
 const CommentFilters = ({ selectValue, filters, actions }) => {
+  const { t } = useTranslation();
+
   const approvedPlaceholder = useMemo(() => {
     if (typeof filters?.is_approved === "boolean") {
-      return filters?.is_approved ? "approved" : "not approved";
+      return filters?.is_approved ? t("common.approved") : t("common.not_approved");
     }
-
-    return "all";
-  }, [filters?.is_approved]);
+    return t("common.all");
+  }, [filters?.is_approved, t]);
 
   return (
     <div>
       {actions && (
         <SelectOptionInput
           customOptions={[
-            { title: "all", onChange: () => selectValue("is_approved", null) },
+            { 
+              title: t("common.all"), 
+              onChange: () => selectValue("is_approved", null) 
+            },
           ]}
-          label="comment status"
+          label={t("common.comment_status")}
           notRequired
           options={[
             {
-              text: "approved",
+              text: t("common.approved"),
               value: true,
             },
             {
-              text: "not apporved",
+              text: t("common.not_approved"),
               value: false,
             },
           ]}
@@ -34,15 +39,15 @@ const CommentFilters = ({ selectValue, filters, actions }) => {
         />
       )}
       <SelectOptionInput
-        label="comment status"
+        label={t("common.comment_status")}
         notRequired
         options={[
           {
-            text: "latest comments",
+            text: t("common.latest_comments"),
             value: "-created_at",
           },
           {
-            text: "oldest comments",
+            text: t("common.oldest_comments"),
             value: "created_at",
           },
         ]}

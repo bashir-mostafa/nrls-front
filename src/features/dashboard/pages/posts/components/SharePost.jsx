@@ -3,8 +3,10 @@ import Button from "../../../../../components/buttons/Button";
 import { icons } from "../../../../../constant/icons";
 import { homeRoutes } from "../../../../../constant/pageRoutes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
 
 const SharePost = ({ name, id }) => {
+  const { t } = useTranslation();
   const handleShare = useCallback(async () => {
     const url = `${window.location.origin}${homeRoutes.posts.view(name, id)}`;
 
@@ -23,7 +25,7 @@ const SharePost = ({ name, id }) => {
       btnType="save"
       onClick={handleShare}
     >
-      <FontAwesomeIcon icon={icons.share} /> share
+      <FontAwesomeIcon icon={icons.share} /> {t("common.share")}
     </Button>
   );
 };

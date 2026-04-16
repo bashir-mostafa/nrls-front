@@ -11,12 +11,13 @@ import { Link, useNavigate } from "react-router";
 import { postViewImg } from "../../../../utils/postViewImg";
 import { homeRoutes } from "../../../../constant/pageRoutes";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 const SecondStyleMainNews = ({ data, language }) => {
   const stopPropagation = useCallback((e) => e.stopPropagation(), []);
 
   const nav = useNavigate();
-
+  const { t } = useTranslation();
   const handleClick = useCallback(
     () => nav(homeRoutes.posts.view(data?.content_type, data?.id)),
     [nav, data],
@@ -66,7 +67,7 @@ const SecondStyleMainNews = ({ data, language }) => {
           </span>
         </div>
         <button className="read-more">
-          read more <FontAwesomeIcon icon={faArrowRight} />
+          {t("common.read_more")} <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </div>
     </div>

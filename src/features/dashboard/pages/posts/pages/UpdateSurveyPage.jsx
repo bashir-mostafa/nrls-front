@@ -65,7 +65,7 @@ const UpdateSurveyPage = () => {
       />
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <AddSurvey formik={formik} t={t} />
-        <Button type="submit"> save </Button>
+        <Button type="submit"> {t("common.save")} </Button>
       </form>
     </>
   );

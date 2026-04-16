@@ -11,7 +11,7 @@ import { languages } from "../../../../../constant/languages";
 
 const PostFilters = ({ onClose, filters, setFilters }) => {
   const [localFilters, setLocalFilters] = useState(filters || {});
-
+  const { t } = useTranslation();
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setLocalFilters((p) => ({ ...p, [name]: value }));
@@ -34,27 +34,27 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
     <PopUp isOpen className="filters-popup" onClose={onClose}>
       <div className="filters-container">
         <SelectOptionInput
-          label="content_type"
+          label={t("pages.content_type")}
           onSelectOption={(e) => handleOptionInp("content_type", e.value)}
           options={allTyps.map((e) => ({ text: e, value: e }))}
           notRequired
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("content_type", ""),
             },
           ]}
-          placeholder={localFilters?.content_type || "all"}
+          placeholder={localFilters?.content_type || t("common.all")}
         />
         <SelectInputApi
           endPoint={endPoints.categories}
           onChange={(e) => handleOptionInp("category", e)}
-          placeholder={localFilters?.category?.[`name_${language}`] || "all"}
-          label="category"
+          placeholder={localFilters?.category?.[`name_${language}`] || t("common.all")}
+          label={t("pages.categories")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("category", ""),
             },
           ]}
@@ -63,12 +63,12 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <SelectInputApi
           endPoint={endPoints.tags}
           onChange={(e) => handleOptionInp("tags", e)}
-          placeholder={localFilters?.tags?.[`name_${language}`] || "all"}
-          label="tags"
+          placeholder={localFilters?.tags?.[`name_${language}`] || t("common.all")}
+          label={t("pages.tags")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("tags", ""),
             },
           ]}
@@ -77,63 +77,63 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <SelectInputApi
           endPoint={endPoints.authors}
           onChange={(e) => handleOptionInp("author", e)}
-          placeholder={localFilters?.author?.full_name || "all"}
-          label="author"
+          placeholder={localFilters?.author?.full_name || t("common.all")}
+          label={t("pages.authors")}
           optionLabel={(e) => e?.full_name}
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("author", ""),
             },
           ]}
           notRequired
         />
         <SelectOptionInput
-          label="language"
+          label={t("common.language")}
           onSelectOption={(e) => handleOptionInp("language", e.value)}
           options={languages.map((e) => ({ text: e.title, value: e.value }))}
           notRequired
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("language", ""),
             },
           ]}
-          placeholder={localFilters?.language || "all"}
+          placeholder={localFilters?.language || t("common.all")}
         />
 
         <SelectOptionInput
-          label="is_published"
+          label={t("common.is_published")}
           onSelectOption={(e) => handleOptionInp("is_published", e.value)}
           options={[
             {
-              text: "yes",
+              text: t("common.yes"),
               value: true,
             },
             {
-              text: "no",
+              text: t("common.no"),
               value: false,
             },
           ]}
           notRequired
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("is_published", ""),
             },
           ]}
           placeholder={
             localFilters?.is_published === true
-              ? "yes"
+              ? t("common.yes")
               : localFilters?.is_published === false
-                ? "no"
-                : "all"
+                ? t("common.no")
+                : t("common.all")
           }
         />
         <Input
           name="created_at_gte"
           notRequired
-          label="created_at from"
+          label={`${t("common.from")} ${t("common.created_at")}`}
           value={localFilters?.created_at_gte ?? ""}
           onChange={handleChange}
           type="date"
@@ -141,7 +141,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <Input
           name="created_at_lte"
           notRequired
-          label="created_at to"
+          label={`${t("common.to")} ${t("common.created_at")}`}
           value={localFilters?.created_at_lte ?? ""}
           onChange={handleChange}
           type="date"
@@ -149,7 +149,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <Input
           name="published_at_gte"
           notRequired
-          label="published_at from"
+          label={`${t("common.from")} ${t("common.published_at")}`}
           value={localFilters?.published_at_gte ?? ""}
           onChange={handleChange}
           type="date"
@@ -157,16 +157,16 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <Input
           name="published_at_lte"
           notRequired
-          label="published_at to"
+          label={`${t("common.to")} ${t("common.published_at")}`}
           value={localFilters?.published_at_lte ?? ""}
           onChange={handleChange}
           type="date"
         />
       </div>
       <div className="btns">
-        <Button onClick={handleSave}>save</Button>
+        <Button onClick={handleSave}>{t("common.save")}</Button>
         <Button btnStyleType="transparent" btnType="cancel" onClick={onClose}>
-          cancel
+          {t("common.cancel")}
         </Button>
       </div>
     </PopUp>

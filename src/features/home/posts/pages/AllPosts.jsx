@@ -56,8 +56,6 @@ const AllPosts = () => {
     [filters, debouncedValue, tags, content_type, category, content_type_multi],
   );
 
-  
-
   const [sort, setSort] = useState({ created_at: "-created_at" });
 
   const { data, isFetching, loadMoreRef } = useInfiniteFetch({
@@ -80,7 +78,6 @@ const AllPosts = () => {
   const [openFilters, setOpenFilters] = useState(false);
 
   const toggleFilters = useCallback(() => setOpenFilters((p) => !p), []);
-
   const handleSearch = useCallback(
     (e) => {
       const { value } = e.target;
@@ -94,18 +91,29 @@ const AllPosts = () => {
   );
 
   const { t } = useTranslation();
-
   return (
     <div
       style={
         filters?.content_type && {
           "--main-color": `var(--color-${filters?.content_type})`,
         }
-      }
-    >
-      <Breadcrumbs />
+      }>
+      <Breadcrumbs
+        replace={[
+          {
+            from: name,
+            fullTextReplace: Boolean(tags || searchParam || category),
+          },
+        ]}
+      />
       <section className="main-section container">
-        <h1 className="post-section-name">{t(name)}</h1>
+        <h1 className="post-section-name">
+          {content_type
+            ? t(`pages.${content_type}`)
+            : content_type_multi
+              ? t(`content_types.${name}`)
+              : name}
+        </h1>
 
         <div className="post-filters">
           <div className="post-search">
@@ -113,7 +121,7 @@ const AllPosts = () => {
               <input
                 type="text"
                 id="search-inp"
-                placeholder="search...."
+                placeholder={t("common.search")}
                 value={searchParam}
                 onChange={handleSearch}
               />
@@ -125,7 +133,7 @@ const AllPosts = () => {
               toggleFilters={toggleFilters}
             />
           </div>
-          <h1 data-count={results?.count || 0}>results</h1>
+          <h1 data-count={results?.count || 0}>{t("common.results")}</h1>
         </div>
 
         <div className="posts-container">

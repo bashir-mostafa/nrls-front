@@ -38,7 +38,7 @@ const PopUp = ({
           <IconButton
             color="delete"
             styleType="transparent"
-            title={t("close")}
+            title={t("common.close")}
             onClick={onClose}
           >
             <FontAwesomeIcon icon={icons.close} />

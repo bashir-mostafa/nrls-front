@@ -62,8 +62,7 @@ const Filters = ({
       <IconButton
         title={t("common.filters")}
         color={isOpen ? "main" : "secondry-color"}
-        onClick={toggleOpen}
-      >
+        onClick={toggleOpen}>
         <FontAwesomeIcon icon={faFilter} />
       </IconButton>
 
@@ -71,7 +70,7 @@ const Filters = ({
         {!hideCreatedAtInputs && (
           <>
             <Input
-              label={`${t("enums.from")} ${t("date")}`}
+              label={`${t("common.from")} ${t("common.date")}`}
               type="date"
               value={localFilters?.["createdAt_gte"]}
               name="createdAt_gte"
@@ -79,7 +78,7 @@ const Filters = ({
               notRequired
             />
             <Input
-              label={`${t("enums.to")} ${t("date")}`}
+              label={`${t("common.to")} ${t("common.date")}`}
               type="date"
               value={localFilters?.["createdAt_lte"]}
               name="createdAt_lte"
@@ -95,8 +94,8 @@ const Filters = ({
               <Fragment key={i}>
                 <Input
                   {...e}
-                  label={`${t("enums.from")} ${t(e.label)}`}
-                  placeholder={`${t("enums.from")} ${t(e.label)}`}
+                  label={`${t("common.from")} ${t(e.label)}`}
+                  placeholder={`${t("common.from")} ${t(e.label)}`}
                   type={e.type || "date"}
                   value={localFilters?.[`${e.name}_gte`]}
                   name={`${e.name}_gte`}
@@ -105,8 +104,8 @@ const Filters = ({
                 />
                 <Input
                   {...e}
-                  label={`${t("enums.to")} ${t(e.label)}`}
-                  placeholder={`${t("enums.to")} ${t(e.label)}`}
+                  label={`${t("common.to")} ${t(e.label)}`}
+                  placeholder={`${t("common.to")} ${t(e.label)}`}
                   type={e.type || "date"}
                   value={localFilters?.[`${e.name}_lte`]}
                   name={`${e.name}_lte`}

@@ -43,11 +43,11 @@ const CloumnsVisible = ({ columns, setColumns, defaultColumns, onRefetch }) => {
 
   return (
     <div className="relative">
-      <IconButton title="refetch" onClick={onRefetch}>
+      <IconButton title={t("table.filters.refetch")} onClick={onRefetch}>
         <FontAwesomeIcon icon={faRotateRight} />
       </IconButton>
 
-      <IconButton title="colomns" onClick={toggleOpen}>
+      <IconButton title={t("table.filters.columns")} onClick={toggleOpen}>
         <FontAwesomeIcon icon={faEllipsis} />
       </IconButton>
 

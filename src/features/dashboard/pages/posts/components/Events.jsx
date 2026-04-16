@@ -6,6 +6,7 @@ import { useFetchData } from "../../../../../hooks/useFetchData";
 import EventComponent from "./EventComponent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "../../../../../components/buttons/Button";
+import { useTranslation } from "react-i18next";
 
 const Events = ({ post, actions }) => {
   const { data } = useFetchData({
@@ -13,11 +14,12 @@ const Events = ({ post, actions }) => {
     post: post?.id,
     page_size: 1,
   });
+  const { t } = useTranslation();
 
   return (
     <>
       {(actions || data?.totalCount > 0) && (
-        <p className="section-title">evenets </p>
+        <p className="section-title">{t("pages.event")}</p>
       )}
       {data?.totalCount > 0 && (
         <EventComponent data={data?.data?.[0]} actions={actions} />
@@ -27,10 +29,10 @@ const Events = ({ post, actions }) => {
           <Link
             to={dashboardRouts.events.add}
             state={{ post }}
-            className="flex-1"
-          >
+            className="flex-1">
             <Button btnStyleType="transparent" className="w-100">
-              <FontAwesomeIcon icon={icons.add} /> add event
+              <FontAwesomeIcon icon={icons.add} /> {t("common.add")}{" "}
+              {t("pages.event")}
             </Button>
           </Link>
         )}
@@ -41,10 +43,9 @@ const Events = ({ post, actions }) => {
                 ? dashboardRouts.post.events(post?.id)
                 : homeRoutes.posts.events(post?.content_type, post?.id)
             }
-            className="flex-1"
-          >
+            className="flex-1">
             <Button btnStyleType="transparent" className="w-100">
-              all events ({data?.totalCount})
+              {t("events.view_all")} ({data?.totalCount})
             </Button>
           </Link>
         )}

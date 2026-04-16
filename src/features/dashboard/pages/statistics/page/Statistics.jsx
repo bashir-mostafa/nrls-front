@@ -10,8 +10,11 @@ import { icons } from "./../../../../../constant/icons";
 import { faEye, faLanguage, faPause } from "@fortawesome/free-solid-svg-icons";
 import { getPercent } from "./../../../../../utils/getPercent";
 import { languages } from "../../../../../constant/languages";
+import { useTranslation } from "react-i18next";
 
 const Statistics = () => {
+  const { t } = useTranslation();
+
   const { data, isLoading } = useQuery({
     queryKey: [endPoints.statistics],
     queryFn: async () => {
@@ -31,7 +34,7 @@ const Statistics = () => {
             <FontAwesomeIcon icon={icons.posts} />
           </div>
           <div className="count-info">
-            <p>Total Posts</p>
+            <p>{t("statistics.total_posts")}</p>
             <h3>{data?.total_posts || 0}</h3>
           </div>
         </div>
@@ -41,7 +44,7 @@ const Statistics = () => {
             <FontAwesomeIcon icon={faLeanpub} />
           </div>
           <div className="count-info">
-            <p>Published Posts</p>
+            <p>{t("statistics.published_posts")}</p>
             <h3>{data?.published_posts || 0}</h3>
           </div>
         </div>
@@ -51,7 +54,7 @@ const Statistics = () => {
             <FontAwesomeIcon icon={faPause} />
           </div>
           <div className="count-info">
-            <p>Draft Posts</p>
+            <p>{t("statistics.draft_posts")}</p>
             <h3>{data?.draft_posts || 0}</h3>
           </div>
         </div>
@@ -61,7 +64,7 @@ const Statistics = () => {
             <FontAwesomeIcon icon={faEye} />
           </div>
           <div className="count-info">
-            <p>Total Views</p>
+            <p>{t("statistics.total_views")}</p>
             <h3>{data?.total_views || 0}</h3>
           </div>
         </div>
@@ -70,7 +73,8 @@ const Statistics = () => {
       <section className="statistic-details">
         <div className="statistic-container by-language">
           <h2>
-            <FontAwesomeIcon icon={faLanguage} /> posts By Language
+            <FontAwesomeIcon icon={faLanguage} />{" "}
+            {t("statistics.posts_by_language")}
           </h2>
 
           {Object.entries(data?.by_language)?.map(([key, value]) => {
@@ -94,7 +98,8 @@ const Statistics = () => {
 
         <div className="statistic-container">
           <h2>
-            <FontAwesomeIcon icon={icons.category} /> posts By type
+            <FontAwesomeIcon icon={icons.category} />{" "}
+            {t("statistics.posts_by_type")}
           </h2>
 
           {Object.entries(data?.by_content_type)?.map(([key, value]) => {
@@ -103,7 +108,7 @@ const Statistics = () => {
 
             return (
               <div className="percent" key={key}>
-                <p>{search}</p>
+                <p>{t(`content_types.${search}`, search)}</p>
                 <div style={{ "--main-color": `var(--color-${search})` }}>
                   <span style={{ width: `${percent}%` }}></span>
                 </div>

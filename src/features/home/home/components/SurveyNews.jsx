@@ -1,23 +1,21 @@
+import { useTranslation } from "react-i18next";
 import MainTitle from "../../../../components/main_title/MainTitle";
 import Skeleton from "../../../../components/skeleton/Skeleton";
 import endPoints from "../../../../constant/endPoints";
-import { mediaTyps } from "../../../../constant/enums";
-import { useTranslation } from "react-i18next";
 import { useFetchData } from "../../../../hooks/useFetchData";
 import SecondStyleMainNews from "./SecondStyleMainNews";
 import SecondStyleSubNews from "./SecondStyleSubNews";
 
-const MediaNews = ({ language }) => {
+const SurveyNews = ({ language }) => {
+  const {t} = useTranslation();
   const { data, isLoading } = useFetchData({
     endPoints: endPoints.posts,
     page_size: 7,
     ordering: { created_at: "-created_at" },
     language,
-    content_type_multi: mediaTyps,
+    content_type: "survey",
     is_published: true,
   });
-
-  const { t } = useTranslation();
 
   if (isLoading)
     return (
@@ -29,10 +27,11 @@ const MediaNews = ({ language }) => {
     );
 
   if (!data?.totalCount) return;
+
   return (
     <section className="container main-section">
-      <MainTitle state={{ content_type_multi: mediaTyps }} name="media">
-        {t("pages.media")}
+      <MainTitle state={{ content_type: "survey" }} name={"survey"}>
+        {t("pages.survey")}
       </MainTitle>
 
       <main className="news-style-2">
@@ -47,4 +46,4 @@ const MediaNews = ({ language }) => {
   );
 };
 
-export default MediaNews;
+export default SurveyNews;

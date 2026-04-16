@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { commentSchema } from "../../../../../schema/comment";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import endPoints from "../../../../../constant/endPoints";
+import { useTranslation } from "react-i18next";
 
 const AddComment = ({ id, api, handleShowAddForm }) => {
   const formik = useFormik({
@@ -30,7 +31,7 @@ const AddComment = ({ id, api, handleShowAddForm }) => {
       handleShowAddForm();
     },
   });
-
+const {t} = useTranslation();
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="flex-container">
@@ -38,16 +39,16 @@ const AddComment = ({ id, api, handleShowAddForm }) => {
           name="name"
           errorText={formik.errors.name}
           value={formik.values.name}
-          placeholder="write your name"
-          label="your name"
+          placeholder={t("common.write_your_name")}
+          label={t("common.your_name")}
           onChange={formik.handleChange}
         />
         <Input
           name="email"
           errorText={formik.errors.email}
           value={formik.values.email}
-          placeholder="write your email"
-          label="your email"
+          placeholder={t("common.write_your_email")}
+          label={t("common.your_email")}
           onChange={formik.handleChange}
         />
       </div>
@@ -55,15 +56,15 @@ const AddComment = ({ id, api, handleShowAddForm }) => {
         name="comment"
         errorText={formik.errors.comment}
         value={formik.values.comment}
-        placeholder="write your comment"
-        label="your comment"
+        placeholder={t("common.write_your_comment")}
+        label={t("common.your_comment")}
         onChange={formik.handleChange}
         elementType="textarea"
         rows={5}
       />
       <div className="btn-container">
         <Button type="submit">
-          <FontAwesomeIcon icon={faPaperPlane} /> submit comment
+          <FontAwesomeIcon icon={faPaperPlane} /> {t("common.submit_comment")}
         </Button>
       </div>
     </form>

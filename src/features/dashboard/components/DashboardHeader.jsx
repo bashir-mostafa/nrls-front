@@ -13,7 +13,6 @@ import { useAuth } from "../../../context/AuthContext";
 import { useTranslation } from "react-i18next";
 import Language from "./Language";
 import Search from "./Search";
-
 const DashboardHeader = ({ isClosed, toggleClose }) => {
   const { t } = useTranslation();
 
@@ -40,9 +39,8 @@ const DashboardHeader = ({ isClosed, toggleClose }) => {
           <div className="icons">
             <IconButton
               color="secondry-color"
-              title="mode"
-              onClick={changeMode}
-            >
+              title={t("common.mode")}
+              onClick={changeMode}>
               <FontAwesomeIcon icon={faMoon} />
             </IconButton>
 
@@ -50,7 +48,7 @@ const DashboardHeader = ({ isClosed, toggleClose }) => {
 
             <IconButton
               color="delete"
-              title="logout"
+              title={t("common.logout")}
               styleType="transparent"
               onClick={() => setLogoutPopup(true)}
               icon={faSignOut}

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import RepeatChildren from "../../../../components/RepeatChildren";
 import Skeleton from "../../../../components/skeleton/Skeleton";
 import endPoints from "../../../../constant/endPoints";
@@ -13,8 +14,10 @@ const MoreResults = ({ language, post }) => {
     page_size: 5,
     id_ne: post?.id,
     content_type_or: post?.content_type,
-    category_or: post?.category,
+    category_or: post?.category?.id,
   });
+
+  const { t } = useTranslation();
 
   if (isLoading)
     return (
@@ -26,10 +29,9 @@ const MoreResults = ({ language, post }) => {
     );
 
   if (!data?.totalCount) return;
-
   return (
     <>
-      <h1 className="more-results-title">more results</h1>
+      <h1 className="more-results-title">{t("common.more_results")}</h1>
       <div className="posts-container">
         {data?.data?.map((e) => (
           <PostCard

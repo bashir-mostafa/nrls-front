@@ -1,8 +1,10 @@
 import { useCallback } from "react";
 import { allTyps } from "../../../../../constant/enums";
 import "../style/style.css";
+import { useTranslation } from "react-i18next";
 
 const PostTyps = ({ filters, setFilters }) => {
+  const {t} = useTranslation();
   const selectType = useCallback(
     (content_type) => {
       setFilters((p) => ({ ...p, content_type }));
@@ -16,7 +18,7 @@ const PostTyps = ({ filters, setFilters }) => {
         className={!filters?.content_type ? "active" : ""}
         onClick={() => selectType("")}
       >
-        all
+        {t("common.all")}
       </button>
       {allTyps?.map((e) => (
         <button
@@ -27,7 +29,7 @@ const PostTyps = ({ filters, setFilters }) => {
           }}
           onClick={() => selectType(e)}
         >
-          {e}
+          {t(`content_types.${e}`)}
         </button>
       ))}
     </div>

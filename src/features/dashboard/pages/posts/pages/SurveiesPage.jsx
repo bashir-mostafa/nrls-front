@@ -60,9 +60,9 @@ const SurveiesPage = () => {
               btnType="cancel"
               onClick={cancel}
             >
-              cancel
+              {t("common.cancel")}
             </Button>
-            <Button onClick={handleVote.mutate}>vote</Button>
+            <Button onClick={handleVote.mutate}>{t("common.vote")}</Button>
           </div>
         )}
       </main>

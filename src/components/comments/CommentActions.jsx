@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../utils/axios";
 import endPoints from "../../constant/endPoints";
+import { useTranslation } from "react-i18next";
 const CommentActions = ({ data, setDeletePopup }) => {
   const query = useQueryClient();
   const approveStatus = useMutation({
@@ -19,22 +20,22 @@ const CommentActions = ({ data, setDeletePopup }) => {
       query.invalidateQueries(endPoints.comment);
     },
   });
-
+  const { t } = useTranslation();
   return (
     <div>
       <p onClick={setDeletePopup}>
         <FontAwesomeIcon icon={icons.delete} />
-        delete
+        {t("common.delete")}
       </p>
       {data.is_approved ? (
         <p onClick={() => approveStatus.mutate(false)}>
           <FontAwesomeIcon icon={faCircleXmark} />
-          reject
+          {t("common.reject")}
         </p>
       ) : (
         <p className="accept" onClick={() => approveStatus.mutate(true)}>
           <FontAwesomeIcon icon={faCircleCheck} />
-          accept
+          {t("common.accept")}
         </p>
       )}
     </div>

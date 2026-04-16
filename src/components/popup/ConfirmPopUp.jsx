@@ -3,6 +3,7 @@ import Button from "../buttons/Button";
 import "./popups.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icons } from "../../constant/icons";
+import { useTranslation } from "react-i18next";
 
 /**
  * @typedef {Object} divProps
@@ -22,9 +23,9 @@ import { icons } from "../../constant/icons";
  */
 const ConfirmPopUp = ({
   isOpen = false,
-  heading = "are you sure you want to do this",
-  confirmText = "confirm",
-  cancelText = "cancel",
+  heading,
+  confirmText,
+  cancelText,
   undoneText = "this cant be undone",
   onConfirm = () => {},
   onClose = () => {},
@@ -32,13 +33,14 @@ const ConfirmPopUp = ({
   closeButtonProps = {},
   ...props
 }) => {
+  const { t } = useTranslation();
   if (!isOpen) return null;
 
   return (
     <div className="overlay" role="dialog" {...props} onClick={onClose}>
       <div className="popup confirm-popup" onClick={(e) => e.stopPropagation()}>
         <article className="close">
-          <h1>{heading}</h1>
+          <h1>{heading || t("common.are_you_sure")}</h1>
           <FontAwesomeIcon icon={icons.close} onClick={onClose} />
         </article>
         <article className="undone">{undoneText}</article>
@@ -48,17 +50,15 @@ const ConfirmPopUp = ({
             btnType="cancel"
             type="button"
             btnStyleType="transparent"
-            {...closeButtonProps}
-          >
-            {cancelText}
+            {...closeButtonProps}>
+            {cancelText || t("common.cancel")}
           </Button>
           <Button
             type="button"
             onClick={onConfirm}
             btnType="delete"
-            {...confirmButtonProps}
-          >
-            {confirmText}
+            {...confirmButtonProps}>
+            {confirmText || t("common.confirm")}
           </Button>
         </div>
       </div>

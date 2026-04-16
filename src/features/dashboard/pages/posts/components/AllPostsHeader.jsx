@@ -10,30 +10,32 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { icons } from "../../../../../constant/icons";
 import { Link } from "react-router";
 import { dashboardRouts } from "../../../../../constant/pageRoutes";
-const postSortOptions = [
-  {
-    title: "latest",
-    set: "-created_at",
-    name: "created_at",
-  },
-  {
-    title: "oldest",
-    set: "created_at",
-    name: "created_at",
-  },
-  {
-    title: "most liked",
-    set: "-view_count",
-    name: "view_count",
-  },
-  {
-    title: "least liked",
-    set: "view_count",
-    name: "view_count",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const AllPostsHeader = ({ sort, setSort, toggleFilters }) => {
+  const { t } = useTranslation();
+  const postSortOptions = [
+    {
+      title: t("common.latest"),
+      set: "-created_at",
+      name: "created_at",
+    },
+    {
+      title: t("common.oldest"),
+      set: "created_at",
+      name: "created_at",
+    },
+    {
+      title: t("common.most_liked"),
+      set: "-view_count",
+      name: "view_count",
+    },
+    {
+      title: t("common.least_liked"),
+      set: "view_count",
+      name: "view_count",
+    },
+  ];
   const { isOpen, ref, toggleOpen } = useClickOutside();
 
   const handleSetSort = useCallback(
@@ -49,19 +51,19 @@ const AllPostsHeader = ({ sort, setSort, toggleFilters }) => {
   return (
     <div className="icons" ref={ref}>
       <Link to={dashboardRouts.post.add}>
-        <IconButton icon={icons.add} color="secondry-color" title="add" />
+        <IconButton icon={icons.add} color="secondry-color" title={t("common.add")} />
       </Link>
 
       <IconButton
         icon={faFilter}
         color="secondry-color"
-        title="filters"
+        title={t("common.filters")}
         onClick={toggleFilters}
       />
       <IconButton
         icon={faArrowDownShortWide}
         color="secondry-color"
-        title="sort"
+        title={t("common.sort")}
         onClick={toggleOpen}
       />
 

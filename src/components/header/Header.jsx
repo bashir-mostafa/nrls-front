@@ -9,18 +9,18 @@ import TopHeader from "./TopHeader";
 import IconButton from "./../buttons/IconButton";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useClickOutside } from "../../hooks/useClickOutside";
+import { useTranslation } from "react-i18next";
 import { useCallback } from "react";
 
 const Header = () => {
   const { user } = useAuth();
-
+  const { t } = useTranslation();
   const { isOpen, ref, toggleOpen, setIsOpen } = useClickOutside();
 
   const handleClick = useCallback(() => {
     if (!isOpen) return;
     setIsOpen(false);
   }, [isOpen, setIsOpen]);
-
   return (
     <>
       <TopHeader />
@@ -30,56 +30,57 @@ const Header = () => {
 
         <nav className={isOpen ? "open" : ""}>
           <NavLink to={"/"} className="link">
-            home
+            {t("header.home")}
           </NavLink>
 
           <NestedMenu
             name={"topics"}
             values={topicTyps}
+            t={t}
             nestedClick={handleClick}
           />
           <NestedMenu
             name={"media"}
             values={mediaTyps}
+            t={t}
             nestedClick={handleClick}
           />
           <NestedMenu
             name={"publication"}
             values={publicationTyps}
+            t={t}
             nestedClick={handleClick}
           />
 
           <NavLink to={"/event"} className="link" onClick={handleClick}>
-            event
+            {t("header.events")}
           </NavLink>
 
           <NavLink to={"/survey"} className="link" onClick={handleClick}>
-            survey
+            {t("header.surveys")}
           </NavLink>
 
           <NavLink to={homeRoutes.about} className="link" onClick={handleClick}>
-            about
+            {t("header.about")}
           </NavLink>
 
           <NavLink
             to={homeRoutes.contact}
             className="link"
-            onClick={handleClick}
-          >
-            contact us
+            onClick={handleClick}>
+            {t("header.contact")}
           </NavLink>
 
           {user ? (
             <NavLink to={homeRoutes.dashboard} className="link">
-              dashboard
+              {t("header.dashboard")}
             </NavLink>
           ) : (
             <NavLink
               to={homeRoutes.login}
               className="link"
-              onClick={handleClick}
-            >
-              login
+              onClick={handleClick}>
+              {t("header.login")}
             </NavLink>
           )}
         </nav>

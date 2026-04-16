@@ -181,13 +181,13 @@ const AddPost = () => {
           className={`${tab === "files" ? "active" : ""} ${Object.keys(mediaFormik.errors)?.length ? "error" : ""}`}
           onClick={() => setTab("files")}
         >
-          الملفات
+          {t("pages.files")}
         </p>
         <p
           className={`${tab === "survey" ? "active" : ""} ${Object.keys(surveyFormik.errors)?.length ? "error" : ""}`}
           onClick={() => setTab("survey")}
         >
-          الاستبيان
+          {t("pages.survey")}
         </p>
       </PostTabs>
 
@@ -203,7 +203,7 @@ const AddPost = () => {
         {tab === "image" && (
           <UploadPhoto
             name="featured_image"
-            title="featured_image"
+            title={t("posts.featured_image")}
             errorText={t(formik.errors?.featured_image)}
             notRequired
             value={formik.values.featured_image}
@@ -222,7 +222,7 @@ const AddPost = () => {
             <div className="add-file-container">
               {mediaFileType?.map((e) => (
                 <p className="add-btn" key={e} onClick={() => addMediaFn(e)}>
-                  <FontAwesomeIcon icon={icons[e]} /> add {e}
+                  <FontAwesomeIcon icon={icons[e]} /> {t("common.add")} {t(`media_types.${e}`)}
                 </p>
               ))}
             </div>
@@ -247,7 +247,7 @@ const AddPost = () => {
           </div>
         )}
 
-        <Button type="submit"> save </Button>
+        <Button type="submit"> {t("common.save")} </Button>
       </form>
     </>
   );

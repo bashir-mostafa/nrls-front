@@ -31,7 +31,7 @@ const TopHeader = () => {
   );
 
   const { changeMode } = useDarkMode();
-
+const {t} = useTranslation();
   return (
     <div className="top-header container">
       <div>
@@ -68,7 +68,7 @@ const TopHeader = () => {
       </div>
 
       <Link className="logo" to={"/"}>
-        مركز روجافا للدراسات الاستراتيجية
+      {t("header.rojava_center_for_strategic_studies")}
         <img src={Logo} alt="" />
       </Link>
     </div>

@@ -8,13 +8,15 @@ import Comment from "../../../../../components/comments/Comment";
 import AddComment from "./AddComment";
 import Popup from "../../../../../components/popup/PopUp";
 import CommentFilters from "./CommentFilters";
+import { useTranslation } from "react-i18next";
 
 const api = new APIClient(endPoints.comment);
 
 const PostComments = ({ id, actions }) => {
+  const { t } = useTranslation();
   const [filters, setFilters] = useState({
     created_at: {
-      text: "latest comments",
+      text: t("common.latest_comments"),
       value: "-created_at",
     },
   });
@@ -47,12 +49,11 @@ const PostComments = ({ id, actions }) => {
   const selectValue = useCallback((name, value) => {
     setFilters((p) => ({ ...p, [name]: value }));
   }, []);
-
   return (
     <section className="comments">
       <div className="title-container border-bottom">
-        <h3>comments</h3>
-        <p data-count={results?.count}> comment </p>
+        <h3>{t("common.comments")}</h3>
+        <p data-count={results?.count}> {t("common.comments")} </p>
       </div>
 
       <div className="comment-action-buttons">
@@ -60,11 +61,11 @@ const PostComments = ({ id, actions }) => {
           onClick={handleShowAddForm}
           className={action === "addComment" ? "active" : ""}
         >
-          <FontAwesomeIcon icon={faComment} /> add comment
+          <FontAwesomeIcon icon={faComment} /> {t("common.add")} {t("common.comment")}
         </p>
         <p onClick={handleShowFilters}>
           <FontAwesomeIcon icon={faSliders} />
-          filters
+          {t("common.filters")}
         </p>
       </div>
 
@@ -78,7 +79,7 @@ const PostComments = ({ id, actions }) => {
             <Comment data={e} key={e.id} showActions={actions} />
           ))
         ) : (
-          <div style={{ textAlign: "center" }}> no comment yet </div>
+          <div style={{ textAlign: "center" }}> {t("common.no_comments")} </div>
         )}
 
         {isLoading && (
@@ -88,7 +89,7 @@ const PostComments = ({ id, actions }) => {
         )}
         {!isLoading && hasNextPage && (
           <p className="more-comments" onClick={fetchNextPage}>
-            more comments
+            {t("common.load_more")} {t("common.comments")}
           </p>
         )}
       </div>
