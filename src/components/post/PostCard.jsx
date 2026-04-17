@@ -40,6 +40,7 @@ const PostCard = ({
           showStatus={showStatus}
           showActions={showActions}
           setDeletedId={setDeletedId}
+          t={t}
         />
         <img
           src={

@@ -38,10 +38,12 @@ const PostSurvey = () => {
       query.invalidateQueries([endPoints.surveyOptionsById, id]);
     },
   });
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
-      <Breadcrumbs replace={[{ from: id, text: state }]} />
+      <Breadcrumbs
+        replace={[{ from: id, text: state, fullTextReplace: true }]}
+      />
       <section className="main-section container">
         <main className="survey-container ">
           {results?.map((e) => (

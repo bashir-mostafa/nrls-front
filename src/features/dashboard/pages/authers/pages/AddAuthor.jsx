@@ -96,7 +96,7 @@ const AddAuthor = () => {
             notRequired
           />
         </div>
-        <Button type="submit"> save </Button>
+        <Button type="submit"> {t("common.save")} </Button>
       </form>
     </>
   );

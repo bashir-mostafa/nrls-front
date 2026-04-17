@@ -132,13 +132,13 @@ function UploadFile({
             ) : (
               <div className="upload-placeholder">
                 {isDragging ? (
-                  <h2>{t("upload.drop")}</h2>
+                  <h2>{t("media_types.drop")}</h2>
                 ) : (
                   <>
                     <h2>
-                      {t("upload.upload")} {title}
+                      {t("media_types.upload")} {title}
                     </h2>
-                    <p>{t("upload.drag")}</p>
+                    <p>{t("media_types.drag")}</p>
                   </>
                 )}
               </div>

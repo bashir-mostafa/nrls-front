@@ -25,6 +25,7 @@
     "results": "النتائج",
     "no_results": "لا توجد نتائج",
     "vote": "تصويت",
+    "vote_end": "لا يمكنك التصويت لإن الوقت المخصص للتصويت انتهى",
     "original_post": "منشور أصلي",
     "latest": "الأحدث",
     "oldest": "الأقدم",
@@ -82,9 +83,10 @@
     "title_placeholder": "أدخل العنوان هنا",
     "excerpt": "الملخص",
     "select": "اختر",
+    "view_all_results": "عرض جميع النتائج",
     "count": "تعديل العدد",
     "excerpt_placeholder": "أدخل الملخص هنا",
-    "info":"بيانات اضافية"
+    "info": "بيانات اضافية"
   },
   "media_types": {
     "image": "صورة",
@@ -133,6 +135,7 @@
     "add": "إضافة",
     "add_user": "إضافة مستخدم",
     "posts": "المنشورات",
+    "post": "منشور",
     "add_post": "إضافة منشور",
     "categories": "الأقسام",
     "tags": "العلامات",
@@ -158,7 +161,11 @@
     "breaking_news": "أخبار عاجلة",
     "topics": "المواضيع",
     "content_type": "نوع المحتوى",
-    "publication": "المنشورات"
+    "publication": "المنشورات",
+    "add_author": "إضافة مؤلف",
+    "add_tag": "إضافة علامة",
+    "add_category": "إضافة قسم",
+    "add_event": "إضافة حدث"
   },
   "contact": {
     "send_message": "أرسل رسالة",
@@ -418,7 +425,8 @@
     "email": "يرجى إدخال بريد إلكتروني صالح",
     "password_match": "كلمة المرور غير متطابقة",
     "numeric": "يجب أن يكون رقماً",
-    "date": "يرجى إدخال تاريخ صالح"
+    "date": "يرجى إدخال تاريخ صالح",
+    "min_date": "يجب ان يكون التاريخ في المستقبل"
   },
   "errors": {
     "general": "حدث خطأ ما",
@@ -453,11 +461,20 @@
     }
   },
   "author": {
-    "profile_image": " صورة الملف الشخصي",
+    "profile_image": "صورة الملف الشخصي",
+    "view_profile_image": "عرض الصورة",
+    "delete_profile_image": "حذف الصورة",
+    "change_profile_image": "تغيير الصورة",
     "email": "البريد الإلكتروني",
     "bio": "النبذة",
     "bio_placeholder": "اكتب السيرة الذاتية",
     "full_name": "الاسم الثلاثي",
     "full_name_placeholder": "اكتب الاسم الثلاثي"
-  }
+  },
+  "external_url": "الرابط",
+  "caption": "الوصف",
+  "caption_placeholder": "وصف للملف",
+  "alt_text": "النص المساعد (اختياري)",
+  "alt_text_placeholder": "نص يظهر عند حصول خطأ في العرض",
+  "external_url_placeholder": "ادخل الرابط"
 }

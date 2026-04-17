@@ -8,15 +8,13 @@ export const mediaSchema = Yup.object().shape({
       external_url: Yup.string().when("file_type", {
         is: "video",
         then: (schema) =>
-          schema
-            .required("external_url is required for video")
-            .url("must be a valid url"),
+          schema.required("validation.required").url("must be a valid url"),
         otherwise: (schema) => schema.notRequired(),
       }),
 
       src: Yup.mixed().when("file_type", {
         is: (val) => val !== "video",
-        then: (schema) => schema.required("file is required"),
+        then: (schema) => schema.required("validation.required"),
         otherwise: (schema) => schema.notRequired(),
       }),
 
@@ -35,9 +33,7 @@ export const mediaSchemaUpdate = Yup.object().shape({
       external_url: Yup.string().when("file_type", {
         is: "video",
         then: (schema) =>
-          schema
-            .required("external_url is required for video")
-            .url("must be a valid url"),
+          schema.required("validation.required").url("must be a valid url"),
         otherwise: (schema) => schema.notRequired(),
       }),
 

@@ -59,8 +59,8 @@ const UpdateSurveyPage = () => {
     <>
       <Breadcrumbs
         replace={[
-          { text: data?.post_title, from: post },
-          { from: id, text: data?.question },
+          { text: data?.post_title, from: post, fullTextReplace: true },
+          { from: id, text: data?.question, fullTextReplace: true },
         ]}
       />
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>

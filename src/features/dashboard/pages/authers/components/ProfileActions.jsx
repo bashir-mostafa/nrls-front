@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback, useState } from "react";
 import imgServerSrc from "../../../../../utils/imgServerSrc";
 import ImgViewPopup from "../../../../../components/popup/ImgViewPopup";
+import { useTranslation } from "react-i18next";
 
 const ProfileActions = ({
   newImg,
@@ -26,6 +27,8 @@ const ProfileActions = ({
     else onDelete();
   }, [setNewImg, newImg, onDelete]);
 
+  const { t } = useTranslation();
+
   return (
     <>
       {isOpen && (
@@ -34,16 +37,18 @@ const ProfileActions = ({
             <>
               <div className="action" onClick={handleView}>
                 <FontAwesomeIcon icon={faExpand} />
-                viwe photo
+                {t("author.view_profile_image")}
               </div>
               <div className="action delete" onClick={handleDelete}>
-                <FontAwesomeIcon icon={faTrashCan} /> delete profile
+                <FontAwesomeIcon icon={faTrashCan} />
+                {t("author.delete_profile_image")}
               </div>
             </>
           )}
 
           <label htmlFor="profile_image" className="action change-profile">
-            <FontAwesomeIcon icon={faImage} /> choose photo
+            <FontAwesomeIcon icon={faImage} />
+            {t("author.change_profile_image")}
           </label>
         </div>
       )}

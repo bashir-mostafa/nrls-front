@@ -82,7 +82,11 @@ const AddSurvey = ({ formik, t }) => {
               elementType="textarea"
               rows={3}
             />
-            {opt.id && <p className="survey-count">{opt.vote_count} vote </p>}
+            {opt.id && (
+              <p className="survey-count">
+                {opt.vote_count} {t("common.vote")}
+              </p>
+            )}
             <IconButton
               icon={icons.delete}
               color="delete"
@@ -109,7 +113,8 @@ const AddSurvey = ({ formik, t }) => {
                 ...formik.values.options,
                 { option_text: "" },
               ])
-            }>
+            }
+          >
             {t("posts.add_option")}
           </Button>
         </div>

@@ -455,6 +455,7 @@ aside.post-sidebar {
   display: flex;
   align-items: center;
   gap: 5px;
+  flex-wrap: wrap;
 }
 .post-sidebar .section-title::before {
   content: "";

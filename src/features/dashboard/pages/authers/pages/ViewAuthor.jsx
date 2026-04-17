@@ -19,7 +19,7 @@ const ViewAuthor = () => {
     queryKey: [endPoints.authors, id],
     queryFn: () => api.getOne(id),
   });
-const {t} = useTranslation()
+  const { t } = useTranslation();
   if (isLoading) return <Skeleton height="300px" />;
   if (error) return <HandleError error={error} refetch={refetch} />;
 
@@ -29,8 +29,8 @@ const {t} = useTranslation()
         replace={[{ from: id, text: data?.full_name, fullTextReplace: true }]}
       />
       <main className="author-profile">
-        <ImageSection data={data} id={id} updateData={api.updateData} t={t}/>
-        <ProfileInfoSection data={data} t= {t} />
+        <ImageSection data={data} id={id} updateData={api.updateData} t={t} />
+        <ProfileInfoSection data={data} t={t} />
       </main>
 
       <AuthorPopsts postPage={(e) => dashboardRouts.post.view(e.id)} />

@@ -51,7 +51,9 @@ const UpdateTag = () => {
 
   return (
     <>
-      <Breadcrumbs replace={[{ from: id, text: data?.name_en }]} />
+      <Breadcrumbs
+        replace={[{ from: id, text: data?.name_en, fullTextReplace: true }]}
+      />
 
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <div className="inputs-area">
@@ -79,7 +81,6 @@ const UpdateTag = () => {
             label={t("tags.name_ku")}
             placeholder={t("tags.name_ku_placeholder")}
           />
-
         </div>
         <Button type="submit"> {t("common.save")} </Button>
       </form>

@@ -75,7 +75,9 @@ const UpdateAuthor = () => {
 
   return (
     <>
-      <Breadcrumbs replace={[{ from: id, text: data?.full_name,fullTextReplace:true }]} />
+      <Breadcrumbs
+        replace={[{ from: id, text: data?.full_name, fullTextReplace: true }]}
+      />
 
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <UploadPhoto
@@ -121,7 +123,7 @@ const UpdateAuthor = () => {
             notRequired
           />
         </div>
-        <Button type="submit"> save </Button>
+        <Button type="submit"> {t("common.save")} </Button>
       </form>
     </>
   );

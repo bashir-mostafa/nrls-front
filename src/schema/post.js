@@ -24,7 +24,7 @@ export const postSchema = yup.object({
   is_published: yup.boolean().default(true),
   published_at: yup
     .date()
-    .min(new Date())
+    .min(new Date(), "validation.min_date")
     .when("is_published", {
       is: (v) => !v,
       then: (s) => s.required("validation.required"),

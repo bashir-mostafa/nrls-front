@@ -14,24 +14,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const TopHeader = () => {
-  const { isOpen, ref, toggleOpen } = useClickOutside();
+  const { isOpen, ref, toggleOpen, setIsOpen } = useClickOutside();
 
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const currentDate = useMemo(
     () =>
-      new Date().toLocaleDateString("ar-SY", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        numberingSystem: "latn",
-      }),
-    [],
+      new Date().toLocaleDateString(
+        i18n.language === "ar" ? "ar-SY" : undefined,
+        {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          numberingSystem: "latn",
+        },
+      ),
+    [i18n.language],
   );
 
   const { changeMode } = useDarkMode();
-const {t} = useTranslation();
   return (
     <div className="top-header container">
       <div>
@@ -53,7 +55,10 @@ const {t} = useTranslation();
                 <p
                   key={l.value}
                   className={i18n.language === l.value ? "active" : ""}
-                  onClick={() => i18n.changeLanguage(l.value)}
+                  onClick={() => {
+                    i18n.changeLanguage(l.value);
+                    setIsOpen(false);
+                  }}
                 >
                   {l.title}
                 </p>
@@ -68,7 +73,7 @@ const {t} = useTranslation();
       </div>
 
       <Link className="logo" to={"/"}>
-      {t("header.rojava_center_for_strategic_studies")}
+        {t("header.rojava_center_for_strategic_studies")}
         <img src={Logo} alt="" />
       </Link>
     </div>

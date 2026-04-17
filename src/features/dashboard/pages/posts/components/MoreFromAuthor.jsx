@@ -48,7 +48,7 @@ const MoreFromAuthor = ({ author, id, authorView, view }) => {
       {results?.count > 3 && (
         <Link to={authorView(author?.id)}>
           <Button btnStyleType="transparent" className="w-100">
-            view all results ({results?.count})
+            {t("common.view_all_results")} ({results?.count})
           </Button>
         </Link>
       )}

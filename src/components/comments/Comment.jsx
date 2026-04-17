@@ -9,6 +9,7 @@ import axiosInstance from "../../utils/axios";
 import endPoints from "../../constant/endPoints";
 import CommentActions from "./CommentActions";
 import ConfrimPopup from "../popup/ConfirmPopUp";
+import { useTranslation } from "react-i18next";
 
 const Comment = ({ data, showActions }) => {
   const { isOpen, ref, toggleOpen } = useClickOutside();
@@ -24,6 +25,7 @@ const Comment = ({ data, showActions }) => {
       setDeletePopup(null);
     },
   });
+  const { t } = useTranslation();
 
   return (
     <>
@@ -43,7 +45,9 @@ const Comment = ({ data, showActions }) => {
 
         <div className="date-container">
           <h4> {data.name} </h4>
-          {!data.is_approved && showActions && <span>not approved</span>}
+          {!data.is_approved && showActions && (
+            <span>{t("common.not_approved")}</span>
+          )}
           <p>{dateFormatter(data.created_at, "fullDate")}</p>
         </div>
 

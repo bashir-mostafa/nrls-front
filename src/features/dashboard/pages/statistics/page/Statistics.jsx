@@ -11,23 +11,54 @@ import { faEye, faLanguage, faPause } from "@fortawesome/free-solid-svg-icons";
 import { getPercent } from "./../../../../../utils/getPercent";
 import { languages } from "../../../../../constant/languages";
 import { useTranslation } from "react-i18next";
+import { useCallback, useState } from "react";
+import Input from "../../../../../components/inputs/Input";
 
 const Statistics = () => {
   const { t } = useTranslation();
 
+  const [filters, setFilters] = useState({});
+
   const { data, isLoading } = useQuery({
-    queryKey: [endPoints.statistics],
+    queryKey: [endPoints.statistics, filters],
     queryFn: async () => {
-      const { data } = await axiosInstance.get(endPoints.statistics);
+      const { data } = await axiosInstance.get(endPoints.statistics, {
+        params: filters,
+      });
       return data?.data || null;
     },
   });
+
+  const handleChange = useCallback((e) => {
+    const { name, value } = e.target;
+    setFilters((p) => ({ ...p, [name]: value }));
+  }, []);
 
   if (isLoading) return <Skeleton height="300px" />;
 
   return (
     <>
       <Breadcrumbs />
+
+      <section className="statistic-filters">
+        <Input
+          notRequired
+          label={t("common.from")}
+          name="created_at_gte"
+          value={filters.created_at_gte ?? ""}
+          type="date"
+          onChange={handleChange}
+        />
+        <Input
+          notRequired
+          label={t("common.to")}
+          name="created_at_lte"
+          value={filters.created_at_lte ?? ""}
+          type="date"
+          onChange={handleChange}
+        />
+      </section>
+
       <section className="statistic-counts">
         <div className="count-container">
           <div className="icon-wrapper">

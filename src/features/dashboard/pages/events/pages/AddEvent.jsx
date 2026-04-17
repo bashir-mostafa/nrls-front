@@ -62,8 +62,14 @@ const AddEvent = () => {
           <SelectOptionInput
             label={t("events.event_type")}
             onSelectOption={(e) => formik.setFieldValue("event_type", e.value)}
-            value={formik.values.event_type}
-            options={eventType.map((e) => ({ text: e, value: e }))}
+            value={
+              formik.values.event_type &&
+              t(`events.types.${formik.values.event_type}`)
+            }
+            options={eventType.map((e) => ({
+              text: t(`events.types.${e}`),
+              value: e,
+            }))}
             errorText={t(formik.errors.event_type)}
           />
           <Input

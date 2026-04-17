@@ -53,10 +53,12 @@ const AddSurveyPage = () => {
 
   return (
     <>
-      <Breadcrumbs replace={[{ text: state?.title, from: post }]} />
+      <Breadcrumbs
+        replace={[{ text: state?.title, from: post, fullTextReplace: true }]}
+      />
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <AddSurvey formik={formik} t={t} />
-        <Button type="submit"> save </Button>
+        <Button type="submit"> {t("common.save")} </Button>
       </form>
     </>
   );

@@ -7,6 +7,7 @@ import RepeatChildren from "../../../../../components/RepeatChildren";
 import PostCard from "../../../../../components/post/PostCard";
 import Skeleton from "../../../../../components/skeleton/Skeleton";
 import { useParams } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const AuthorPopsts = ({ postPage, actions = true }) => {
   const { id } = useParams();
@@ -24,6 +25,7 @@ const AuthorPopsts = ({ postPage, actions = true }) => {
     }),
     [data],
   );
+  const { t } = useTranslation();
 
   const [deletedId, setDeletedId] = useState(null);
 
@@ -31,7 +33,7 @@ const AuthorPopsts = ({ postPage, actions = true }) => {
     <>
       <div className="author-post-results-container">
         <h1 data-count={results?.count || 0} className="author-post-results">
-          posts
+          {t("pages.post")}
         </h1>
       </div>
 

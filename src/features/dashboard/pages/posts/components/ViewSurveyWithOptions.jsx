@@ -27,14 +27,12 @@ const ViewSurveyWithOptions = ({ data, canUpdate, selected, setSelected }) => {
     () => options?.reduce((acc, el) => acc + (el?.vote_count || 0), 0) || 1,
     [options],
   );
+  const { t } = useTranslation();
 
   const handleSelectVote = useCallback(
     (e) => {
       if (!isFutureTime(data?.closes_at)) {
-        return enqueueSnackbar(
-          "The voting period has ended. You can no longer participate.",
-          { variant: "info" },
-        );
+        return enqueueSnackbar(t("common.vote_end"), { variant: "info" });
       }
 
       setSelected((prev) => {
@@ -51,10 +49,8 @@ const ViewSurveyWithOptions = ({ data, canUpdate, selected, setSelected }) => {
         return [...prev, e];
       });
     },
-    [data, setSelected],
+    [data, setSelected, t],
   );
-
-  const { t } = useTranslation();
 
   if (!data) return;
 
@@ -64,12 +60,13 @@ const ViewSurveyWithOptions = ({ data, canUpdate, selected, setSelected }) => {
         <div className="update-icon">
           <Link
             to={dashboardRouts.post.updateSurvey(data?.post, data?.id)}
-            state={{ data, options }}>
+            state={{ data, options }}
+          >
             <IconButton
               icon={icons.update}
               color="update"
               styleType="transparent"
-              title="update"
+              title={t("common.update")}
             />
           </Link>
         </div>
@@ -83,7 +80,8 @@ const ViewSurveyWithOptions = ({ data, canUpdate, selected, setSelected }) => {
             <div
               className={`option ${selected.some((s) => s.id === e.id) ? "active" : ""}`}
               key={e.id}
-              onClick={() => handleSelectVote(e)}>
+              onClick={() => handleSelectVote(e)}
+            >
               <div className="flex align-center gap-10 flex-1 wrap">
                 {isFutureTime(data?.closes_at) && <p></p>}
                 {e.option_text}
@@ -104,7 +102,8 @@ const ViewSurveyWithOptions = ({ data, canUpdate, selected, setSelected }) => {
           <p
             style={{
               color: isFutureTime(data?.closes_at) ? "green" : "red",
-            }}>
+            }}
+          >
             {dateFormatter(data?.closes_at)}
           </p>
         </div>

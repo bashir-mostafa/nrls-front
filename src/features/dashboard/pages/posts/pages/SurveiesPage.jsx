@@ -8,6 +8,7 @@ import ViewSurveyWithOptions from "../components/ViewSurveyWithOptions";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "../../../../../utils/axios";
 import Button from "../../../../../components/buttons/Button";
+import { useTranslation } from "react-i18next";
 
 const SurveiesPage = () => {
   const { id } = useParams();
@@ -38,9 +39,13 @@ const SurveiesPage = () => {
     },
   });
 
+  const { t } = useTranslation();
+
   return (
     <>
-      <Breadcrumbs replace={[{ from: id, text: state }]} />
+      <Breadcrumbs
+        replace={[{ from: id, text: state, fullTextReplace: true }]}
+      />
       <main className="survey-container ">
         {results?.map((e) => (
           <section key={e.id} className="survey-section">

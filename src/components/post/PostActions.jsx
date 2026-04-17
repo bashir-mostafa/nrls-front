@@ -4,7 +4,7 @@ import IconButton from "../buttons/IconButton";
 import { dashboardRouts } from "../../constant/pageRoutes";
 import { useCallback } from "react";
 
-const PostActions = ({ data, showStatus, showActions, setDeletedId }) => {
+const PostActions = ({ data, showStatus, showActions, setDeletedId, t }) => {
   const handleSelectId = useCallback(
     (e) => {
       e.stopPropagation();
@@ -25,14 +25,14 @@ const PostActions = ({ data, showStatus, showActions, setDeletedId }) => {
               icon={icons.update}
               styleType="transparent"
               color="update"
-              title="update"
+              title={t("common.update")}
             />
           </Link>
           <IconButton
             icon={icons.delete}
             styleType="transparent"
             color="delete"
-            title="delete"
+            title={t("common.delete")}
             onClick={handleSelectId}
           />
         </div>
@@ -41,7 +41,7 @@ const PostActions = ({ data, showStatus, showActions, setDeletedId }) => {
         <p
           className={`post-status ${data?.is_published ? "published" : "draft"}`}
         >
-          {data?.is_published ? "Published" : "Draft"}
+          {t(`common.${data?.is_published ? "published" : "unpublished"}`)}
         </p>
       )}
     </div>

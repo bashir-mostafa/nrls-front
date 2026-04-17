@@ -27,7 +27,7 @@ const Search = () => {
       <label>
         <input
           type="text"
-          placeholder="search..."
+          placeholder={t("common.search")}
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
         />
@@ -36,7 +36,7 @@ const Search = () => {
         {search && (
           <div className="results">
             {resluts?.length === 0 ? (
-              <h5> {t("no_matching")} </h5>
+              <h5> {t("table.no_results")} </h5>
             ) : (
               resluts?.map((e) => (
                 <Link to={e.to} key={e.to} onClick={onNavigate}>

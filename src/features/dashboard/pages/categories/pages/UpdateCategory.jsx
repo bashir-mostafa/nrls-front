@@ -26,7 +26,6 @@ const UpdateCategory = () => {
       name_ar: data?.name_ar || "",
       name_ku: data?.name_ku || "",
       name_en: data?.name_en || "",
-
     },
     validationSchema: categoriesSchema,
     onSubmit: (d) => handleConfirm.mutate(d),
@@ -52,7 +51,9 @@ const UpdateCategory = () => {
 
   return (
     <>
-      <Breadcrumbs replace={[{ from: id, text: data?.name_en }]} />
+      <Breadcrumbs
+        replace={[{ from: id, text: data?.name_en, fullTextReplace: true }]}
+      />
 
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <div className="inputs-area">
@@ -61,24 +62,24 @@ const UpdateCategory = () => {
             value={formik.values.name_ar}
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_ar)}
-            label={t("name_ar")}
-            placeholder={t("name_ar_placeholder")}
+            label={t("tags.name_ar")}
+            placeholder={t("tags.name_ar_placeholder")}
           />
           <Input
             name="name_en"
             value={formik.values.name_en}
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_en)}
-            label={t("name_en")}
-            placeholder={t("name_en_placeholder")}
+            label={t("tags.name_en")}
+            placeholder={t("tags.name_en_placeholder")}
           />
           <Input
             name="name_ku"
             value={formik.values.name_ku}
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_ku)}
-            label={t("name_ku")}
-            placeholder={t("name_ku_placeholder")}
+            label={t("tags.name_ku")}
+            placeholder={t("tags.name_ku_placeholder")}
           />
         </div>
         <Button type="submit"> save </Button>

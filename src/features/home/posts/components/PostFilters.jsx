@@ -18,7 +18,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
     setLocalFilters((p) => ({ ...p, [name]: value }));
   }, []);
 
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const language = useMemo(() => i18n.language, [i18n]);
 
@@ -26,19 +26,21 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
     setFilters(localFilters);
     onClose();
   }, [setFilters, localFilters, onClose]);
-  const {t} = useTranslation();
+
   return (
     <PopUp isOpen className="filters-popup" onClose={onClose}>
       <div className="filters-container">
         <SelectInputApi
           endPoint={endPoints.categories}
           onChange={(e) => handleOptionInp("category", e)}
-          placeholder={localFilters?.category?.[`name_${language}`] || "all"}
+          placeholder={
+            localFilters?.category?.[`name_${language}`] || t("common.all")
+          }
           label={t("pages.categories")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("category", ""),
             },
           ]}
@@ -47,12 +49,14 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <SelectInputApi
           endPoint={endPoints.tags}
           onChange={(e) => handleOptionInp("tags", e)}
-          placeholder={localFilters?.tags?.[`name_${language}`] || "all"}
+          placeholder={
+            localFilters?.tags?.[`name_${language}`] || t("common.all")
+          }
           label={t("pages.tags")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("tags", ""),
             },
           ]}
@@ -61,12 +65,12 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <SelectInputApi
           endPoint={endPoints.authors}
           onChange={(e) => handleOptionInp("author", e)}
-          placeholder={localFilters?.author?.full_name || "all"}
+          placeholder={localFilters?.author?.full_name || t("common.all")}
           label={t("pages.authors")}
           optionLabel={(e) => e?.full_name}
           customOptions={[
             {
-              title: "all",
+              title: t("common.all"),
               onChange: () => handleOptionInp("author", ""),
             },
           ]}
@@ -76,7 +80,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <Input
           name="created_at_gte"
           notRequired
-          label={t("common.from")}
+          label={`${t("common.created_at")} ${t("common.from")}`}
           value={localFilters?.created_at_gte ?? ""}
           onChange={handleChange}
           type="date"
@@ -84,7 +88,7 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <Input
           name="created_at_lte"
           notRequired
-          label={t("common.to")}
+          label={`${t("common.created_at")} ${t("common.to")}`}
           value={localFilters?.created_at_lte ?? ""}
           onChange={handleChange}
           type="date"

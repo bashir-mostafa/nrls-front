@@ -19,7 +19,7 @@ const AddFilesForm = ({ formik, t }) => {
         <div className="file-actions">
           <p>
             <FontAwesomeIcon icon={icons[e.file_type]} />
-            {e.file_type}
+            {t(`common.${e.file_type}`)}
           </p>
 
           <Button
@@ -34,7 +34,7 @@ const AddFilesForm = ({ formik, t }) => {
             }}
           >
             <FontAwesomeIcon icon={icons.delete} />
-            delete
+            {t("common.delete")}
           </Button>
         </div>
 
@@ -43,9 +43,9 @@ const AddFilesForm = ({ formik, t }) => {
             name={`files.${i}.external_url`}
             value={formik.values.files[i].external_url}
             onChange={formik.handleChange}
-            errorText={formik.errors.files?.[i]?.external_url}
+            errorText={t(formik.errors.files?.[i]?.external_url)}
             label={t("external_url")}
-            placeholder="write a video url"
+            placeholder={t("external_url_placeholder")}
           />
         )}
 
@@ -53,9 +53,9 @@ const AddFilesForm = ({ formik, t }) => {
           name={`files.${i}.alt_text`}
           value={formik.values.files[i].alt_text}
           onChange={formik.handleChange}
-          errorText={formik.errors.files?.[i]?.alt_text}
+          errorText={t(formik.errors.files?.[i]?.alt_text)}
           label={t("alt_text")}
-          placeholder="write alt text"
+          placeholder={t("alt_text_placeholder")}
           notRequired
         />
 
@@ -63,9 +63,9 @@ const AddFilesForm = ({ formik, t }) => {
           name={`files.${i}.caption`}
           value={formik.values.files[i].caption}
           onChange={formik.handleChange}
-          errorText={formik.errors.files?.[i]?.caption}
+          errorText={t(formik.errors.files?.[i]?.caption)}
           label={t("caption")}
-          placeholder="write a caption"
+          placeholder={t("caption_placeholder")}
           notRequired
           elementType="textarea"
           rows={3}
@@ -74,8 +74,8 @@ const AddFilesForm = ({ formik, t }) => {
         {!isVideo && (
           <UploadFile
             name={`files.${i}.src`}
-            title="src"
-            errorText={formik.errors.files?.[i]?.src}
+            title={t(`common.${e.file_type}`)}
+            errorText={t(formik.errors.files?.[i]?.src)}
             notRequired
             value={formik.values?.files?.[i]?.src}
             onChange={(val) => formik.setFieldValue(`files.${i}.src`, val)}

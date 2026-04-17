@@ -12,8 +12,14 @@ const InfoInputsSection = ({ formik, language }) => {
       <SelectOptionInput
         label={t("common.content_type")}
         onSelectOption={(e) => formik.setFieldValue("content_type", e.value)}
-        value={formik.values.content_type}
-        options={allTyps.map((e) => ({ text: e, value: e }))}
+        value={
+          formik.values.content_type &&
+          t(`content_types.${formik.values.content_type}`)
+        }
+        options={allTyps.map((e) => ({
+          text: t(`content_types.${e}`),
+          value: e,
+        }))}
         errorText={t(formik.errors.content_type)}
       />
       <SelectInputApi
