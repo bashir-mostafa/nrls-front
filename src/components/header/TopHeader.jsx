@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Tooltip from "../tooltip/Tooltip";
 import { Link } from "react-router";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import useDarkMode from "../../hooks/useDarkMode";
 import Logo from "../../assets/logo.png";
 import { useClickOutside } from "./../../hooks/useClickOutside";
@@ -35,6 +35,15 @@ const TopHeader = () => {
 
   const { changeMode } = useDarkMode();
 
+  const changeLang = useCallback(
+    (lang) => {
+      setIsOpen(false);
+      i18n.changeLanguage(lang);
+      localStorage.setItem("language", lang);
+    },
+    [setIsOpen, i18n],
+  );
+
   return (
     <div className="top-header container">
       <div>
@@ -56,10 +65,7 @@ const TopHeader = () => {
                 <p
                   key={l.value}
                   className={i18n.language === l.value ? "active" : ""}
-                  onClick={() => {
-                    i18n.changeLanguage(l.value);
-                    setIsOpen(false);
-                  }}
+                  onClick={() => changeLang(l.value)}
                 >
                   {l.title}
                 </p>
