@@ -10,8 +10,8 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 export const socialLinks = {
   email: {
     icon: faEnvelope,
-    text: "diyardireki111@gmail.com",
-    to: "mailto:diyardireki111@gmail.com",
+    text: "support@nrls.com",
+    to: "mailto:support@nrls.com",
   },
   facebook: {
     icon: faFacebookF,

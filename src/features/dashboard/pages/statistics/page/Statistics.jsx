@@ -109,7 +109,8 @@ const Statistics = () => {
           </h2>
 
           {Object.entries(data?.by_language)?.map(([key, value]) => {
-            const percent = getPercent(value, data?.total_posts).toFixed(1);
+            const percent =
+              value > 0 ? getPercent(value, data?.total_posts).toFixed(1) : 0;
             const search = key.toLowerCase();
             const lang = languages.find(
               (lang) => lang.value.toLowerCase() === search,
@@ -135,7 +136,8 @@ const Statistics = () => {
 
           {Object.entries(data?.by_content_type)?.map(([key, value]) => {
             const search = key.toLowerCase();
-            const percent = getPercent(value, data?.total_posts).toFixed(1);
+            const percent =
+              value > 0 ? getPercent(value, data?.total_posts).toFixed(1) : 0;
 
             return (
               <div className="percent" key={key}>

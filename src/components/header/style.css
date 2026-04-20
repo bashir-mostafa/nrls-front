@@ -329,6 +329,8 @@
     backdrop-filter: blur(4px);
     padding: 10px 20px;
     animation: fadeIn 0.4s;
+    max-height: 100vh;
+    overflow: auto;
   }
   .bottom-header nav .link {
     width: 100%;
@@ -410,6 +412,7 @@
     padding: 4px 7px;
     font-size: 11px;
   }
+
   .top-header {
     height: 55px;
   }
@@ -447,6 +450,9 @@
   .top-header .date {
     padding: 3px 5px;
     font-size: 9px;
+  }
+  .top-header .date svg {
+    display: none;
   }
   .top-header > div {
     gap: 5px;

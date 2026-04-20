@@ -21,6 +21,7 @@ const Header = () => {
     if (!isOpen) return;
     setIsOpen(false);
   }, [isOpen, setIsOpen]);
+
   return (
     <>
       <TopHeader />
@@ -29,7 +30,7 @@ const Header = () => {
         <IconButton icon={faBars} className="menu" onClick={toggleOpen} />
 
         <nav className={isOpen ? "open" : ""}>
-          <NavLink to={"/"} className="link">
+          <NavLink to={"/"} className="link" onClick={handleClick}>
             {t("header.home")}
           </NavLink>
 
@@ -67,7 +68,8 @@ const Header = () => {
           <NavLink
             to={homeRoutes.contact}
             className="link"
-            onClick={handleClick}>
+            onClick={handleClick}
+          >
             {t("header.contact")}
           </NavLink>
 
@@ -79,7 +81,8 @@ const Header = () => {
             <NavLink
               to={homeRoutes.login}
               className="link"
-              onClick={handleClick}>
+              onClick={handleClick}
+            >
               {t("header.login")}
             </NavLink>
           )}

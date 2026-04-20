@@ -4,16 +4,26 @@ import "../style/style.css";
 import Forms from "../components/Forms";
 import Socials from "../components/Socials";
 import Breadcrumbs from "./../../../../components/breadcrumbs/Breadcrumbs";
+import axiosInstance from "../../../../utils/axios";
+import endPoints from "./../../../../constant/endPoints";
 
 const Contact = () => {
   const formik = useFormik({
-    initialValues: { name: "", email: "", subject: "", message: "" },
+    initialValues: { email: "", message: "" },
     validationSchema: yup.object({
-      name: yup.string().required(),
-      email: yup.string().email().required(),
-      subject: yup.string().notRequired(),
-      message: yup.string().required(),
+      email: yup
+        .string()
+        .email("validation.email")
+        .required("validation.required"),
+      message: yup
+        .string()
+        .required("validation.required")
+        .min(2, "validation.min_length"),
     }),
+    onSubmit: async (v, { resetForm }) => {
+      await axiosInstance.post(endPoints.email, v);
+      resetForm();
+    },
   });
 
   return (

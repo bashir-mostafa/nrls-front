@@ -15,14 +15,7 @@ const Forms = ({ formik }) => {
         </h2>
         <p>{t("contact.form_description")}</p>
       </div>
-      <Input
-        name="name"
-        label={t("contact.name")}
-        placeholder={t("contact.placeholders.full_name")}
-        onChange={formik.handleChange}
-        errorText={t(formik.errors.name)}
-        value={formik.values.name}
-      />
+
       <Input
         name="email"
         label={t("user.email")}
@@ -31,14 +24,7 @@ const Forms = ({ formik }) => {
         errorText={t(formik.errors.email)}
         value={formik.values.email}
       />
-      <Input
-        name="subject"
-        label={t("contact.subject")}
-        placeholder={t("contact.placeholders.subject")}
-        onChange={formik.handleChange}
-        errorText={t(formik.errors.subject)}
-        value={formik.values.subject}
-      />
+
       <Input
         name="message"
         label={t("contact.message")}
@@ -47,7 +33,7 @@ const Forms = ({ formik }) => {
         errorText={t(formik.errors.message)}
         value={formik.values.message}
         elementType="textarea"
-        rows={6}
+        rows={7}
       />
       <Button type="submit">
         <FontAwesomeIcon icon={faPaperPlane} /> {t("contact.submit")}

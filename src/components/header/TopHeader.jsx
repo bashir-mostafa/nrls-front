@@ -34,6 +34,7 @@ const TopHeader = () => {
   );
 
   const { changeMode } = useDarkMode();
+
   return (
     <div className="top-header container">
       <div>
