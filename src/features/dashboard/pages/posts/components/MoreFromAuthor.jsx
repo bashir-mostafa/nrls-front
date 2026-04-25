@@ -13,6 +13,8 @@ const MoreFromAuthor = ({ author, id, authorView, view }) => {
     author: author?.id,
     page_size: 3,
     id_ne: id,
+    ordering: { published_at: "-published_at" },
+    is_published: true,
   });
 
   const results = useMemo(

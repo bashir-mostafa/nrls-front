@@ -62,7 +62,8 @@ const Filters = ({
       <IconButton
         title={t("common.filters")}
         color={isOpen ? "main" : "secondry-color"}
-        onClick={toggleOpen}>
+        onClick={toggleOpen}
+      >
         <FontAwesomeIcon icon={faFilter} />
       </IconButton>
 
@@ -72,16 +73,16 @@ const Filters = ({
             <Input
               label={`${t("common.from")} ${t("common.date")}`}
               type="date"
-              value={localFilters?.["createdAt_gte"]}
-              name="createdAt_gte"
+              value={localFilters?.["created_at_gte"]}
+              name="created_at_gte"
               onInput={handleChange}
               notRequired
             />
             <Input
               label={`${t("common.to")} ${t("common.date")}`}
               type="date"
-              value={localFilters?.["createdAt_lte"]}
-              name="createdAt_lte"
+              value={localFilters?.["created_at_lte"]}
+              name="created_at_lte"
               onInput={handleChange}
               notRequired
             />

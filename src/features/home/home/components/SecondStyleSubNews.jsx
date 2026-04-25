@@ -16,7 +16,7 @@ const SecondStyleSubNews = ({ data }) => {
             <div className="icons">
               <span className="icon">
                 <FontAwesomeIcon icon={faClock} />
-                {dateFormatter(e.created_at, "fullDate")}
+                {dateFormatter(e.published_at, "fullDate")}
               </span>
               <span className="icon">
                 <FontAwesomeIcon icon={faEye} />

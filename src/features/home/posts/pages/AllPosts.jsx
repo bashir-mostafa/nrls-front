@@ -56,7 +56,7 @@ const AllPosts = () => {
     [filters, debouncedValue, tags, content_type, category, content_type_multi],
   );
 
-  const [sort, setSort] = useState({ created_at: "-created_at" });
+  const [sort, setSort] = useState({ published_at: "-published_at" });
 
   const { data, isFetching, loadMoreRef } = useInfiniteFetch({
     endPoint: endPoints.posts,
@@ -97,7 +97,8 @@ const AllPosts = () => {
         filters?.content_type && {
           "--main-color": `var(--color-${filters?.content_type})`,
         }
-      }>
+      }
+    >
       <Breadcrumbs
         replace={[
           {

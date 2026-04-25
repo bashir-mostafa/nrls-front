@@ -15,6 +15,7 @@ const MoreResults = ({ language, post }) => {
     id_ne: post?.id,
     content_type_or: post?.content_type,
     category_or: post?.category?.id,
+    ordering: { published_at: "-published_at" },
   });
 
   const { t } = useTranslation();

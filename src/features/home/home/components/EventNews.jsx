@@ -15,7 +15,7 @@ const EventNews = ({ language }) => {
   const { data, isLoading } = useFetchData({
     endPoints: endPoints.posts,
     page_size: 6,
-    ordering: { created_at: "-created_at" },
+    ordering: { published_at: "-published_at" },
     language,
     content_type: "event",
     is_published: true,
@@ -57,7 +57,8 @@ const EventNews = ({ language }) => {
           <Link
             className="documentary"
             key={e.id}
-            to={homeRoutes.posts.view(e.content_type, e.id)}>
+            to={homeRoutes.posts.view(e.content_type, e.id)}
+          >
             <div className="img">
               <img src={postViewImg(e)} alt="" />
             </div>
@@ -68,7 +69,7 @@ const EventNews = ({ language }) => {
               <div className="icons">
                 <span className="icon">
                   <FontAwesomeIcon icon={faClock} />
-                  {dateFormatter(e.created_at, "fullDate")}
+                  {dateFormatter(e.published_at, "fullDate")}
                 </span>
                 <span className="icon">
                   <FontAwesomeIcon icon={faEye} />

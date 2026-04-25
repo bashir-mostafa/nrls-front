@@ -16,6 +16,8 @@ const AuthorPopsts = ({ postPage, actions = true }) => {
     endPoint: endPoints.posts,
     page_size: 2,
     author: id,
+    ordering: { published_at: "-published_at" },
+    is_published: true,
   });
 
   const results = useMemo(

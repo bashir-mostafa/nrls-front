@@ -27,13 +27,15 @@ const MainNews = ({ data, language, t }) => {
             }}
             to={homeRoutes.posts.page(data?.content_type)}
             onClick={stopPropagation}
-            state={{ content_type: data.content_type }}>
+            state={{ content_type: data.content_type }}
+          >
             {t(`content_types.${data?.content_type}`)}
           </Link>
           <Link
             to={homeRoutes.posts.page(data?.category?.[`name_${language}`])}
             onClick={stopPropagation}
-            state={{ category: data.category }}>
+            state={{ category: data.category }}
+          >
             {data?.category?.[`name_${language}`] || data?.category_name}
           </Link>
         </div>
@@ -42,7 +44,7 @@ const MainNews = ({ data, language, t }) => {
         <div className="icons">
           <span>
             <FontAwesomeIcon icon={faClock} />
-            {dateFormatter(data.created_at, "fullDate")}
+            {dateFormatter(data.published_at, "fullDate")}
           </span>
           <span>
             <FontAwesomeIcon icon={faEye} />
@@ -52,7 +54,8 @@ const MainNews = ({ data, language, t }) => {
             <Link
               className="link-hover"
               to={homeRoutes.author.view(data.author?.id)}
-              onClick={stopPropagation}>
+              onClick={stopPropagation}
+            >
               <FontAwesomeIcon icon={faUser} />
               {data.author?.full_name}
             </Link>

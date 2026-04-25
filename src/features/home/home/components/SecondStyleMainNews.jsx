@@ -63,7 +63,7 @@ const SecondStyleMainNews = ({ data, language }) => {
           )}
           <span className="icon">
             <FontAwesomeIcon icon={faClock} />
-            {dateFormatter(data.created_at, "fullDate")}
+            {dateFormatter(data.published_at, "fullDate")}
           </span>
         </div>
         <button className="read-more">

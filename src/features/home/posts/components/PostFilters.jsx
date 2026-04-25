@@ -78,18 +78,18 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         />
 
         <Input
-          name="created_at_gte"
+          name="published_at_gte"
           notRequired
-          label={`${t("common.created_at")} ${t("common.from")}`}
-          value={localFilters?.created_at_gte ?? ""}
+          label={`${t("common.published_at")} ${t("common.from")}`}
+          value={localFilters?.published_at_gte ?? ""}
           onChange={handleChange}
           type="date"
         />
         <Input
-          name="created_at_lte"
+          name="published_at_lte"
           notRequired
-          label={`${t("common.created_at")} ${t("common.to")}`}
-          value={localFilters?.created_at_lte ?? ""}
+          label={`${t("common.published_at")} ${t("common.to")}`}
+          value={localFilters?.published_at_lte ?? ""}
           onChange={handleChange}
           type="date"
         />

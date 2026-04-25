@@ -22,7 +22,7 @@ const AllPosts = () => {
   const { state } = useLocation();
   const [search, setSearch] = useState("");
   const [debouncedValue] = useDebounce(search, 500);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const { tags } = state || {};
 
   const [filters, setFilters] = useState({ tags });
@@ -35,7 +35,7 @@ const AllPosts = () => {
     [filters, debouncedValue],
   );
 
-  const [sort, setSort] = useState({ created_at: "-created_at" });
+  const [sort, setSort] = useState({ published_at: "-published_at" });
 
   const { data, isFetching, loadMoreRef } = useInfiniteFetch({
     endPoint: endPoints.posts,

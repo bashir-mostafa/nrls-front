@@ -16,12 +16,22 @@ const AllPostsHeader = ({ sort, setSort, toggleFilters }) => {
   const { t } = useTranslation();
   const postSortOptions = [
     {
-      title: t("common.latest"),
+      title: `${t("common.published_at")} ${t("common.latest")}`,
+      set: "-published_at",
+      name: "published_at",
+    },
+    {
+      title: `${t("common.published_at")} ${t("common.oldest")}`,
+      set: "published_at",
+      name: "published_at",
+    },
+    {
+      title: `${t("common.created_at")} ${t("common.latest")}`,
       set: "-created_at",
       name: "created_at",
     },
     {
-      title: t("common.oldest"),
+      title: `${t("common.created_at")} ${t("common.oldest")}`,
       set: "created_at",
       name: "created_at",
     },
@@ -51,7 +61,11 @@ const AllPostsHeader = ({ sort, setSort, toggleFilters }) => {
   return (
     <div className="icons" ref={ref}>
       <Link to={dashboardRouts.post.add}>
-        <IconButton icon={icons.add} color="secondry-color" title={t("common.add")} />
+        <IconButton
+          icon={icons.add}
+          color="secondry-color"
+          title={t("common.add")}
+        />
       </Link>
 
       <IconButton

@@ -11,7 +11,7 @@ const Publications = ({ language }) => {
   const { data, isLoading } = useFetchData({
     endPoints: endPoints.posts,
     page_size: 5,
-    ordering: { created_at: "-created_at" },
+    ordering: { published_at: "-published_at" },
     language,
     content_type_multi: publicationTyps,
     is_published: true,
@@ -33,7 +33,8 @@ const Publications = ({ language }) => {
     <section className="container main-section body-color">
       <MainTitle
         state={{ content_type_multi: publicationTyps }}
-        name={"publication"}>
+        name={"publication"}
+      >
         {t("pages.publication")}
       </MainTitle>
       <main className="news-style-2 publications">

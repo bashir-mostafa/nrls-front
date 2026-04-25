@@ -21,7 +21,7 @@ const SurviesNews = ({ language }) => {
   const { data, isLoading } = useFetchData({
     endPoints: endPoints.posts,
     page_size: 4,
-    ordering: { created_at: "-created_at" },
+    ordering: { published_at: "-published_at" },
     language,
     content_type: "survey",
     is_published: true,
@@ -58,7 +58,8 @@ const SurviesNews = ({ language }) => {
           <div
             className="topic"
             key={e.id}
-            onClick={() => handleClick(e.content_type, e.id)}>
+            onClick={() => handleClick(e.content_type, e.id)}
+          >
             <div className="img">
               <img src={postViewImg(e)} alt="" />
             </div>
@@ -71,7 +72,8 @@ const SurviesNews = ({ language }) => {
                   to={homeRoutes.posts.page(e?.category?.[`name_${language}`])}
                   onClick={stopPropagation}
                   state={{ category: e.category }}
-                  className="icon link-hover">
+                  className="icon link-hover"
+                >
                   <FontAwesomeIcon icon={faTags} />
                   {e?.category?.[`name_${language}`] || e?.category_name}
                 </Link>
@@ -85,14 +87,15 @@ const SurviesNews = ({ language }) => {
                   <Link
                     className="link-hover icon"
                     to={homeRoutes.author.view(e.author?.id)}
-                    onClick={stopPropagation}>
+                    onClick={stopPropagation}
+                  >
                     <FontAwesomeIcon icon={faUser} />
                     {e.author?.full_name}
                   </Link>
                 )}
                 <span className="icon">
                   <FontAwesomeIcon icon={faClock} />
-                  {dateFormatter(e.created_at, "fullDate")}
+                  {dateFormatter(e.published_at, "fullDate")}
                 </span>
               </div>
 

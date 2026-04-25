@@ -22,7 +22,8 @@ const SubNews = ({ data, language, t }) => {
         <div
           className="sub-news"
           key={e.id}
-          onClick={() => handleNavigate(e.id, e.content_type)}>
+          onClick={() => handleNavigate(e.id, e.content_type)}
+        >
           <img src={postViewImg(e)} alt="" />
           <article>
             <div className="btns">
@@ -33,13 +34,15 @@ const SubNews = ({ data, language, t }) => {
                 }}
                 to={homeRoutes.posts.page(e.content_type)}
                 onClick={stopPropagation}
-                state={{ content_type: e.content_type }}>
+                state={{ content_type: e.content_type }}
+              >
                 {t(`content_types.${e?.content_type}`)}
               </Link>
               <Link
                 to={homeRoutes.posts.page(e?.category?.[`name_${language}`])}
                 onClick={stopPropagation}
-                state={{ category: e.category }}>
+                state={{ category: e.category }}
+              >
                 {e?.category?.[`name_${language}`] || e?.category_name}
               </Link>
             </div>
@@ -48,7 +51,7 @@ const SubNews = ({ data, language, t }) => {
             <div className="icons">
               <span>
                 <FontAwesomeIcon icon={faClock} />
-                {dateFormatter(e.created_at, "fullDate")}
+                {dateFormatter(e.published_at, "fullDate")}
               </span>
               <span>
                 <FontAwesomeIcon icon={faEye} />
@@ -58,7 +61,8 @@ const SubNews = ({ data, language, t }) => {
                 <Link
                   className="link-hover"
                   to={homeRoutes.author.view(e.author?.id)}
-                  onClick={stopPropagation}>
+                  onClick={stopPropagation}
+                >
                   <FontAwesomeIcon icon={faUser} />
                   {e.author?.full_name}
                 </Link>

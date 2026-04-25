@@ -11,13 +11,13 @@ import { useTranslation } from "react-i18next";
 const postSortOptions = [
   {
     title: "latest",
-    set: "-created_at",
-    name: "created_at",
+    set: "-published_at",
+    name: "published_at",
   },
   {
     title: "oldest",
-    set: "created_at",
-    name: "created_at",
+    set: "published_at",
+    name: "published_at",
   },
   {
     title: "most_liked",

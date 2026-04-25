@@ -25,6 +25,7 @@ import AddFilesForm from "../components/AddFilesForm";
 import axiosInstance from "../../../../../utils/axios";
 import { surveySchema } from "./../../../../../schema/survey";
 import AddSurvey from "./../components/AddSurvey";
+import dateFormatter from "../../../../../utils/dateFormatter";
 
 const api = new APIClient(endPoints.posts);
 
@@ -52,7 +53,7 @@ const AddPost = () => {
       category: "",
       author: "",
       language,
-      published_at: "",
+      published_at: dateFormatter(new Date()),
       is_published: true,
       tags: [],
     },
@@ -222,7 +223,8 @@ const AddPost = () => {
             <div className="add-file-container">
               {mediaFileType?.map((e) => (
                 <p className="add-btn" key={e} onClick={() => addMediaFn(e)}>
-                  <FontAwesomeIcon icon={icons[e]} /> {t("common.add")} {t(`media_types.${e}`)}
+                  <FontAwesomeIcon icon={icons[e]} /> {t("common.add")}{" "}
+                  {t(`media_types.${e}`)}
                 </p>
               ))}
             </div>

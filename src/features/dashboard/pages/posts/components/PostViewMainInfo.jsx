@@ -34,8 +34,8 @@ const PostViewMainInfo = ({ data, authorView, language }) => {
         <span>{data?.view_count}</span>
       </div>
       <div>
-        <p>{t("common.created_at")}</p>
-        <span>{dateFormatter(data?.created_at, "fullDate")}</span>
+        <p>{t("common.published_at")}</p>
+        <span>{dateFormatter(data?.published_at, "fullDate")}</span>
       </div>
     </div>
   );

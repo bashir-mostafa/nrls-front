@@ -19,7 +19,9 @@ const ViewAuthor = () => {
     queryKey: [endPoints.authors, id],
     queryFn: () => api.getOne(id),
   });
+
   const { t } = useTranslation();
+
   if (isLoading) return <Skeleton height="300px" />;
   if (error) return <HandleError error={error} refetch={refetch} />;
 

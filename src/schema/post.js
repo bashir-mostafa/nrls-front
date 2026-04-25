@@ -22,14 +22,12 @@ export const postSchema = yup.object({
     .oneOf(languages.map((e) => e.value)),
 
   is_published: yup.boolean().default(true),
-  published_at: yup
-    .date()
-    .min(new Date(), "validation.min_date")
-    .when("is_published", {
-      is: (v) => !v,
-      then: (s) => s.required("validation.required"),
-      otherwise: (s) => s.notRequired(),
-    }),
+  published_at: yup.date().when("is_published", {
+    is: (v) => !v,
+    then: (s) =>
+      s.required("validation.required").min(new Date(), "validation.min_date"),
+    otherwise: (s) => s.notRequired(),
+  }),
 });
 
 export const postSchemaUpdate = yup.object({

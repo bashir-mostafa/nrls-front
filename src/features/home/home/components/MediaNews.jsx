@@ -11,7 +11,7 @@ const MediaNews = ({ language }) => {
   const { data, isLoading } = useFetchData({
     endPoints: endPoints.posts,
     page_size: 7,
-    ordering: { created_at: "-created_at" },
+    ordering: { published_at: "-published_at" },
     language,
     content_type_multi: mediaTyps,
     is_published: true,

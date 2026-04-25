@@ -10,7 +10,7 @@ const LastNews = ({ language }) => {
   const { data, isLoading } = useFetchData({
     endPoints: endPoints.posts,
     page_size: 6,
-    ordering: { created_at: "-created_at" },
+    ordering: { published_at: "-published_at" },
     language,
     is_published: true,
   });

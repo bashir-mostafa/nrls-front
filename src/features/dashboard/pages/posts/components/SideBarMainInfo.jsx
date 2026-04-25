@@ -35,7 +35,8 @@ const SideBarMainInfo = ({
               style={{
                 "--main-color":
                   colors[data?.is_published ? "green" : "red"].color,
-              }}>
+              }}
+            >
               {data?.is_published ? t("common.yes") : t("common.no")}
             </span>
           </div>
@@ -47,7 +48,8 @@ const SideBarMainInfo = ({
             className="enum"
             style={{
               "--main-color": `var(--color-${data?.content_type})`,
-            }}>
+            }}
+          >
             {t(`content_types.${data?.content_type}`)}
           </span>
         </div>
@@ -73,17 +75,17 @@ const SideBarMainInfo = ({
           </div>
         )}
 
-        {showPublishStatus && data?.published_at && (
+        <div>
+          <p>{t("common.published_at")}</p>
+          <span> {dateFormatter(data?.published_at, "fullDate")} </span>
+        </div>
+
+        {showPublishStatus && (
           <div>
-            <p>{t("common.published_at")}</p>
-            <span> {dateFormatter(data?.published_at)} </span>
+            <p>{t("common.created_at")}</p>
+            <span> {dateFormatter(data?.created_at, "fullDate")} </span>
           </div>
         )}
-
-        <div>
-          <p>{t("common.created_at")}</p>
-          <span> {dateFormatter(data?.created_at, "fullDate")} </span>
-        </div>
 
         <div>
           <p>{t("common.updated_at")}</p>

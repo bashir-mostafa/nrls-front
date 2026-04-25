@@ -34,6 +34,7 @@ const ViewPost = () => {
   if (isLoading) return <Skeleton height="400px" />;
 
   if (error) return <HandleError error={error} refetch={refetch} />;
+  
   return (
     <>
       <Breadcrumbs

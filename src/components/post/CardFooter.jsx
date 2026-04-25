@@ -7,7 +7,7 @@ const CardFooter = ({ data, isDraft, t }) => {
     <div className="card-footer">
       <p className="time">
         <FontAwesomeIcon icon={faClock} />
-        {dateFormatter(data?.created_at || new Date(), "fullDate")}
+        {dateFormatter(data?.published_at || new Date(), "fullDate")}
       </p>
       {!isDraft && (
         <span>
