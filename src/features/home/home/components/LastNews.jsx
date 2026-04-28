@@ -33,10 +33,10 @@ const LastNews = ({ language }) => {
 
   return (
     <section className="last-news-container container main-section">
-      <BreakingNews data={data?.data?.slice(0, 3)} />
+      <BreakingNews data={data?.data?.slice(4)} />
       <div className="last-news">
         <MainNews data={data?.data?.[3]} language={language} t={t} />
-        <SubNews data={data?.data?.slice(4)} language={language} t={t} />
+        <SubNews data={data?.data?.slice(0, 3)} language={language} t={t} />
       </div>
     </section>
   );

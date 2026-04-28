@@ -41,9 +41,9 @@
     "language": "Ziman",
     "image": "Wêne",
     "video": "Vîdyo",
-    "file": "Dosye",
-    "pdf": "Dosyeya PDF",
-    "audio": "Dosyeya dengan",
+    "file": "Dosya",
+    "pdf": "Dosyaya PDF",
+    "audio": "Dosyaya dengan",
     "comments": "Şîrove",
     "share": "Parve bike",
     "share_on": "Li ser {{platform}} parve bike",
@@ -131,7 +131,7 @@
     "users": "Bikarhêner",
     "roles": "Rol",
     "permissions": "Destûr",
-    "events": "Bûyer",
+    "events": "Çalakî",
     "add": "Zêde bike",
     "add_user": "Bikarhêner zêde bike",
     "posts": "Post",
@@ -145,27 +145,27 @@
     "studies": "Lêkolîn",
     "analytics": "Analîz",
     "opinion_article": "Gotarên ramanê",
-    "files": "Dosye",
-    "event": "Bûyer",
+    "files": "Dosya",
+    "event": "Çalakî",
     "infographic": "Înfografîk",
     "video": "Vîdyo",
     "documentary": "Belgesel",
     "report": "Rapor",
-    "magazine": "Rojname",
+    "magazine": "Kovar",
     "book": "Pirtûk",
     "survey": "Anket",
     "dialogue_session": "Rûniştina diyalogê",
     "about": "Em kî ne",
-    "contact_us": "Têkilî me",
+    "contact_us": "Li me bigere",
     "media": "Medya",
-    "breaking_news": "Nûçeyên dawî",
+    "breaking_news": "Dawî",
     "topics": "Mijar",
     "content_type": "Cureyê naverokê",
     "publication": "Weşan",
     "add_author": "Nivîskar zêde bike",
     "add_tag": "Etîket zêde bike",
     "add_category": "Beş zêde bike",
-    "add_event": "Bûyer zêde bike"
+    "add_event": "çalakî zêde bike"
   },
   "contact": {
     "send_message": "Peyam bişîne",
@@ -227,7 +227,7 @@
     "view": "Postê bibîne"
   },
   "content_types": {
-    "event": "Bûyer",
+    "event": "Çalakî",
     "survey": "Anket",
     "article": "Gotar",
     "study": "Lêkolîn",
@@ -236,7 +236,7 @@
     "video": "Vîdyo",
     "documentary": "Belgesel",
     "report": "Rapor",
-    "magazine": "Rojname",
+    "magazine": "Kovar",
     "book": "Pirtûk",
     "dialogue_session": "Rûniştina diyalogê",
     "studies": "Lêkolîn",
@@ -245,7 +245,7 @@
     "opinion": "Gotara ramanê",
     "media": "Medya",
     "publication": "Weşan",
-    "files": "Dosye"
+    "files": "Dosya"
   },
   "studies": "Lêkolîn",
   "dashboardRoutes": {
@@ -308,8 +308,8 @@
   },
   "backups": {
     "title": "Backup",
-    "filename": "Navê dosyeyê",
-    "file_path": "Rêya dosyeyê",
+    "filename": "Navê dosyayê",
+    "file_path": "Rêya dosyayê",
     "type": "Cure",
     "size": "Mezinahî",
     "created_at": "Dîroka afirandinê",
@@ -343,7 +343,7 @@
     "dashboard": "Panela kontrolê",
     "search": "Lêgerîn...",
     "about": "Em kî ne",
-    "contact": "Têkilî me",
+    "contact": "Li me bigere",
     "profile": "Profîl",
     "settings": "Eyar",
     "notifications": "Agahdarî",
@@ -351,10 +351,10 @@
     "topics": "Mijar",
     "media": "Medya",
     "publication": "Weşan",
-    "events": "Bûyer",
+    "events": "Çalakî",
     "surveys": "Anket",
     "login": "Têkeve",
-    "rojava_center_for_strategic_studies": "Navenda Roj Ava a Lêkolînên Stratejîk"
+    "rojava_center_for_strategic_studies": "Navenda Rojava ya Lêkolînên Stratejîk"
   },
   "footer": {
     "copyright": "Mafên çapkirinê 2026 Navenda Lêkolînên Stratejîk a Roj Avayê. Hemû maf parastî ne",
@@ -364,7 +364,7 @@
     "subscribe": "Abone bibe",
     "home": "Destpêk",
     "about": "Em kî ne",
-    "contact": "Têkilî me",
+    "contact": "Li me bigere",
     "login": "Têkeve"
   },
   "sidebar": {
@@ -447,12 +447,12 @@
     "import": "Tîne"
   },
   "events": {
-    "event_type": "Cureyê bûyerê",
+    "event_type": "Cureyê Çalakîê",
     "view_all": "Hemû bûyeran bibîne",
-    "location": "Cihê bûyerê",
-    "location_placeholder": "Cihê bûyerê binivîse",
+    "location": "Cihê Çalakîê",
+    "location_placeholder": "Cihê Çalakîê binivîse",
     "attendees_count": "Hejmara beşdaran",
-    "event_date": "Dîroka bûyerê",
+    "event_date": "Dîroka Çalakîê",
     "types": {
       "meeting": "Hevdîtin",
       "dialogue_session": "Rûniştinên diyalogê",
@@ -473,7 +473,7 @@
   },
   "external_url": "Girêdana derve",
   "caption": "Sernavê wêneyê",
-  "caption_placeholder": "Danasîna dosyeyê",
+  "caption_placeholder": "Danasîna dosyayê",
   "alt_text": "Nivîsa alt (vebijarkî)",
   "alt_text_placeholder": "Nivîsa ku dema çewtiya nîşandanê tê xuyang kirin",
   "external_url_placeholder": "Girêdanê binivîse"

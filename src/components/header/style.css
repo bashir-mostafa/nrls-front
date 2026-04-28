@@ -59,6 +59,7 @@
   padding: 5px;
   cursor: pointer;
   font-size: 14px;
+  text-transform: uppercase;
 }
 .top-header .language .language-div p:hover,
 .top-header .language .language-div p.active {

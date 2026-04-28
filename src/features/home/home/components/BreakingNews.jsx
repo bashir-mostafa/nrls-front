@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 
 const BreakingNews = ({ data }) => {
   const { t } = useTranslation();
+
+  if (data?.length === 0) return;
+
   return (
     <div className="breacking-news">
       <h3>{t("pages.breaking_news")}</h3>

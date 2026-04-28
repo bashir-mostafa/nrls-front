@@ -21,7 +21,11 @@ const ViewEvents = () => {
 
   return (
     <>
-      <Breadcrumbs replace={[{ from: id, text: results?.[0]?.post_title }]} />
+      <Breadcrumbs
+        replace={[
+          { from: id, text: results?.[0]?.post_title, fullTextReplace: true },
+        ]}
+      />
       <aside className="post-sidebar events-container">
         {results?.map((e) => (
           <EventComponent data={e} actions />

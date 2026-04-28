@@ -166,7 +166,7 @@
 
 .post-view-container {
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   gap: 30px;
 }
 .post-view-container main.post-main-info {
