@@ -25,7 +25,7 @@ const AllTags = () => {
   const [search, setSearch] = useState("");
   const [filter, setFilters] = useState({});
   const { page_size } = useDashboardContext();
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
 
   const { data, isLoading, error, refetch } = useFetchData({
     endPoints: endPoints.tags,
@@ -79,7 +79,7 @@ const AllTags = () => {
 
       <div className="table-container">
         <TableToolBar title={t("pages.tags")}>
-          <Search setSearch={setSearch} />
+          <Search setSearch={setSearch} setPage={setPage} />
           <Delete
             data={data?.data}
             endPoint={`${endPoints.tags}bulk-hard-delete/`}
@@ -88,10 +88,14 @@ const AllTags = () => {
             setSelectedItems={setSelectedItems}
           />
           <Add path={dashboardRouts.tag.add} />
-          <TagsFilter filters={filter} setFilters={setFilters} />
+          <TagsFilter
+            filters={filter}
+            setFilters={setFilters}
+            setPage={setPage}
+          />
         </TableToolBar>
         <Table
-          colmuns={column}  
+          colmuns={column}
           currentPage={page}
           data={data?.data}
           dataLength={data?.totalCount}

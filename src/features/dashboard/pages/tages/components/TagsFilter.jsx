@@ -4,14 +4,15 @@ import { useCallback, useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useTranslation } from "react-i18next";
 
-const TagsFilter = ({ filters, setFilters }) => {
+const TagsFilter = ({ filters, setFilters, setPage }) => {
   const [local, setLocal] = useState(filters);
 
   const [debouncedValue] = useDebounce(local, 500);
 
   useEffect(() => {
     setFilters(debouncedValue);
-  }, [debouncedValue, setFilters]);
+    setPage(1);
+  }, [debouncedValue, setFilters, setPage]);
 
   const handleChange = useCallback(
     (e) => setLocal((p) => ({ ...p, [e.target.name]: e.target.value })),

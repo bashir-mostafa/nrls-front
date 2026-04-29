@@ -109,7 +109,7 @@ const Authors = () => {
 
       <div className="table-container">
         <TableToolBar title={t("pages.authors")}>
-          <Search setSearch={setSearch} />
+          <Search setSearch={setSearch} setPage={setPage} />
           <Delete
             data={data?.data}
             endPoint={`${endPoints.authors}bulk-deleted/`}
@@ -118,7 +118,12 @@ const Authors = () => {
             setSelectedItems={setSelectedItems}
           />
           <Add path={dashboardRouts.author.add} />
-          <AuthorFilter filters={filter} setFilters={setFilters} t={t} />
+          <AuthorFilter
+            filters={filter}
+            setFilters={setFilters}
+            t={t}
+            setPage={setPage}
+          />
         </TableToolBar>
         <Table
           colmuns={column}

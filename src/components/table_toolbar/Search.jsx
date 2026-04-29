@@ -4,14 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import { icons } from "../../constant/icons";
 
-const Search = ({ delay = 500, setSearch }) => {
+const Search = ({ delay = 500, setSearch, setPage }) => {
   const [inputValue, setInputValue] = useState("");
 
   const [debouncedValue] = useDebounce(inputValue, delay);
 
   useEffect(() => {
     setSearch(debouncedValue);
-  }, [debouncedValue, setSearch]);
+    setPage(1);
+  }, [debouncedValue, setSearch, setPage]);
 
   const { t } = useTranslation();
 

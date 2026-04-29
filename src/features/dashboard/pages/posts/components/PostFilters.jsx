@@ -49,7 +49,9 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <SelectInputApi
           endPoint={endPoints.categories}
           onChange={(e) => handleOptionInp("category", e)}
-          placeholder={localFilters?.category?.[`name_${language}`] || t("common.all")}
+          placeholder={
+            localFilters?.category?.[`name_${language}`] || t("common.all")
+          }
           label={t("pages.categories")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[
@@ -63,7 +65,9 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
         <SelectInputApi
           endPoint={endPoints.tags}
           onChange={(e) => handleOptionInp("tags", e)}
-          placeholder={localFilters?.tags?.[`name_${language}`] || t("common.all")}
+          placeholder={
+            localFilters?.tags?.[`name_${language}`] || t("common.all")
+          }
           label={t("pages.tags")}
           optionLabel={(e) => e?.[`name_${language}`]}
           customOptions={[

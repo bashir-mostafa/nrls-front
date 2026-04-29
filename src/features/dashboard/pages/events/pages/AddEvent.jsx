@@ -98,6 +98,7 @@ const AddEvent = () => {
             label={t("events.attendees_count")}
             type="number"
             placeholder={"ex: 100"}
+            notRequired
           />
         </div>
         <Button type="submit"> save </Button>

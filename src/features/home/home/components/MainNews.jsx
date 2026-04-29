@@ -12,7 +12,9 @@ const MainNews = ({ data, language, t }) => {
     () => nav(homeRoutes.posts.view(data?.content_type, data?.id)),
     [data, nav],
   );
+
   const stopPropagation = useCallback((e) => e.stopPropagation(), []);
+
   if (!data) return;
 
   return (

@@ -93,7 +93,8 @@ const AllEvents = () => {
                   id: row.id,
                   url: "increment-attendees",
                 })
-              }>
+              }
+            >
               <FontAwesomeIcon icon={faPlus} />
             </Button>
 
@@ -105,7 +106,8 @@ const AllEvents = () => {
                   id: row.id,
                   url: "decrement-attendees",
                 })
-              }>
+              }
+            >
               <FontAwesomeIcon icon={faMinus} />
             </Button>
           </div>
@@ -145,7 +147,12 @@ const AllEvents = () => {
             setSelectedItems={setSelectedItems}
           />
           <Add path={dashboardRouts.events.add} />
-          <EventsFilter filters={filter} setFilters={setFilters} t={t} />
+          <EventsFilter
+            filters={filter}
+            setFilters={setFilters}
+            t={t}
+            setPage={setPage}
+          />
         </TableToolBar>
         <Table
           colmuns={column}

@@ -5,14 +5,15 @@ import { useCallback, useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useTranslation } from "react-i18next";
 
-const UsersFilter = ({ filters, setFilters }) => {
+const UsersFilter = ({ filters, setFilters, setPage }) => {
   const [local, setLocal] = useState(filters);
 
   const [debouncedValue] = useDebounce(local, 500);
 
   useEffect(() => {
     setFilters(debouncedValue);
-  }, [debouncedValue, setFilters]);
+    setPage(1);
+  }, [debouncedValue, setFilters, setPage]);
 
   const handleChange = useCallback(
     (e) => setLocal((p) => ({ ...p, [e.target.name]: e.target.value })),
@@ -54,7 +55,11 @@ const UsersFilter = ({ filters, setFilters }) => {
           { text: t("user.inactive"), value: false },
         ]}
         onSelectOption={(e) => setLocal((p) => ({ ...p, is_active: e.value }))}
-        value={local?.is_active ? t("user.active") : local?.is_active === false && t("user.inactive")}
+        value={
+          local?.is_active
+            ? t("user.active")
+            : local?.is_active === false && t("user.inactive")
+        }
         notRequired
       />
 

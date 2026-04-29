@@ -7,14 +7,15 @@ import endPoints from "../../../../../constant/endPoints";
 import SelectOptionInput from "../../../../../components/inputs/SelectOptionInput";
 import { eventType } from "../../../../../constant/enums";
 
-const EventsFilter = ({ filters, setFilters, t }) => {
+const EventsFilter = ({ filters, setFilters, t, setPage }) => {
   const [local, setLocal] = useState(filters);
 
   const [debouncedValue] = useDebounce(local, 500);
 
   useEffect(() => {
     setFilters(debouncedValue);
-  }, [debouncedValue, setFilters]);
+    setPage(1);
+  }, [debouncedValue, setFilters, setPage]);
 
   const handleChange = useCallback(
     (e) => setLocal((p) => ({ ...p, [e.target.name]: e.target.value })),
@@ -36,7 +37,8 @@ const EventsFilter = ({ filters, setFilters, t }) => {
           name: "attendees_count",
           type: "number",
         },
-      ]}>
+      ]}
+    >
       <SelectInputApi
         endPoint={endPoints.posts}
         onChange={(e) => handleSelect("post", e)}

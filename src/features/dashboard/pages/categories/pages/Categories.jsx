@@ -79,7 +79,7 @@ const Categories = () => {
 
       <div className="table-container">
         <TableToolBar title={t("pages.categories")}>
-          <Search setSearch={setSearch} />
+          <Search setSearch={setSearch} setPage={setPage} />
           <Delete
             data={data?.data}
             endPoint={`${endPoints.categories}bulk-hard-delete/`}
@@ -88,7 +88,12 @@ const Categories = () => {
             setSelectedItems={setSelectedItems}
           />
           <Add path={dashboardRouts.category.add} />
-          <CategoriesFilter filters={filter} setFilters={setFilters} t={t} />
+          <CategoriesFilter
+            filters={filter}
+            setFilters={setFilters}
+            t={t}
+            setPage={setPage}
+          />
         </TableToolBar>
         <Table
           colmuns={column}

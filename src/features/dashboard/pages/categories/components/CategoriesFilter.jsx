@@ -3,14 +3,15 @@ import Input from "../../../../../components/inputs/Input";
 import { useCallback, useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-const CategoriesFilter = ({ filters, setFilters, t }) => {
+const CategoriesFilter = ({ filters, setFilters, t, setPage }) => {
   const [local, setLocal] = useState(filters);
 
   const [debouncedValue] = useDebounce(local, 500);
 
   useEffect(() => {
     setFilters(debouncedValue);
-  }, [debouncedValue, setFilters]);
+    setPage(1);
+  }, [debouncedValue, setFilters, setPage]);
 
   const handleChange = useCallback(
     (e) => setLocal((p) => ({ ...p, [e.target.name]: e.target.value })),

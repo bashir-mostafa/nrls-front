@@ -53,7 +53,8 @@ const column = [
         style={{
           color: colors[row.is_active ? "green" : "red"].color,
           backgroundColor: colors[row.is_active ? "green" : "red"].bg,
-        }}>
+        }}
+      >
         {t(`user.${row.is_active ? "active" : "inactive"}`)}
       </div>
     ),
@@ -116,7 +117,7 @@ const AllUsers = () => {
 
       <div className="table-container">
         <TableToolBar title={t("pages.users")}>
-          <Search setSearch={setSearch} />
+          <Search setSearch={setSearch} setPage={setPage} />
           <Delete
             data={data?.data}
             endPoint={`${endPoints.users}bulk-deleted/`}
@@ -125,7 +126,11 @@ const AllUsers = () => {
             setSelectedItems={setSelectedItems}
           />
           <Add path={dashboardRouts.user.add} />
-          <UsersFilter filters={filter} setFilters={setFilters} />
+          <UsersFilter
+            filters={filter}
+            setFilters={setFilters}
+            setPage={setPage}
+          />
         </TableToolBar>
         <Table
           colmuns={column}

@@ -83,7 +83,7 @@ const Backups = () => {
       },
       {
         name: "file_path",
-        headerName: t("backups.file_path")
+        headerName: t("backups.file_path"),
       },
       {
         name: "type",
@@ -148,7 +148,7 @@ const Backups = () => {
         ),
       },
     ],
-    [handleDownload],
+    [handleDownload, t],
   );
 
   return (
@@ -160,6 +160,7 @@ const Backups = () => {
           <CreateBackup />
           <UploadBackup />
         </TableToolBar>
+
         <Table
           colmuns={column}
           currentPage={page}
@@ -173,8 +174,11 @@ const Backups = () => {
           sortBy={sort}
         />
       </div>
+
       {restore && <Restore restore={restore} setRestore={setRestore} />}
+
       {replace && <Replace replace={replace} setReplace={setReplace} />}
+
       {selectedFile && (
         <Delete file={selectedFile} setSelectedFile={setSelectedFile} />
       )}
