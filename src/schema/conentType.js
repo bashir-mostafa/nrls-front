@@ -1,7 +1,6 @@
 import * as Yup from "yup";
 
-export const categoriesSchema = Yup.object({
-  content_type: Yup.object().required("validation.required"),
+export const contentTypeSchema = Yup.object({
   name_ar: Yup.string()
     .required("validation.required")
     .min(2, "validation.min_length")
@@ -14,4 +13,5 @@ export const categoriesSchema = Yup.object({
     .required("validation.required")
     .min(2, "validation.min_length")
     .max(30),
+  priority: Yup.number().required("validation.required").min(0),
 });

@@ -227,22 +227,7 @@
     "view": "View post"
   },
   "content_types": {
-    "event": "Activity",
-    "survey": "Survey",
-    "article": "Article",
-    "study": "Study",
-    "opinion_article": "Opinion article",
-    "infographic": "Infographic",
-    "video": "Video",
-    "documentary": "Documentary",
-    "report": "Report",
-    "magazine": "Magazine",
-    "book": "Book",
-    "dialogue_session": "Dialogue session",
-    "studies": "Studies",
-    "analytics": "Analytics",
-    "topics": "Topics",
-    "opinion": "Opinion article",
+    "priority": "priority",
     "media": "Media",
     "publication": "Publications",
     "files": "Files"

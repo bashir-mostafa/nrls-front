@@ -7,21 +7,19 @@ import { useTranslation } from "react-i18next";
 import Breadcrumbs from "../../../../../components/breadcrumbs/Breadcrumbs";
 import Input from "../../../../../components/inputs/Input";
 import Button from "../../../../../components/buttons/Button";
-import { categoriesSchema } from "./../../../../../schema/categories";
-import SelectInputApi from "./../../../../../components/inputs/SelectInputApi";
-import { useMemo } from "react";
+import { contentTypeSchema } from "./../../../../../schema/conentType";
 
-const api = new APIClient(endPoints.categories);
+const api = new APIClient(endPoints.contentType);
 
-const AddCategory = () => {
+const AddType = () => {
   const formik = useFormik({
     initialValues: {
       name_ar: "",
       name_ku: "",
       name_en: "",
-      content_type: "",
+      priority: "",
     },
-    validationSchema: categoriesSchema,
+    validationSchema: contentTypeSchema,
     onSubmit: (d) => handleConfirm.mutate(d),
   });
 
@@ -31,13 +29,12 @@ const AddCategory = () => {
   const handleConfirm = useMutation({
     mutationFn: (d) => api.addData(d),
     onSuccess: () => {
-      query.invalidateQueries([endPoints.categories]);
+      query.invalidateQueries([endPoints.contentType]);
       nav(-1);
     },
   });
 
-  const { t, i18n } = useTranslation();
-  const language = useMemo(() => i18n.language, [i18n]);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -45,24 +42,12 @@ const AddCategory = () => {
 
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <div className="inputs-area">
-          <SelectInputApi
-            endPoint={endPoints.contentType}
-            onChange={(e) => formik.setFieldValue("content_type", e)}
-            placeholder={
-              formik.values.content_type?.[`name_${language}`] ||
-              `${t("common.select")} ${t("common.content_type")}`
-            }
-            errorText={t(formik.errors.content_type)}
-            label={t("common.content_type")}
-            optionLabel={(e) => `${e.name_en} - ${e.name_ar} - ${e.name_ku}`}
-          />
           <Input
             name="name_ar"
             value={formik.values.name_ar}
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_ar)}
             label={t("tags.name_ar")}
-            placeholder={t("tags.name_ar_placeholder")}
           />
           <Input
             name="name_en"
@@ -70,7 +55,6 @@ const AddCategory = () => {
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_en)}
             label={t("tags.name_en")}
-            placeholder={t("tags.name_en_placeholder")}
           />
           <Input
             name="name_ku"
@@ -78,7 +62,14 @@ const AddCategory = () => {
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_ku)}
             label={t("tags.name_ku")}
-            placeholder={t("tags.name_ku_placeholder")}
+          />
+          <Input
+            name="priority"
+            value={formik.values.priority}
+            onChange={formik.handleChange}
+            errorText={t(formik.errors.priority)}
+            label={t("conent_types.priority")}
+            type="number"
           />
         </div>
         <Button type="submit"> {t("common.save")} </Button>
@@ -87,4 +78,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default AddType;

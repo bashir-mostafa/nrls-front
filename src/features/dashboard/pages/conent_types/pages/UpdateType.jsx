@@ -9,16 +9,15 @@ import Input from "../../../../../components/inputs/Input";
 import Button from "../../../../../components/buttons/Button";
 import Skeleton from "../../../../../components/skeleton/Skeleton";
 import HandleError from "../../../../../components/error/HandleError";
-import { categoriesSchema } from "../../../../../schema/categories";
-import { useMemo } from "react";
+import { contentTypeSchema } from "./../../../../../schema/conentType";
 
-const api = new APIClient(endPoints.categories);
+const api = new APIClient(endPoints.contentType);
 
-const UpdateCategory = () => {
+const UpdateType = () => {
   const { id } = useParams();
 
   const { data, error, isLoading, refetch } = useQuery({
-    queryKey: [endPoints.categories, id],
+    queryKey: [endPoints.contentType, id],
     queryFn: () => api.getOne(id),
   });
 
@@ -27,9 +26,9 @@ const UpdateCategory = () => {
       name_ar: data?.name_ar || "",
       name_ku: data?.name_ku || "",
       name_en: data?.name_en || "",
-      content_type: data?.content_type || "",
+      priority: data?.priority || "",
     },
-    validationSchema: categoriesSchema,
+    validationSchema: contentTypeSchema,
     onSubmit: (d) => handleConfirm.mutate(d),
     enableReinitialize: true,
   });
@@ -40,13 +39,12 @@ const UpdateCategory = () => {
   const handleConfirm = useMutation({
     mutationFn: (data) => api.updateData({ data, id }),
     onSuccess: () => {
-      query.invalidateQueries([endPoints.categories]);
+      query.invalidateQueries([endPoints.contentType]);
       nav(-1);
     },
   });
 
-  const { t, i18n } = useTranslation();
-  const language = useMemo(() => i18n.language, [i18n]);
+  const { t } = useTranslation();
 
   if (isLoading) return <Skeleton height="300px" />;
 
@@ -60,24 +58,12 @@ const UpdateCategory = () => {
 
       <form className="dashboard-form" onSubmit={formik.handleSubmit}>
         <div className="inputs-area">
-          <SelectInputApi
-            endPoint={endPoints.contentType}
-            onChange={(e) => formik.setFieldValue("content_type", e)}
-            placeholder={
-              formik.values.content_type?.[`name_${language}`] ||
-              `${t("common.select")} ${t("common.content_type")}`
-            }
-            errorText={t(formik.errors.content_type)}
-            label={t("common.content_type")}
-            optionLabel={(e) => `${e.name_en} - ${e.name_ar} - ${e.name_ku}`}
-          />
           <Input
             name="name_ar"
             value={formik.values.name_ar}
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_ar)}
             label={t("tags.name_ar")}
-            placeholder={t("tags.name_ar_placeholder")}
           />
           <Input
             name="name_en"
@@ -85,7 +71,6 @@ const UpdateCategory = () => {
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_en)}
             label={t("tags.name_en")}
-            placeholder={t("tags.name_en_placeholder")}
           />
           <Input
             name="name_ku"
@@ -93,7 +78,14 @@ const UpdateCategory = () => {
             onChange={formik.handleChange}
             errorText={t(formik.errors.name_ku)}
             label={t("tags.name_ku")}
-            placeholder={t("tags.name_ku_placeholder")}
+          />
+          <Input
+            name="priority"
+            value={formik.values.priority}
+            onChange={formik.handleChange}
+            errorText={t(formik.errors.priority)}
+            label={t("conent_types.priority")}
+            type="number"
           />
         </div>
         <Button type="submit"> {t("common.save")} </Button>
@@ -102,4 +94,4 @@ const UpdateCategory = () => {
   );
 };
 
-export default UpdateCategory;
+export default UpdateType;

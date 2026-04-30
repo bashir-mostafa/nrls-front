@@ -227,22 +227,7 @@
     "view": "Postê bibîne"
   },
   "content_types": {
-    "event": "Çalakî",
-    "survey": "Anket",
-    "article": "Gotar",
-    "study": "Lêkolîn",
-    "opinion_article": "Gotara ramanê",
-    "infographic": "Înfografîk",
-    "video": "Vîdyo",
-    "documentary": "Belgesel",
-    "report": "Rapor",
-    "magazine": "Kovar",
-    "book": "Pirtûk",
-    "dialogue_session": "Rûniştina diyalogê",
-    "studies": "Lêkolîn",
-    "analytics": "Analîz",
-    "topics": "Mijar",
-    "opinion": "Gotara ramanê",
+    "priority": "pêşeyî",
     "media": "Medya",
     "publication": "Weşan",
     "files": "Dosya"

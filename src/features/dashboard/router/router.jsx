@@ -3,6 +3,7 @@ import DasboardLayout from "../components/DasboardLayout";
 import { authorRouter } from "../pages/authers/router/router";
 import { backupRouter } from "../pages/backup/router/router";
 import { categoryRouter } from "../pages/categories/router/router";
+import { conentTypesRouter } from "../pages/conent_types/router/router";
 import { eventsRouter } from "../pages/events/router/router";
 import { postsRouter } from "../pages/posts/router/router";
 import { statisticRouter } from "../pages/statistics/router/router";
@@ -21,6 +22,7 @@ export const dashboardRouter = [
       ...postsRouter,
       ...backupRouter,
       ...eventsRouter,
+      ...conentTypesRouter,
       statisticRouter,
     ],
   },

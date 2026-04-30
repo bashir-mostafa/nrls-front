@@ -228,22 +228,7 @@
     "view": "عرض الخبر"
   },
   "content_types": {
-    "event": "فعالية",
-    "survey": "استبيان",
-    "article": "مقال",
-    "study": "دراسة",
-    "opinion_article": "مقال رأي",
-    "infographic": "إنفوغرافيك",
-    "video": "فيديو",
-    "documentary": "وثائقي",
-    "report": "تقرير",
-    "magazine": "مجلة",
-    "book": "كتب",
-    "dialogue_session": "جلسة حوار",
-    "studies": "الدراسات",
-    "analytics": "التحليلات",
-    "topics": "المواضيع",
-    "opinion": "مقال رأي",
+    "priority": "الأولوية",
     "media": "الوسائط",
     "publication": "المنشورات",
     "files": "الملفات"

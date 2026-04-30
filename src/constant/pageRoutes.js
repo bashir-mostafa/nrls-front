@@ -28,6 +28,11 @@ const dashboardRouts = {
     view: (id = ":id") => `${homeRoutes.dashboard}/authors/${id}`,
     update: (id = ":id") => `${homeRoutes.dashboard}/authors/${id}/update`,
   },
+  conentType: {
+    page: `${homeRoutes.dashboard}/conent_types`,
+    add: `${homeRoutes.dashboard}/conent_types/add`,
+    update: (id = ":id") => `${homeRoutes.dashboard}/conent_types/${id}`,
+  },
   tag: {
     page: `${homeRoutes.dashboard}/tags`,
     add: `${homeRoutes.dashboard}/tags/add`,
@@ -92,6 +97,11 @@ const dashboardPages = [
     icon: icons.events,
   },
   {
+    title: "pages.conent_types",
+    to: dashboardRouts.conentType.page,
+    icon: icons.conentType,
+  },
+  {
     title: "pages.tags",
     to: dashboardRouts.tag.page,
     icon: icons.tags,
@@ -117,6 +127,7 @@ const searchPages = [
   ...dashboardPages,
   { title: "pages.add_author", to: dashboardRouts.author.add },
   { title: "pages.add_tag", to: dashboardRouts.tag.add },
+  { title: "pages.add_conent_type", to: dashboardRouts.conentType.add },
   { title: "pages.add_category", to: dashboardRouts.category.add },
   { title: "pages.add_event", to: dashboardRouts.events.add },
   { title: "pages.home", to: "/" },
