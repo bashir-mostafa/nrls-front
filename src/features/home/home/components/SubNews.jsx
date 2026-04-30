@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router";
 import { useCallback } from "react";
 import { postViewImg } from "../../../../utils/postViewImg";
 
-const SubNews = ({ data, language, t }) => {
+const SubNews = ({ data, language }) => {
   const nav = useNavigate();
   const handleNavigate = useCallback(
     (id, name) => nav(homeRoutes.posts.view(name, id)),
@@ -22,21 +22,22 @@ const SubNews = ({ data, language, t }) => {
         <div
           className="sub-news"
           key={e.id}
-          onClick={() => handleNavigate(e.id, e.content_type)}
+          onClick={() =>
+            handleNavigate(e.id, e?.content_type?.[`name_${language}`])
+          }
         >
           <img src={postViewImg(e)} alt="" />
           <article>
             <div className="btns">
               <Link
                 className="type"
-                style={{
-                  "--main-color": `var(--color-${e?.content_type})`,
-                }}
-                to={homeRoutes.posts.page(e.content_type)}
+                to={homeRoutes.posts.page(
+                  e?.content_type?.[`name_${language}`],
+                )}
                 onClick={stopPropagation}
                 state={{ content_type: e.content_type }}
               >
-                {t(`content_types.${e?.content_type}`)}
+                {e?.content_type?.[`name_${language}`]}
               </Link>
               <Link
                 to={homeRoutes.posts.page(e?.category?.[`name_${language}`])}

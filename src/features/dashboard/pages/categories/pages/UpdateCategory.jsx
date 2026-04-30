@@ -30,7 +30,8 @@ const UpdateCategory = () => {
       content_type: data?.content_type || "",
     },
     validationSchema: categoriesSchema,
-    onSubmit: (d) => handleConfirm.mutate(d),
+    onSubmit: (d) =>
+      handleConfirm.mutate({ ...d, content_type: d.content_type?.id }),
     enableReinitialize: true,
   });
 

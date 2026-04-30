@@ -53,6 +53,10 @@ const Categories = () => {
       sort: true,
     },
     {
+      name: "content_type_name",
+      headerName: t("common.content_type"),
+    },
+    {
       name: "created_at",
       headerName: t("common.created_at"),
       sort: true,

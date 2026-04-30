@@ -19,7 +19,10 @@ const SecondStyleMainNews = ({ data, language }) => {
   const nav = useNavigate();
   const { t } = useTranslation();
   const handleClick = useCallback(
-    () => nav(homeRoutes.posts.view(data?.content_type, data?.id)),
+    () =>
+      nav(homeRoutes.posts.view(data?.content_type?.name_en, data?.id), {
+        state: { content_type: data?.content_type },
+      }),
     [nav, data],
   );
 

@@ -1,27 +1,13 @@
 import { faEye, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMemo } from "react";
 import { Link } from "react-router";
 
-const CardBody = ({ isDraft, data, authorPage, language, t }) => {
-  const background = useMemo(() => {
-    const type = data?.content_type?.toLowerCase();
-    return `color-mix(in oklab,var(--color-${type}) 90%,transparent)`;
-  }, [data?.content_type]);
-
+const CardBody = ({ isDraft, data, authorPage, language }) => {
   return (
     <div className="card-body">
       <div className="category">
-        <button
-          style={{
-            background,
-            color: `white`,
-          }}>
-          {t(`content_types.${data?.content_type}`)}
-        </button>
-        <button>
-          {data?.category?.[`name_${language}`] || data?.category_name}
-        </button>
+        <button>{data?.content_type?.[`name_${language}`]}</button>
+        <button>{data?.category?.[`name_${language}`]}</button>
       </div>
 
       <h3>{data?.title}</h3>
@@ -38,7 +24,8 @@ const CardBody = ({ isDraft, data, authorPage, language, t }) => {
           <Link
             className="icon link-hover"
             to={!isDraft && authorPage(data?.author?.id)}
-            onClick={(e) => e.stopPropagation()}>
+            onClick={(e) => e.stopPropagation()}
+          >
             <FontAwesomeIcon icon={faUser} />
             {data?.author?.full_name}
           </Link>

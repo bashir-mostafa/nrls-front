@@ -68,7 +68,7 @@ const AllTypes = () => {
       headerName: t("common.actions"),
       getCell: ({ row }) => (
         <div className="center">
-          <Link to={dashboardRouts.contentType.update(row.id)}>
+          <Link to={dashboardRouts.conentType.update(row.id)}>
             <Button btnStyleType="transparent">
               <FontAwesomeIcon icon={icons.update} />
             </Button>
@@ -87,7 +87,7 @@ const AllTypes = () => {
           <Search setSearch={setSearch} setPage={setPage} />
           <Delete
             data={data?.data}
-            endPoint={`${endPoints.contentType}bulk-hard-delete/`}
+            endPoint={`${endPoints.contentType}bulk-delete/`}
             selectedItems={selectedItems}
             setPage={setPage}
             setSelectedItems={setSelectedItems}

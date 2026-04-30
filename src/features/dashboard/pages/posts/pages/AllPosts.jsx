@@ -8,7 +8,6 @@ import RepeatChildren from "../../../../../components/RepeatChildren";
 import Skeleton from "../../../../../components/skeleton/Skeleton";
 import "../style/style.css";
 import { formatInputsData } from "./../../../../../utils/formatInputsData";
-import PostTyps from "../components/PostTyps";
 import AllPostsHeader from "../components/AllPostsHeader";
 import DeletePost from "../components/DeletePost";
 import PostFilters from "../components/PostFilters";
@@ -67,7 +66,6 @@ const AllPosts = () => {
     <>
       <Breadcrumbs />
 
-      <PostTyps filters={filters} setFilters={setFilters} />
       <div className="post-filters">
         <div className="post-search">
           <label htmlFor="search-inp" className="search-inp">

@@ -6,10 +6,10 @@ import { useCallback } from "react";
 import { homeRoutes } from "../../../../constant/pageRoutes";
 import { postViewImg } from "./../../../../utils/postViewImg";
 
-const MainNews = ({ data, language, t }) => {
+const MainNews = ({ data, language }) => {
   const nav = useNavigate();
   const handleNavigate = useCallback(
-    () => nav(homeRoutes.posts.view(data?.content_type, data?.id)),
+    () => nav(homeRoutes.posts.view(data?.content_type?.name_en, data?.id)),
     [data, nav],
   );
 
@@ -24,14 +24,11 @@ const MainNews = ({ data, language, t }) => {
         <div className="btns">
           <Link
             className="type"
-            style={{
-              "--main-color": `var(--color-${data?.content_type})`,
-            }}
-            to={homeRoutes.posts.page(data?.content_type)}
+            to={homeRoutes.posts.page(data?.content_type?.[`name_${language}`])}
             onClick={stopPropagation}
             state={{ content_type: data.content_type }}
           >
-            {t(`content_types.${data?.content_type}`)}
+            {data?.content_type?.[`name_${language}`]}
           </Link>
           <Link
             to={homeRoutes.posts.page(data?.category?.[`name_${language}`])}

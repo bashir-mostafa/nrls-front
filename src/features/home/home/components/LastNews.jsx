@@ -4,7 +4,6 @@ import SubNews from "./SubNews";
 import { useFetchData } from "./../../../../hooks/useFetchData";
 import endPoints from "../../../../constant/endPoints";
 import Skeleton from "../../../../components/skeleton/Skeleton";
-import { useTranslation } from "react-i18next";
 
 const LastNews = ({ language }) => {
   const { data, isLoading } = useFetchData({
@@ -14,8 +13,6 @@ const LastNews = ({ language }) => {
     language,
     is_published: true,
   });
-
-  const { t } = useTranslation();
 
   if (isLoading)
     return (
@@ -33,10 +30,10 @@ const LastNews = ({ language }) => {
 
   return (
     <section className="last-news-container container main-section">
-      <BreakingNews data={data?.data?.slice(4)} />
+      <BreakingNews data={data?.data?.slice(3)} />
       <div className="last-news">
-        <MainNews data={data?.data?.[3]} language={language} t={t} />
-        <SubNews data={data?.data?.slice(0, 3)} language={language} t={t} />
+        <MainNews data={data?.data?.[0]} language={language} />
+        <SubNews data={data?.data?.slice(1, 3)} language={language} />
       </div>
     </section>
   );

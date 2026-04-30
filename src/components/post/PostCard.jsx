@@ -58,7 +58,6 @@ const PostCard = ({
         data={data}
         isDraft={isDraft}
         language={language}
-        t={t}
       />
 
       <CardFooter data={data} isDraft={isDraft} t={t} />

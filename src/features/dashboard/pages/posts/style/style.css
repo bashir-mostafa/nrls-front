@@ -142,27 +142,6 @@
   border-color: var(--border-color);
   direction: ltr;
 }
-.post-categories {
-  display: flex;
-  margin-bottom: 15px;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.post-categories button {
-  border: solid 1px var(--main-color);
-  padding: 5px 15px;
-  border-radius: 20px;
-  background-color: color-mix(in oklab, var(--main-color) 10%, transparent);
-  color: var(--main-color);
-  cursor: pointer;
-  font-weight: 500;
-  text-transform: capitalize;
-  font-size: 14px;
-}
-.post-categories button.active {
-  background-color: var(--main-color);
-  color: #fff;
-}
 
 .post-view-container {
   display: flex;
@@ -783,13 +762,6 @@ aside.post-sidebar {
     padding-inline: 6px;
     padding-block: 5px;
   }
-  .post-categories {
-    gap: 5px;
-  }
-  .post-categories button {
-    padding: 4px 10px;
-    font-size: 13px;
-  }
   .dashboard-form .post-inputs {
     padding: 15px;
     gap: 10px;
@@ -850,10 +822,7 @@ aside.post-sidebar {
   .post-view-container {
     gap: 20px;
   }
-  .post-categories button {
-    padding: 4px 8px;
-    font-size: 12px;
-  }
+
   .post-tabs p {
     padding-bottom: 8px;
     padding-inline: 7px;
@@ -918,10 +887,6 @@ aside.post-sidebar {
   }
   .post-sidebar .section-title {
     font-size: 13px;
-  }
-  .post-categories button {
-    padding: 3px 6px;
-    font-size: 10px;
   }
 }
 
@@ -1004,9 +969,7 @@ aside.post-sidebar {
   .post-filters h1 {
     font-size: 20px;
   }
-  .post-categories button {
-    padding: 3px 5px;
-  }
+
   .post-tabs p {
     padding-bottom: 5px;
     padding-inline: 4px;

@@ -15,7 +15,6 @@ const TopicsNews = ({ language }) => {
     page_size: 5,
     ordering: { published_at: "-published_at" },
     language,
-    content_type_multi: topicTyps,
     is_published: true,
   });
 
@@ -72,7 +71,11 @@ const TopicsNews = ({ language }) => {
             authorPage={homeRoutes.author.view}
             data={e}
             key={e.id}
-            postPage={(e) => homeRoutes.posts.view(e?.content_type, e.id)}
+            postPage={(e) =>
+              homeRoutes.posts.view(e?.content_type?.name_en, e.id, {
+                state: { content_type: e?.content_type },
+              })
+            }
             className={"card-style-1 keen-slider__slide"}
           />
         ))}

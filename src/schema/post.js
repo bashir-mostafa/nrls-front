@@ -1,5 +1,4 @@
 import * as yup from "yup";
-import { allTyps } from "../constant/enums";
 import { languages } from "../constant/languages";
 
 export const postSchema = yup.object({
@@ -11,7 +10,7 @@ export const postSchema = yup.object({
 
   original_post: yup.object().nullable(),
 
-  content_type: yup.string().required("validation.required").oneOf(allTyps),
+  content_type: yup.object().required("validation.required"),
   category: yup.object().required("validation.required"),
   tags: yup.array().of(yup.object()).notRequired(),
   author: yup.object().nullable(),
@@ -39,7 +38,7 @@ export const postSchemaUpdate = yup.object({
 
   original_post: yup.object().nullable(),
 
-  content_type: yup.string().required("validation.required").oneOf(allTyps),
+  content_type: yup.object().required("validation.required"),
   category: yup.object().required("validation.required"),
   tags: yup.array().of(yup.object()).notRequired(),
   author: yup.object().nullable(),

@@ -13,7 +13,6 @@ const MediaNews = ({ language }) => {
     page_size: 7,
     ordering: { published_at: "-published_at" },
     language,
-    content_type_multi: mediaTyps,
     is_published: true,
   });
 
@@ -29,6 +28,7 @@ const MediaNews = ({ language }) => {
     );
 
   if (!data?.totalCount) return;
+
   return (
     <section className="container main-section">
       <MainTitle state={{ content_type_multi: mediaTyps }} name="media">

@@ -79,6 +79,10 @@
   background: var(--aside-color);
   text-transform: capitalize;
 }
+.post-view-card .card-body .category button:first-of-type {
+  color: white;
+  background: var(--main-color);
+}
 
 .post-view-card .card-body h3 {
   font-size: 16px;

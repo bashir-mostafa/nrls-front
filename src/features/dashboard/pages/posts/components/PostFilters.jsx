@@ -3,7 +3,6 @@ import PopUp from "../../../../../components/popup/PopUp";
 import Input from "../../../../../components/inputs/Input";
 import Button from "../../../../../components/buttons/Button";
 import SelectOptionInput from "../../../../../components/inputs/SelectOptionInput";
-import { allTyps } from "../../../../../constant/enums";
 import SelectInputApi from "../../../../../components/inputs/SelectInputApi";
 import endPoints from "../../../../../constant/endPoints";
 import { useTranslation } from "react-i18next";
@@ -33,10 +32,14 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
   return (
     <PopUp isOpen className="filters-popup" onClose={onClose}>
       <div className="filters-container">
-        <SelectOptionInput
-          label={t("pages.content_type")}
-          onSelectOption={(e) => handleOptionInp("content_type", e.value)}
-          options={allTyps.map((e) => ({ text: e, value: e }))}
+        <SelectInputApi
+          endPoint={endPoints.contentType}
+          onChange={(e) => handleOptionInp("content_type", e)}
+          placeholder={
+            localFilters?.content_type?.[`name_${language}`] || t("common.all")
+          }
+          label={t("common.content_type")}
+          optionLabel={(e) => `${e.name_en} - ${e.name_ar} - ${e.name_ku}`}
           notRequired
           customOptions={[
             {
@@ -44,8 +47,8 @@ const PostFilters = ({ onClose, filters, setFilters }) => {
               onChange: () => handleOptionInp("content_type", ""),
             },
           ]}
-          placeholder={localFilters?.content_type || t("common.all")}
         />
+
         <SelectInputApi
           endPoint={endPoints.categories}
           onChange={(e) => handleOptionInp("category", e)}
