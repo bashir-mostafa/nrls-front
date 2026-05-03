@@ -104,7 +104,7 @@ const Statistics = () => {
       <section className="statistic-details">
         <div className="statistic-container by-language">
           <h2>
-            <FontAwesomeIcon icon={faLanguage} />{" "}
+            <FontAwesomeIcon icon={faLanguage} />
             {t("statistics.posts_by_language")}
           </h2>
 
@@ -135,17 +135,13 @@ const Statistics = () => {
           </h2>
 
           {Object.entries(data?.by_content_type)?.map(([key, value]) => {
-            const search = key.toLowerCase();
             const percent =
               value > 0 ? getPercent(value, data?.total_posts).toFixed(1) : 0;
 
             return (
               <div className="percent" key={key}>
-                <p>{t(`content_types.${search}`, search)}</p>
-                <div
-                  style={{ "--main-color": `var(--color-${search})` }}
-                  data-percent={`${percent}%`}
-                >
+                <p>{key}</p>
+                <div data-percent={`${percent}%`}>
                   <span style={{ width: `${percent}%` }}></span>
                 </div>
                 <h3>{value}</h3>
