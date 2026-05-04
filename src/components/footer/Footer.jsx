@@ -44,8 +44,8 @@ const Footer = ({ types }) => {
         <h2 className="title">{t("footer.categories")}</h2>
         <div className="links">
           {types?.map((e) => (
-            <Link to={e.name_en} key={e.id} state={{ content_type: e }}>
-              {e[`name_${language}`]}
+            <Link to={e?.name_en} key={e.id} state={{ content_type: e }}>
+              {e?.[`name_${language}`]}
             </Link>
           ))}
         </div>

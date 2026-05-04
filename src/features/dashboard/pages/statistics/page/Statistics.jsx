@@ -15,7 +15,8 @@ import { useCallback, useState } from "react";
 import Input from "../../../../../components/inputs/Input";
 
 const Statistics = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n?.language;
 
   const [filters, setFilters] = useState({});
 
@@ -142,10 +143,7 @@ const Statistics = () => {
             return (
               <div className="percent" key={key}>
                 <p>{t(`content_types.${search}`, search)}</p>
-                <div
-                  style={{ "--main-color": `var(--color-${search})` }}
-                  data-percent={`${percent}%`}
-                >
+                <div data-percent={`${percent}%`}>
                   <span style={{ width: `${percent}%` }}></span>
                 </div>
                 <h3>{value}</h3>

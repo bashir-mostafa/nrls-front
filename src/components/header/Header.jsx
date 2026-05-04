@@ -44,13 +44,13 @@ const Header = ({ types }) => {
               />
             ) : (
               <NavLink
-                to={e.name_en}
+                to={e?.name_en}
                 className="link"
                 onClick={handleClick}
                 key={e.id}
                 state={{ content_type: e }}
               >
-                {e[`name_${language}`]}
+                {e?.[`name_${language}`]}
               </NavLink>
             ),
           )}
